@@ -6,18 +6,18 @@ CPP_WRAPPER(spm::offscreendrv)
 
 void offscreenInit();
 UNKNOWN_FUNCTION(offscreenReset)
-UNKNOWN_FUNCTION(offscreenEntry)
+void offscreenEntry(const char * name);
 UNKNOWN_FUNCTION(offscreenDisp)
 void offscreenMain();
 UNKNOWN_FUNCTION(offscreenAddBoundingBox)
 UNKNOWN_FUNCTION(func_800350a0)
 UNKNOWN_FUNCTION(func_800350fc)
-UNKNOWN_FUNCTION(offscreenNameToId)
+s32 offscreenNameToId(const char * name);
 UNKNOWN_FUNCTION(func_8003521c)
 UNKNOWN_FUNCTION(func_800352b4)
 UNKNOWN_FUNCTION(func_800352cc)
-UNKNOWN_FUNCTION(func_800353c4)
-UNKNOWN_FUNCTION(func_80035478)
+void func_800353c4(const char * name);
+bool func_80035478(s32 id, u16 * x0, u16 * y0, u16 * x1, u16 * y1);
 
 void offscreenSetEntryType(const char *name, u32 type);
 

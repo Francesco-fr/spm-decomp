@@ -164,14 +164,14 @@ UNKNOWN_FUNCTION(textureGroupEntry)
 UNKNOWN_FUNCTION(animGroupEntry)
 UNKNOWN_FUNCTION(animPoseRefresh)
 s32 animPoseEntry(const char * filename, s32 releaseType);
-UNKNOWN_FUNCTION(animPaperPoseEntry)
+s32 animPaperPoseEntry(const char * name, s32 group);
 UNKNOWN_FUNCTION(func_80042ec8)
 UNKNOWN_FUNCTION(animPosePeraOff)
 UNKNOWN_FUNCTION(animPoseSetLocalTimeRate)
 UNKNOWN_FUNCTION(animPoseSetLocalTime)
 UNKNOWN_FUNCTION(animPoseSetStartTime)
 void animPoseSetAnim(s32 id, const char * animName, bool forceReset);
-UNKNOWN_FUNCTION(animPaperPoseGetId)
+s32 animPaperPoseGetId(const char * name, s32 group);
 UNKNOWN_FUNCTION(animPoseSetPaperAnimGroup)
 UNKNOWN_FUNCTION(animPoseSetPaperAnim)
 UNKNOWN_FUNCTION(func_80043b90)
@@ -218,7 +218,7 @@ UNKNOWN_FUNCTION(_animPoseDrawMtx)
 void animPoseDrawMtx(s32 id, Mtx34 mtx, s32 xluStage, f32 rotY, f32 scale);
 UNKNOWN_FUNCTION(animSetPaperTexObj)
 s32 animPoseRelease(s32 id);
-UNKNOWN_FUNCTION(animPaperPoseRelease)
+void animPaperPoseRelease(s32 id);
 void animPoseAutoRelease(s32 releaseType);
 UNKNOWN_FUNCTION(animPaperPoseDisp)
 UNKNOWN_FUNCTION(animPaperPoseDispSub)

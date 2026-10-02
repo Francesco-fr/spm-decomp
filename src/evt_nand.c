@@ -1,0 +1,169 @@
+#include <common.h>
+#include <evt_cmd.h>
+#include <spm/evt_nand.h>
+#include <spm/evtmgr.h>
+#include <spm/evtmgr_cmd.h>
+#include <spm/nandmgr.h>
+#include <spm/spmario.h>
+
+extern "C" {
+
+s32 func_80241408(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    if (isFirstCall)
+        nandWriteBanner();
+
+    if (nandIsExec())
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[0], nandGetCode());
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_80241474(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    if (isFirstCall)
+        nandCheck();
+
+    if (nandIsExec())
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[0], nandGetCode());
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_802414e0(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    if (isFirstCall)
+        nandWriteAllSaves();
+
+    if (nandIsExec())
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[0], nandGetCode());
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_8024154c(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    s32 saveId = evtGetValue(entry, args[0]);
+    if (isFirstCall)
+    {
+        if (saveId == -1)
+            nandWriteSave(gp->saveFileId);
+        else
+            nandWriteSave(saveId);
+    }
+
+    if (nandIsExec())
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[1], nandGetCode());
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_802415e4(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    if (isFirstCall)
+        nandWriteBannerLoadAllSaves();
+
+    if (nandIsExec())
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[0], nandGetCode());
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_80241650(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    s32 saveId = evtGetValue(entry, args[0]);
+    if (isFirstCall)
+    {
+        if (saveId == -1)
+            nandDeleteSave(gp->saveFileId);
+        else
+            nandDeleteSave(saveId);
+    }
+
+    if (nandIsExec())
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[1], nandGetCode());
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_802416e8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]))
+        nandDisableSaving();
+    else
+        nandEnableSaving();
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_80241728(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    returnToWiiMenu();
+
+    return EVT_RET_BLOCK_WEAK;
+}
+
+s32 func_8024174c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    nandUpdateSave(gp->saveFileId);
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_80241778(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    nandClearSave(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_802417a8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 sourceId = evtGetValue(entry, args[0]);
+    s32 destId = evtGetValue(entry, args[1]);
+    nandCopySave(sourceId, destId);
+
+    return EVT_RET_CONTINUE;
+}
+
+s32 func_80241804(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    // Hang forever
+    while (true) { }
+}
+
+}
