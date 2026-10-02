@@ -91,7 +91,15 @@ s32 evt_img_clear_virtual_space(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_img_release
+s32 evt_img_release(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    ImgEntry * img = func_8007706c((const char *) evtGetValue(entry, entry->pCurData[0]), gp->unknown_0xc4 != 0);
+    func_80077188(img, gp->unknown_0xc4 != 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_img_wait_animend
 
