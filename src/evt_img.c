@@ -101,7 +101,18 @@ s32 evt_img_release(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_img_wait_animend
+s32 evt_img_wait_animend(EvtEntry * entry, bool isFirstCall)
+{
+    ImgEntry * img = func_8007706c((const char *) evtGetValue(entry, entry->pCurData[0]),
+                                   gp->unknown_0xc4 != 0);
+    if (isFirstCall)
+        return EVT_RET_BLOCK_WEAK;
+
+    if (img->unknown_0x118 < 1.0f)
+        return EVT_RET_BLOCK_WEAK;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ec998
 
