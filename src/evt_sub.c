@@ -312,7 +312,17 @@ s32 evt_sub_spline_get_value_manual(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_spline_free
+s32 evt_sub_spline_free(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    SplineWork * work = (SplineWork *) entry->lw[15];
+    __memFree(1, work->table1);
+    __memFree(1, work->table2);
+    __memFree(1, work);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_get_sincos
 
