@@ -35,7 +35,9 @@ typedef struct _HitObj
 /* 0x0D8 */ s16 totalTri;
 /* 0x0DA */ s16 mapEntryIdx;
 /* 0x0DC */ Unk * tris; // array of totalTri length
-/* 0x0E0 */ u8 unknown_0xe0[0x100 - 0xe0];
+/* 0x0E0 */ u8 unknown_0xe0[0xe2 - 0xe0];
+/* 0x0E2 */ s16 unknown_0xe2;
+/* 0x0E4 */ u8 unknown_0xe4[0x100 - 0xe4];
 /* 0x100 */ union
             {
                 MobjEntry * mobj;
@@ -140,8 +142,8 @@ UNKNOWN_FUNCTION(hitCheckAttr)
 UNKNOWN_FUNCTION(func_8006f128)
 UNKNOWN_FUNCTION(func_8006f47c)
 UNKNOWN_FUNCTION(func_8006f710)
-UNKNOWN_FUNCTION(func_8006f7cc)
-UNKNOWN_FUNCTION(func_8006f884)
+void func_8006f7cc(const char * name, f32 x, f32 y, f32 z);
+void func_8006f884(const char * name, f32 x, f32 y, f32 z);
 
 /*
     Gets a HitObj by name / a string anwyhere in its name
@@ -183,7 +185,7 @@ u32 hitGetAttr(HitObj * hitGetAttr);
 */
 void hitBindMapObj(const char * hitName, const char * mapObjName);
 
-void hitBindUpdate();
+void hitBindUpdate(const char * hitName);
 void hitCheckVecFilter2();
 
 UNKNOWN_FUNCTION(func_800710b4)
