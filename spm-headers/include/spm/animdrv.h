@@ -156,7 +156,7 @@ typedef struct
 SIZE_ASSERT(AnimPose, 0x188)
 
 AnimWork * animGetPtr();
-OSTime animTimeGetTime();
+OSTime animTimeGetTime(bool param_1);
 DECOMP_STATIC(void * animdrv_testAlloc(u32 size))
 void animInit();
 void animMain();
@@ -180,7 +180,7 @@ UNKNOWN_FUNCTION(animPoseSetEffect)
 UNKNOWN_FUNCTION(animPoseSetEffectAnim)
 UNKNOWN_FUNCTION(animPoseSetGXFunc)
 f32 animPoseGetLoopTimes(s32 animPoseId);
-UNKNOWN_FUNCTION(animPoseSetFlagF0On)
+void animPoseSetFlagF0On(s32 animPoseId, u32 flags);
 UNKNOWN_FUNCTION(animPoseSetFlagF0Off)
 UNKNOWN_FUNCTION(animPoseSetFlagF4On)
 UNKNOWN_FUNCTION(animPoseSetFlagF4Off)

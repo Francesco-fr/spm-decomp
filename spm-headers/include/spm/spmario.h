@@ -39,7 +39,7 @@ typedef struct
 /* 0x0064 */ char doorName[32];
 /* 0x0084 */ char gameOverMapName[32];
 /* 0x00A4 */ char prevMapName[32];
-/* 0x00C4 */ u8 unknown_0xc4[0xc8 - 0xc4];
+/* 0x00C4 */ s32 unknown_0xc4;
 /* 0x00C8 */ OSTime lastSaveUpdateTime; // last time save file in memory was written to
 /* 0x00D0 */ Vec3 savePosition;
 /* 0x00DC */ s32 saveFileId;
