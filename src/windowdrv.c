@@ -91,7 +91,35 @@ void windowMain()
     }
 }
 
-// NOT_DECOMPILED func_80038b08
+void func_80038b08()
+{
+    GXSetCullMode(0);
+    GXSetZCompLoc(1);
+    GXSetAlphaCompare(7, 0, 0, 7, 0);
+    GXSetBlendMode(1, 4, 5, 7);
+    GXSetZMode(1, 7, 0);
+
+    GXColor fogColour = {0xff, 0xff, 0xff, 0xff};
+    GXSetFog(0, 0.0f, 0.0f, 0.0f, 0.0f, &fogColour);
+
+    GXClearVtxDesc();
+    GXSetVtxDesc(9, 1);
+    GXSetVtxDesc(13, 1);
+    GXSetVtxAttrFmt(0, 9, 1, 4, 0);
+    GXSetVtxAttrFmt(0, 13, 1, 4, 0);
+    GXSetTexCoordGen2(0, 1, 4, 60, 0, 125);
+
+    GXSetNumChans(0);
+    GXSetNumTexGens(1);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(0, 0, 0, 0xff);
+    GXSetTevColorOp(0, 0, 0, 0, 1, 0);
+    GXSetTevAlphaOp(0, 0, 0, 0, 1, 0);
+    GXSetTevColorIn(0, 15, 2, 8, 15);
+    GXSetTevAlphaIn(0, 7, 1, 4, 7);
+    GXSetTevSwapMode(0, 0, 0);
+    GXSetCurrentMtx(0);
+}
 
 // NOT_DECOMPILED func_80038cc0
 

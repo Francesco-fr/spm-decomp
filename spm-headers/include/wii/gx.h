@@ -78,7 +78,7 @@ UNKNOWN_FUNCTION(GXGetVtxAttrFmt)
 UNKNOWN_FUNCTION(GXGetVtxAttrFmtv)
 UNKNOWN_FUNCTION(GXSetArray)
 UNKNOWN_FUNCTION(GXInvalidateVtxCache)
-UNKNOWN_FUNCTION(GXSetTexCoordGen2)
+void GXSetTexCoordGen2(u8 dst_coord, u32 func, u32 src_param, u32 mtx, u8 normalize, u32 postmtx);
 void GXSetNumTexGens(u32 nr);
 UNKNOWN_FUNCTION(GXSetMisc)
 UNKNOWN_FUNCTION(GXFlush)
@@ -180,10 +180,10 @@ UNKNOWN_FUNCTION(__GXUpdateBPMask)
 UNKNOWN_FUNCTION(__GXSetIndirectMask)
 UNKNOWN_FUNCTION(__GXFlushTextureState)
 void GXSetTevOp(u8 tevstage, u8 mode);
-UNKNOWN_FUNCTION(GXSetTevColorIn)
-UNKNOWN_FUNCTION(GXSetTevAlphaIn)
-UNKNOWN_FUNCTION(GXSetTevColorOp)
-UNKNOWN_FUNCTION(GXSetTevAlphaOp)
+void GXSetTevColorIn(u8 stage, u32 a, u32 b, u32 c, u32 d);
+void GXSetTevAlphaIn(u8 stage, u32 a, u32 b, u32 c, u32 d);
+void GXSetTevColorOp(u8 stage, u32 op, u32 bias, u32 scale, u8 clamp, u32 out_reg);
+void GXSetTevAlphaOp(u8 stage, u32 op, u32 bias, u32 scale, u8 clamp, u32 out_reg);
 UNKNOWN_FUNCTION(GXSetTevColor)
 UNKNOWN_FUNCTION(GXSetTevColorS10)
 UNKNOWN_FUNCTION(GXSetTevKColor)
