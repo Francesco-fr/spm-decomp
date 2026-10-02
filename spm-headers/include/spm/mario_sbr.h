@@ -10,5 +10,6 @@ bool marioCheck1HeldFor3();
 f32 revise360(f32);
 void toMovedir2(f32, f32);
 bool marioCheck2HeldFor2();
+f32 func_80150688(f32 angle);
 
 CPP_WRAPPER_END()

@@ -61,7 +61,7 @@ void C_MTXOrtho(Mtx44 dest, f32 top, f32 bottom, f32 left, f32 right, f32 near, 
 UNKNOWN_FUNCTION(PSMTX44Copy)
 UNKNOWN_FUNCTION(PSMTX44MultVec)
 UNKNOWN_FUNCTION(PSMTX44MultVecArray)
-UNKNOWN_FUNCTION(PSVECAdd)
+void PSVECAdd(const Vec3 * src1, const Vec3 * src2, Vec3 * dest);
 void PSVECSubtract(const Vec3 * src1, const Vec3 * src2, Vec3 * dest);
 void PSVECScale(const Vec3 * src, Vec3 * dest, f32 scale);
 void PSVECNormalize(const Vec3 * src, Vec3 * dest);
@@ -72,7 +72,7 @@ void PSVECCrossProduct(const Vec3 * src1, const Vec3 * src2, Vec3 * dest);
 UNKNOWN_FUNCTION(VECHalfAngle)
 UNKNOWN_FUNCTION(VECReflect)
 f32 PSVECSquareDistance(Vec3 * src1, Vec3 * src2);
-UNKNOWN_FUNCTION(PSVECDistance)
+f32 PSVECDistance(const Vec3 * a, const Vec3 * b);
 UNKNOWN_FUNCTION(QUATMtx)
 UNKNOWN_FUNCTION(QUATSlerp)
 

@@ -363,7 +363,7 @@ config.libs = [
         Object(Matching, "evtmgr_cmd.c"),
         Object(NonStarted, "evt_ac.c"),
         Object(NonStarted, "evt_bg.c"),
-        Object(NonStarted, "evt_cam.c"),
+        Object(NonMatching, "evt_cam.c"),
         Object(NonStarted, "evt_case.c"),
         Object(NonStarted, "evt_door.c"),
         Object(NonStarted, "evt_eff.c"),

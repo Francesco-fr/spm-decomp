@@ -58,12 +58,18 @@ typedef struct _CamEntry
 /* 0x054 */ Mtx34 viewMtx;
 /* 0x084 */ u8 unknown_0x84[0x94-0x84];
 /* 0x094 */ Mtx44 projMtx;
-/* 0x0D4 */ u8 unknown_0xd4[0xf0 - 0xd4];
+/* 0x0D4 */ u8 unknown_0xd4[0xe0 - 0xd4];
+/* 0x0E0 */ s32 unknown_0xe0;
+/* 0x0E4 */ s32 unknown_0xe4;
+/* 0x0E8 */ f32 unknown_0xe8;
+/* 0x0EC */ f32 unknown_0xec;
 /* 0x0F0 */ f32 top;
 /* 0x0F4 */ f32 bottom;
 /* 0x0F8 */ f32 left;
 /* 0x0FC */ f32 right;
-/* 0x100 */ u8 unknown_0x100[0x158 - 0x100];
+/* 0x100 */ Vec3 unknown_0x100;
+/* 0x10C */ f32 unknown_0x10c;
+/* 0x110 */ u8 unknown_0x110[0x158 - 0x110];
 /* 0x158 */ GXProjectionType projectionType;
 /* 0x15C */ Vec3 pos;
 /* 0x168 */ Vec3 target;
@@ -75,17 +81,21 @@ typedef struct _CamEntry
 /* 0x190 */ f32 near;
 /* 0x194 */ f32 far;
 /* 0x198 */ s32 isOrthoToggle; //overwrites isOrthro every frame, change this if you want to make the world look 3d, not isOrthro
-/* 0x19C */ u8 unknown_0x19c[0x20c - 0x19c];
+/* 0x19C */ u8 unknown_0x19c[0x208 - 0x19c];
+/* 0x208 */ GXProjectionType zoomProjectionType;
 /* 0x20C */ Vec3 zoomStartPos;
 /* 0x218 */ Vec3 zoomStartTarget;
 /* 0x224 */ Vec3 zoomDestPos;
 /* 0x230 */ Vec3 zoomDestTarget;
 /* 0x23C */ u8 unknown_0x23c[0x240 - 0x23c];
 /* 0x240 */ OSTime zoomStartTime;
-/* 0x248 */ u8 unknown_0x248[0x254 - 0x248];
+/* 0x248 */ s32 zoomTime;
+/* 0x24C */ s32 zoomType;
+/* 0x250 */ s32 unknown_0x250;
 /* 0x254 */ void * cameraRoad;
 /* 0x258 */ CamDispFunc * dispFunc;
-/* 0x25C */ u8 unknown_0x25c[0x2f0 - 0x25c];
+/* 0x25C */ s32 unknown_0x25c;
+/* 0x260 */ u8 unknown_0x260[0x2f0 - 0x260];
 } CamEntry;
 SIZE_ASSERT(CamEntry, 0x2f0)
 
@@ -191,15 +201,15 @@ void getScreenPoint(Vec3 * worldPos, Vec3 * screenPosOut);
 bool camCheck3d(s32 camId);
 
 UNKNOWN_FUNCTION(func_80058388)
-UNKNOWN_FUNCTION(func_800583b4)
-UNKNOWN_FUNCTION(func_80058404)
+s32 func_800583b4();
+void func_80058404(s32 camId, s32 param_2);
 UNKNOWN_FUNCTION(func_8005869c)
 UNKNOWN_FUNCTION(func_800586c8)
-UNKNOWN_FUNCTION(func_80058700)
-UNKNOWN_FUNCTION(func_800587a0)
-UNKNOWN_FUNCTION(func_80058800)
-UNKNOWN_FUNCTION(func_8005881c)
-UNKNOWN_FUNCTION(func_80058840)
+void func_80058700(s32 camId, f32 x, f32 y, f32 z, s32 time);
+void func_800587a0(s32 camId, f32 x, f32 y, f32 z, s32 time);
+s32 func_80058800(s32 camId);
+s32 func_8005881c();
+void func_80058840(f32 param_1);
 
 /*
     Just returns false, unclear purpose
