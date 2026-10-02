@@ -33,7 +33,21 @@ s32 evt_img_set_position(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_img_set_paper
+s32 evt_img_set_paper(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 paperName = evtGetValue(entry, args[1]);
+    bool flag = gp->unknown_0xc4 != 0;
+    ImgEntry * img = func_8007706c((const char *) name, flag);
+    img->animPoseId = animPaperPoseGetId((const char *) paperName, flag);
+    img->animStartTime = animTimeGetTime(flag);
+    animPoseSetFlagF0On(img->animPoseId, 0x60000000);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_img_set_paper_anim
 
