@@ -66,7 +66,21 @@ s32 evt_img_set_paper_anim(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED evt_img_alloc_capture
 
-// NOT_DECOMPILED evt_img_free_capture
+s32 evt_img_free_capture(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 free = evtGetValue(entry, args[1]);
+    ImgEntry * img = func_8007706c((const char *) name, gp->unknown_0xc4 != 0);
+    if (free)
+        img->flags &= ~2;
+    else
+        img->flags |= 2;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_img_clear_virtual_space
 
