@@ -892,7 +892,15 @@ s32 evt_mario_get_pane_change_func(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f3310
+s32 func_800f3310(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_8012d98c();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f3334
 
