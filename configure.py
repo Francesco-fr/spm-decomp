@@ -367,7 +367,7 @@ config.libs = [
         Object(Matching, "evt_case.c"),
         Object(NonStarted, "evt_door.c"),
         Object(NonStarted, "evt_eff.c"),
-        Object(NonStarted, "evt_env.c"),
+        Object(NonMatching, "evt_env.c"),
         Object(Matching, "evt_ext.c"),
         Object(Matching, "evt_fade.c"),
         Object(NonMatching, "evt_fairy.c"),
