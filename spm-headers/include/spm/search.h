@@ -20,4 +20,10 @@ DECOMP_STATIC(SearchWork * search_wp)
 
 const char *searchGetNpcMsg(NPCEntry *npc);
 
+void func_80243aa8();
+void func_80243abc();
+void func_802497e8(void * param_1);
+bool func_802498b0();
+void func_8024a5e8();
+
 CPP_WRAPPER_END()

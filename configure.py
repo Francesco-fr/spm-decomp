@@ -447,7 +447,7 @@ config.libs = [
         Object(Matching, "evt_nand.c"),
         Object(NonStarted, "homebuttondrv.c"),
         Object(NonStarted, "search.c"),
-        Object(NonStarted, "evt_search.c"),
+        Object(NonMatching, "evt_search.c"),
         Object(NonStarted, "eff_cheri_shell.c"),
     ),
     Rel(
