@@ -167,6 +167,21 @@ s32 func_800ecb5c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ecbd8
+s32 func_800ecbd8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 on = evtGetValue(entry, args[1]);
+    u32 flags = (u32) evtGetValue(entry, args[2]);
+    ImgEntry * img = func_8007706c((const char *) name, gp->unknown_0xc4 != 0);
+    if (on)
+        img->flags |= flags;
+    else
+        img->flags &= ~flags;
+
+    return EVT_RET_CONTINUE;
+}
 
 }
