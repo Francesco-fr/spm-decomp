@@ -670,7 +670,14 @@ s32 func_800d3688(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_set_sfx_reverb_mode
+s32 evt_snd_set_sfx_reverb_mode(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    spsndSetSFXReverbMode(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_flag_on
 
