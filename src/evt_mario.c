@@ -536,7 +536,19 @@ s32 evt_mario_fairy_reset(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_swim_onoff
+s32 evt_mario_swim_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 on = evtGetValue(entry, entry->pCurData[0]);
+    MarioWork * mp = marioGetPtr();
+    if (on)
+        mp->miscFlags |= 0x100;
+    else
+        mp->miscFlags &= ~0x100;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f24d8
 
