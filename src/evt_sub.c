@@ -324,7 +324,17 @@ s32 evt_sub_spline_free(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_get_sincos
+s32 evt_sub_get_sincos(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 angle = evtGetFloat(entry, args[0]);
+    evtSetValue(entry, args[1], FLOAT((f32) sin(3.141592f * angle / 180.0f)));
+    evtSetValue(entry, args[2], FLOAT((f32) cos(3.141592f * angle / 180.0f)));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_rumble_onoff
 
