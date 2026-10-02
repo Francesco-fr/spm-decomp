@@ -388,7 +388,16 @@ s32 evt_mario_face_free(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800f1778
 
-// NOT_DECOMPILED func_800f1810
+s32 func_800f1810(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    if (marioKeyOffChk())
+        return EVT_RET_BLOCK_WEAK;
+
+    return marioCtrlOffChk() ? EVT_RET_BLOCK_WEAK : EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f1858
 
