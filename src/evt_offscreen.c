@@ -16,7 +16,14 @@ s32 evt_offscreen_entry(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_offscreen_delete
+s32 evt_offscreen_delete(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    func_800353c4((const char *) evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_8010c504
 
