@@ -302,7 +302,19 @@ s32 func_800eb7f4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eb8bc
+bool func_800eb8bc(const char * name, HitObj * hitObj)
+{
+    if (strcmp(hitObj->joint->name, name) == 0)
+        return true;
+
+    if (hitObj->child != NULL)
+        return func_800eb8bc(name, hitObj->child);
+
+    if (hitObj->nextSibling != NULL)
+        return func_800eb8bc(name, hitObj->nextSibling);
+
+    return false;
+}
 
 // NOT_DECOMPILED func_800ebd74
 
