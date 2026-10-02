@@ -356,7 +356,22 @@ s32 func_800e0720(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800e07bc
+s32 func_800e07bc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    CamEntry * cam = camGetPtr(marioGetPtr()->camId);
+    cam->flag |= 0x10;
+    Vec3 pos = {x, y, z};
+    cam->unknown_0x100 = pos;
+    cam->unknown_0x10c = y;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e0890
 
