@@ -35,7 +35,21 @@ s32 evt_mario_flag0_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_flag4_onoff
+s32 evt_mario_flag4_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 on = evtGetValue(entry, args[0]);
+    u32 flags = (u32) evtGetValue(entry, args[1]);
+    MarioWork * mp = marioGetPtr();
+    if (on)
+        mp->miscFlags |= flags;
+    else
+        mp->miscFlags &= ~flags;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_flag8_onoff
 
