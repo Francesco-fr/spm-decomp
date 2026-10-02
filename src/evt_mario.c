@@ -270,7 +270,16 @@ s32 evt_mario_direction_reset(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800efd58
+s32 func_800efd58(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    if (marioGetPtr() != NULL)
+        func_801504b0();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_direction_face
 
