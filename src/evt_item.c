@@ -95,7 +95,22 @@ s32 func_800ecf80(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ed020
+s32 func_800ed020(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    evtGetValue(entry, args[1]);
+    evtGetValue(entry, args[2]);
+    evtGetValue(entry, args[3]);
+    s32 alpha = evtGetValue(entry, args[4]);
+    ItemEntry * item = itemNameToPtr((const char *) name);
+    if (item != NULL)
+        iconSetAlpha(item->name, (u8) alpha);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ed0bc
 
