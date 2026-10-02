@@ -689,7 +689,38 @@ s32 func_800d4b60(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_hud_configure
+s32 evt_sub_hud_configure(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    switch (evtGetValue(entry, args[0]))
+    {
+        case 0:
+            hudUnhideAlt();
+            break;
+        case 1:
+            hudHide();
+            break;
+        case 2:
+            hudUnhide();
+            break;
+        case 3:
+            func_80199c74();
+            break;
+        case 4:
+            func_80199c88();
+            break;
+        case 5:
+            func_80199b0c();
+            break;
+        case 6:
+            func_80199b5c();
+            break;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d4db0
 
