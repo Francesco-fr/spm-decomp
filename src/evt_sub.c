@@ -612,7 +612,15 @@ s32 evt_sub_file_async(EvtEntry * entry, bool isFirstCall)
     return fileAsyncf(type, 0, "%s/%s", getSpmarioDVDRoot(), name) != 0;
 }
 
-// NOT_DECOMPILED evt_sub_load_mapdata_bin
+s32 evt_sub_load_mapdata_bin(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    loadMapdataBin((const char *) evtGetValue(entry, args[0]));
+
+    return EVT_RET_CONTINUE_WEAK;
+}
 
 // NOT_DECOMPILED evt_sub_get_fps
 
