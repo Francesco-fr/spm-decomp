@@ -37,7 +37,15 @@ s32 evt_snd_bgmon_f_d(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_bgmoff
+s32 evt_snd_bgmoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    spsndBGMOff(args[0]);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_bgmoff_f_d
 
