@@ -169,7 +169,14 @@ s32 evt_pouch_remove_item_idx(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_add_shop_itme
+s32 evt_pouch_add_shop_itme(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    pouchAddShopItem(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_remove_shop_item
 
