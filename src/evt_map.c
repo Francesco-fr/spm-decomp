@@ -207,7 +207,16 @@ s32 func_800eddb4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_map_set_playrate
+s32 evt_map_set_playrate(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    mapSetPlayRate((const char *) name, evtGetFloat(entry, args[1]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ede70
 
