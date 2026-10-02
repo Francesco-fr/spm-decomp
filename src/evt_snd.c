@@ -315,7 +315,38 @@ s32 func_800d2c58(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_sfxon_3d_player_character
+s32 evt_snd_sfxon_3d_player_character(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    MarioWork * mp = marioGetPtr();
+    s32 name;
+    switch (mp->character)
+    {
+        case 0:
+            name = evtGetValue(entry, args[0]);
+            break;
+        case 1:
+            name = evtGetValue(entry, args[1]);
+            break;
+        case 2:
+            name = evtGetValue(entry, args[2]);
+            break;
+        case 3:
+            name = evtGetValue(entry, args[3]);
+            break;
+        default:
+            name = evtGetValue(entry, args[0]);
+            break;
+    }
+    if (name == 0)
+        return EVT_RET_CONTINUE;
+
+    lbl_805ae8c8 = spsndSFXOn_3D((const char *) name, &mp->position);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d2db8
 
