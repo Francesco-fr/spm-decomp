@@ -382,7 +382,17 @@ s32 func_800e8468(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_fairy_reset
+s32 evt_fairy_reset(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_80130c80(7);
+    fairyReset();
+    func_80130c80(8);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8518
 
