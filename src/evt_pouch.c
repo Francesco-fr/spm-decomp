@@ -26,7 +26,14 @@ s32 evt_pouch_get_hp(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_add_hp
+s32 evt_pouch_add_hp(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    pouchAddHp(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_get_max_hp
 
