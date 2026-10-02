@@ -155,7 +155,23 @@ s32 func_800d378c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_intpl_msec_init
+s32 evt_sub_intpl_msec_init(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 mode = evtGetValue(entry, args[0]);
+    s32 start = evtGetValue(entry, args[1]);
+    s32 end = evtGetValue(entry, args[2]);
+    s32 msec = evtGetValue(entry, args[3]);
+    entry->lw[11] = mode;
+    entry->lw[12] = start;
+    entry->lw[13] = end;
+    entry->lw[15] = msec;
+    entry->unknown_0x190 = entry->lifetime;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_intpl_msec_get_value
 
