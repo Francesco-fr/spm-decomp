@@ -480,7 +480,23 @@ void func_800d45ac(s32 chan, s32 result)
     lbl_805ae8d0[chan] = 1;
 }
 
-// NOT_DECOMPILED func_800d45dc
+s32 func_800d45dc(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    s32 chan = evtGetValue(entry, args[0]);
+    if (isFirstCall)
+    {
+        entry->tempS[0] = 0;
+        lbl_805ae8d0[chan] = 0;
+        WPADGetInfoAsync(chan, &lbl_8050c8b8[chan], func_800d45ac);
+    }
+    if (!lbl_805ae8d0[chan])
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[1], lbl_8050c8b8[chan].lowBat != 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d46a4
 
