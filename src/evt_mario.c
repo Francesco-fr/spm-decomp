@@ -839,7 +839,14 @@ s32 func_800f315c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_set_pane_boundaries
+s32 evt_mario_set_pane_boundaries(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    marioSetPaneBoundaries((MarioPaneBoundary *) evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_get_pane_for_pos
 
