@@ -194,7 +194,27 @@ s32 evt_sub_intpl_msec_get_value(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_intpl_msec_get_value_para
+s32 evt_sub_intpl_msec_get_value_para(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    u64 tickDiff = (s32) entry->lifetime - (s32) entry->unknown_0x190;
+    s32 msec = (s32) OSTicksToMilliseconds(tickDiff);
+    if (msec < entry->lw[15])
+    {
+        evtSetFloat(entry, args[0], intplGetValue(entry->lw[11], (f32) entry->lw[12],
+                                                  (f32) entry->lw[13], msec, entry->lw[15]));
+        evtSetValue(entry, args[1], 1);
+    }
+    else
+    {
+        evtSetFloat(entry, args[0], (f32) entry->lw[13]);
+        evtSetValue(entry, args[1], 0);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_spline_init
 
