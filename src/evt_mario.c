@@ -694,7 +694,18 @@ s32 func_800f2cfc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f2d74
+s32 func_800f2d74(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    func_8015affc(x, y, z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f2df4
 
