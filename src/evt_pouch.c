@@ -199,7 +199,14 @@ s32 evt_pouch_remove_shop_item_idx(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_set_pixl_selected
+s32 evt_pouch_set_pixl_selected(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    pouchSetPixlSelected(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_count_use_items
 
