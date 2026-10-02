@@ -148,7 +148,14 @@ s32 evt_mario_get_character(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_set_character
+s32 evt_mario_set_character(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    marioChangeCharacter(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_set_pos
 
