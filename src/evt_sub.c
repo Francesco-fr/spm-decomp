@@ -1035,7 +1035,13 @@ s32 func_800d776c(EvtEntry * entry, bool isFirstCall)
     return --entry->tempS[0] == 0;
 }
 
-// NOT_DECOMPILED func_800d7858
+s32 func_800d7858(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    return func_8014701c() ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED evt_sub_get_save_name
 
