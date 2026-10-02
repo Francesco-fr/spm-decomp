@@ -1007,7 +1007,33 @@ s32 evt_sub_display_room_name(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800d776c
+s32 func_800d776c(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    s32 frames = evtGetValue(entry, args[0]);
+    MarioWork * mp = marioGetPtr();
+    if (isFirstCall)
+    {
+        entry->tempS[0] = frames;
+        entry->tempS[1] = 0;
+    }
+    if (mp->motionId == 0x49 || mp->motionId == 0x47 || mp->motionId == 0x48 ||
+        func_80166ae0())
+    {
+        entry->tempS[1] = 1;
+        entry->flags |= 4;
+        return EVT_RET_BLOCK_WEAK;
+    }
+    if (entry->tempS[1] != 0)
+    {
+        entry->tempS[1] = 0;
+        entry->flags &= ~4;
+    }
+    if (entry->tempS[0] == 0)
+        return EVT_RET_CONTINUE;
+
+    return --entry->tempS[0] == 0;
+}
 
 // NOT_DECOMPILED func_800d7858
 
