@@ -194,7 +194,42 @@ s32 func_800e01f8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e02bc
+s32 func_800e02bc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    f32 z = evtGetFloat(entry, args[3]);
+    Vec3 target;
+    Vec3 pos;
+    CamEntry * cam = camGetPtr(5);
+    Vec3 at = {x, y, z};
+    func_800533cc(id, &at, &pos, &target);
+    cam->zoomStartPos.x = pos.x;
+    cam->zoomStartPos.y = pos.y;
+    cam->zoomStartPos.z = pos.z;
+    cam->zoomStartTarget.x = target.x;
+    cam->zoomStartTarget.y = target.y;
+    cam->zoomStartTarget.z = target.z;
+    cam->zoomDestPos.x = pos.x;
+    cam->zoomDestPos.y = pos.y;
+    cam->zoomDestPos.z = pos.z;
+    cam->zoomDestTarget.x = target.x;
+    cam->zoomDestTarget.y = target.y;
+    cam->zoomDestTarget.z = target.z;
+    cam->zoomStartTime = gp->time;
+    cam->zoomTime = 0;
+    cam->zoomType = 11;
+    cam->unknown_0xe4 = 0;
+    cam->cameraMode = 2;
+    cam->unknown_0x250 = 0;
+    cam->zoomProjectionType = cam->projectionType;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_cam_zoom_to_coords
 
