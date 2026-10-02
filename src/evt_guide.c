@@ -37,7 +37,20 @@ s32 evt_guide_get_pos(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e9ce8
+s32 func_800e9ce8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    GuideWork * gw = guideGetWork();
+    Vec3 pos = {x, y, z};
+    gw->unknown_0x64 = pos;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e9da4
 
