@@ -91,7 +91,79 @@ s32 evt_cam_shake(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_cam3d_evt_zoom_in
+s32 evt_cam3d_evt_zoom_in(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 projType = args[0];
+    s32 posXVar = args[1];
+    f32 posX = evtGetFloat(entry, posXVar);
+    s32 posYVar = args[2];
+    f32 posY = evtGetFloat(entry, posYVar);
+    s32 posZVar = args[3];
+    f32 posZ = evtGetFloat(entry, posZVar);
+    s32 targetXVar = args[4];
+    f32 targetX = evtGetFloat(entry, targetXVar);
+    s32 targetYVar = args[5];
+    f32 targetY = evtGetFloat(entry, targetYVar);
+    s32 targetZVar = args[6];
+    f32 targetZ = evtGetFloat(entry, targetZVar);
+    s32 time = evtGetValue(entry, args[7]);
+    s32 type = evtGetValue(entry, args[8]);
+    CamEntry * cam = camGetPtr(5);
+
+    cam->zoomStartPos.x = cam->pos.x;
+    cam->zoomStartPos.y = cam->pos.y;
+    cam->zoomStartPos.z = cam->pos.z;
+    cam->zoomStartTarget.x = cam->target.x;
+    cam->zoomStartTarget.y = cam->target.y;
+    cam->zoomStartTarget.z = cam->target.z;
+    cam->zoomDestPos.x = cam->pos.x;
+    cam->zoomDestPos.y = cam->pos.y;
+    cam->zoomDestPos.z = cam->pos.z;
+    cam->zoomDestTarget.x = cam->target.x;
+    cam->zoomDestTarget.y = cam->target.y;
+    cam->zoomDestTarget.z = cam->target.z;
+
+    // Only override values that were specified
+    if (posXVar != EVT_NULLPTR)
+        cam->zoomDestPos.x = posX;
+    if (posYVar != EVT_NULLPTR)
+        cam->zoomDestPos.y = posY;
+    if (posZVar != EVT_NULLPTR)
+        cam->zoomDestPos.z = posZ;
+    if (targetXVar != EVT_NULLPTR)
+        cam->zoomDestTarget.x = targetX;
+    if (targetYVar != EVT_NULLPTR)
+        cam->zoomDestTarget.y = targetY;
+    if (targetZVar != EVT_NULLPTR)
+        cam->zoomDestTarget.z = targetZ;
+
+    cam->zoomStartTime = gp->time;
+    cam->zoomTime = time;
+    cam->zoomType = type;
+    cam->unknown_0xe4 = 0;
+    cam->cameraMode = 2;
+    cam->unknown_0x250 = 0;
+    if (projType == -1)
+        cam->zoomProjectionType = cam->projectionType;
+    else
+        cam->zoomProjectionType = (GXProjectionType) projType;
+
+    if ((camGetPtr(11)->flag & 0x10000000) && targetZVar != EVT_NULLPTR && posZVar != EVT_NULLPTR &&
+        !(cam->flag & 0x20000000) && !(func_800e1040() & 1))
+    {
+        Vec3 dir;
+        f32 dist = PSVECDistance(&cam->zoomDestPos, &cam->zoomDestTarget);
+        PSVECSubtract(&cam->zoomDestPos, &cam->zoomDestTarget, &dir);
+        PSVECNormalize(&dir, &dir);
+        PSVECScale(&dir, &dir, 0.84f * dist);
+        PSVECAdd(&cam->zoomDestTarget, &dir, &cam->zoomDestPos);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e01f8
 
