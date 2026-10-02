@@ -581,7 +581,15 @@ s32 func_800d47e4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_get_language
+s32 evt_sub_get_language(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], gp->language);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_animgroup_async
 
