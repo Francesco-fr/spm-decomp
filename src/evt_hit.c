@@ -64,7 +64,31 @@ s32 evt_hitobj_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ead20
+s32 func_800ead20(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 group = evtGetValue(entry, args[1]);
+    s32 on = evtGetValue(entry, args[2]);
+    if (group == 0)
+    {
+        if (on)
+            hitObjFlagOff(true, (const char *) name, 1);
+        else
+            hitObjFlagOn(true, (const char *) name, 1);
+    }
+    else
+    {
+        if (on)
+            hitGrpFlagOff(true, (const char *) name, 1);
+        else
+            hitGrpFlagOn(true, (const char *) name, 1);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eadec
 
