@@ -283,7 +283,15 @@ s32 func_800efd58(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED evt_mario_direction_face
 
-// NOT_DECOMPILED func_800eff6c
+s32 func_800eff6c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetFloat(entry, args[0], marioGetPtr()->directionView);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_face_npc
 
