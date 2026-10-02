@@ -90,7 +90,17 @@ s32 func_800ef53c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_cont_onoff
+s32 evt_mario_cont_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]))
+        marioCtrlOn();
+    else
+        marioCtrlOff();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_key_on
 
