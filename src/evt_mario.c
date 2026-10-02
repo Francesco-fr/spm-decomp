@@ -814,7 +814,20 @@ s32 func_800f3074(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f30bc
+s32 func_800f30bc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    s32 param_2 = evtGetValue(entry, args[3]);
+    Vec3 pos = {x, y, z};
+    marioLockRespawnPos(&pos, (Unk) param_2);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f315c
 
