@@ -157,6 +157,13 @@ s32 func_802417a8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_80241804
+s32 func_80241804(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    // Hang forever
+    while (true) { }
+}
 
 }
