@@ -231,7 +231,20 @@ s32 evt_snd_sfxon_character(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_sfxon_3d
+s32 evt_snd_sfxon_3d(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    Vec3 pos;
+    s32 name = evtGetValue(entry, args[0]);
+    pos.x = evtGetFloat(entry, args[1]);
+    pos.y = evtGetFloat(entry, args[2]);
+    pos.z = evtGetFloat(entry, args[3]);
+    lbl_805ae8c8 = spsndSFXOn_3D((const char *) name, &pos);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d2a58
 
