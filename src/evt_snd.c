@@ -150,7 +150,19 @@ s32 func_800d247c(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED evt_snd_get_bgm_wait_time
 
-// NOT_DECOMPILED evt_snd_get_bgm_name
+s32 evt_snd_get_bgm_name(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    const char * name = spsndGetBgmName(args[0]);
+    if (name == NULL)
+        evtSetValue(entry, args[1], 0);
+    else
+        evtSetValue(entry, args[1], (s32) name);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_sfxon
 
