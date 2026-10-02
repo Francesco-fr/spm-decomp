@@ -244,7 +244,55 @@ s32 evt_sub_spline_init(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_spline_get_value
+s32 evt_sub_spline_get_value(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args;
+    SplineWork * work;
+    f32 progress;
+    f32 msec;
+    Vec3 pos;
+
+    work = (SplineWork *) entry->lw[15];
+    args = entry->pCurData;
+    if (work->useTime == 0)
+    {
+        progress = intplGetValue(work->mode, 0.0f, 1.0f, work->progress, work->max);
+    }
+    else
+    {
+        msec = OSTicksToMilliseconds((u64) (entry->lifetime - work->startTime));
+        progress = intplGetValue(work->mode, 0.0f, 1.0f, (s32) msec, work->msec);
+    }
+    spline_getvalue(&pos, progress, work->count, work->points, work->table1, work->table2);
+    evtSetValue(entry, args[0], FLOAT(pos.x));
+    evtSetValue(entry, args[1], FLOAT(pos.y));
+    evtSetValue(entry, args[2], FLOAT(pos.z));
+    work->progress++;
+    if (work->useTime == 0)
+    {
+        if (work->progress <= work->max)
+        {
+            evtSetValue(entry, args[3], 1);
+            return EVT_RET_CONTINUE;
+        }
+    }
+    else
+    {
+        if (msec <= work->msec)
+        {
+            evtSetValue(entry, args[3], 1);
+            return EVT_RET_CONTINUE;
+        }
+    }
+    __memFree(1, work->table1);
+    __memFree(1, work->table2);
+    __memFree(1, work);
+    evtSetValue(entry, args[3], 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_spline_get_value_manual
 
