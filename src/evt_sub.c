@@ -1076,6 +1076,42 @@ s32 evt_sub_zero_vector(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800d8498
 
-// NOT_DECOMPILED func_800d8700
+s32 func_800d8700(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+
+    if (isFirstCall)
+    {
+        func_80182be8();
+        entry->tempS[0] = 0;
+    }
+    switch (entry->tempS[0])
+    {
+        case 0:
+            switch (func_80182cc8())
+            {
+                case 0:
+                    break;
+                case 1:
+                    func_80182cbc();
+                    entry->tempS[0] = 10;
+                    break;
+                case -1:
+                default:
+                    func_80182cbc();
+                    entry->tempS[0] = 20;
+                    break;
+            }
+            break;
+        case 10:
+            evtSetValue(entry, args[0], (s32) func_80182bdc());
+            return EVT_RET_CONTINUE;
+        case 20:
+            evtSetValue(entry, args[0], 0);
+            return EVT_RET_CONTINUE;
+    }
+
+    return EVT_RET_BLOCK_WEAK;
+}
 
 }
