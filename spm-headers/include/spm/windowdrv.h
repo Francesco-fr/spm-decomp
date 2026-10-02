@@ -99,7 +99,7 @@ void func_80038fb8(s32, f32 x, f32 y, f32 width, f32 height);
 /*
     Draws the background for a sign message
 */
-void windowDispGX_Kanban(s32 type, GXColor * colour, f32 x, f32 y, f32 width, f32 height);
+void windowDispGX_Kanban(s32 type, GXColor colour, f32 x, f32 y, f32 width, f32 height);
 
 UNKNOWN_FUNCTION(func_800393c8)
 

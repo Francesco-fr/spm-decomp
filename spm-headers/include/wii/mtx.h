@@ -35,7 +35,7 @@ typedef f32 Mtx44[4][4];
 
 void PSMTXIdentity(Mtx34 dest);
 void PSMTXCopy(const Mtx34 src, Mtx34 dest);
-UNKNOWN_FUNCTION(PSMTXConcat)
+void PSMTXConcat(const Mtx34 a, const Mtx34 b, Mtx34 ab);
 UNKNOWN_FUNCTION(PSMTXInverse)
 UNKNOWN_FUNCTION(PSMTXInvXpose)
 UNKNOWN_FUNCTION(PSMTXRotRad)

@@ -151,7 +151,48 @@ void func_80038fb8(s32 texId, f32 x, f32 y, f32 width, f32 height)
     GXEnd();
 }
 
-// NOT_DECOMPILED windowDispGX_Kanban
+void windowDispGX_Kanban(s32 type, GXColor colour, f32 x, f32 y, f32 width, f32 height)
+{
+    CamEntry * cam;
+    Mtx34 mtx;
+    Mtx34 scale;
+
+    cam = camGetCurPtr();
+    func_80038b08();
+    GXSetTevColor(1, colour);
+
+    PSMTXTrans(mtx, x, y, 0.0f);
+    PSMTXScale(scale, width / 560.0f, height / 176.0f, 1.0f);
+    PSMTXConcat(mtx, scale, mtx);
+    PSMTXConcat(cam->viewMtx, mtx, mtx);
+    GXLoadPosMtxImm(mtx, 0);
+    GXSetCurrentMtx(0);
+
+    switch (type)
+    {
+        case 2:
+        case 4:
+            func_80038fb8(30, 0.0f, 0.0f, 72.0f, 176.0f);
+            func_80038fb8(32, 72.0f, 0.0f, 416.0f, 136.0f);
+            func_80038fb8(31, 488.0f, 0.0f, 72.0f, 176.0f);
+            func_80038fb8(33, 72.0f, -136.0f, 416.0f, 40.0f);
+            break;
+
+        case 9:
+            func_80038fb8(26, 0.0f, 0.0f, 72.0f, 176.0f);
+            func_80038fb8(28, 72.0f, 0.0f, 416.0f, 136.0f);
+            func_80038fb8(27, 488.0f, 0.0f, 72.0f, 176.0f);
+            func_80038fb8(29, 72.0f, -136.0f, 416.0f, 40.0f);
+            break;
+
+        case 7:
+            func_80038fb8(7, 0.0f, 0.0f, 560.0f, 176.0f);
+            break;
+
+        default:
+            SPM_ASSERT_NM(464, 0);
+    }
+}
 
 // NOT_DECOMPILED func_800393c8
 
