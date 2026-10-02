@@ -40,7 +40,7 @@ typedef struct _FairyEntry
     */
 /* 0x02 */ u16 flag2;
 /* 0x04 */ s32 itemId; // 0 for extra entries
-/* 0x08 */ u8 unknown_0x8[0xc - 0x8];
+/* 0x08 */ s32 unknown_0x8;
 /* 0x0C */ s32 animPoseId;
 /* 0x10 */ const char * curAnimName;
 /* 0x14 */ FairyAnimChangeHandler * animChangeHandler;
@@ -54,7 +54,13 @@ typedef struct _FairyEntry
 /* 0x2C */ s32 prevRunMode;
 /* 0x30 */ u8 unknown_0x30[0x48 - 0x30];
 /* 0x48 */ Vec3 position;
-/* 0x54 */ u8 unknown_0x54[0xd0 - 0x54];
+/* 0x54 */ u8 unknown_0x54[0x60 - 0x54];
+/* 0x60 */ Vec3 unknown_0x60;
+/* 0x6C */ f32 unknown_0x6c;
+/* 0x70 */ u8 unknown_0x70[0x74 - 0x70];
+/* 0x74 */ Vec3 rotation;
+/* 0x80 */ Vec3 unknown_0x80;
+/* 0x8C */ u8 unknown_0x8c[0xd0 - 0x8c];
 } FairyEntry;
 SIZE_ASSERT(FairyEntry, 0xd0)
 
@@ -78,7 +84,7 @@ UNKNOWN_FUNCTION(func_8011bc08)
 UNKNOWN_FUNCTION(func_8011c4d8)
 UNKNOWN_FUNCTION(func_8011c920)
 UNKNOWN_FUNCTION(func_8011ceb4)
-UNKNOWN_FUNCTION(func_8011d300)
+void func_8011d300(s32 id);
 UNKNOWN_FUNCTION(func_8011d3bc)
 UNKNOWN_FUNCTION(func_8011d440)
 
@@ -148,7 +154,7 @@ FairyEntry * fairyGetExtra();
 */
 void fairySetAnim(FairyEntry * fairy, const char * animName);
 
-UNKNOWN_FUNCTION(func_8011ea48)
+bool func_8011ea48(FairyEntry * fairy);
 
 /*
     Functions to change the current run mode of a fairy
@@ -161,7 +167,7 @@ void fairyIdEnterRunMode0(s32 id);
 void fairyIdEnterRunMode1(s32 id);
 void fairyAllEnterRunMode0();
 void fairyAllEnterRunMode1();
-void fairyIdEnterRunMode2();
+void fairyIdEnterRunMode2(s32 id);
 void fairyAllEnterRunMode2();
 
 /*
