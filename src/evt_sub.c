@@ -453,7 +453,15 @@ s32 evt_key_get_button(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_key_get_buttonrep
+s32 evt_key_get_buttonrep(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[1], (s32) wpadGetButtonsHeldRepeat(evtGetValue(entry, args[0])));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_key_get_buttontrg
 
