@@ -35,7 +35,19 @@ s32 evt_mapobj_rotate(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ed7f8
+s32 func_800ed7f8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    f32 z = evtGetFloat(entry, args[3]);
+    mapObjScale((const char *) name, x, y, z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_map_set_fog
 
