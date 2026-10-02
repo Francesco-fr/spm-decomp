@@ -27,7 +27,14 @@ s32 func_800e617c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e61b0
+s32 func_800e61b0(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    effSoftDelete((EffEntry *) evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e61e0
 
