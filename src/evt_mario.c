@@ -494,7 +494,12 @@ s32 func_800f2124(MarioWork * mp, EvtEntry * entry)
     return 0;
 }
 
-// NOT_DECOMPILED func_800f212c
+s32 func_800f212c(MarioWork * mp, EvtEntry * entry)
+{
+    (void) entry;
+
+    return mp->dispFlags & 0x1000000 ? 0 : 2;
+}
 
 // NOT_DECOMPILED func_800f2144
 
