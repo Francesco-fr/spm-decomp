@@ -122,7 +122,24 @@ s32 func_800edab4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mapobj_color
+s32 evt_mapobj_color(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 group = evtGetValue(entry, args[0]);
+    s32 name = evtGetValue(entry, args[1]);
+    s32 r = evtGetValue(entry, args[2]);
+    s32 g = evtGetValue(entry, args[3]);
+    s32 b = evtGetValue(entry, args[4]);
+    s32 a = evtGetValue(entry, args[5]);
+    if (group == 0)
+        mapObjSetColor((const char *) name, (GXColor) {(u8) r, (u8) g, (u8) b, (u8) a});
+    else
+        mapGrpSetColor((const char *) name, (GXColor) {(u8) r, (u8) g, (u8) b, (u8) a});
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_map_playanim
 
