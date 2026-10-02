@@ -19,7 +19,25 @@ s32 func_800ecd70(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_item_set_position
+s32 evt_item_set_position(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    f32 z = evtGetFloat(entry, args[3]);
+    ItemEntry * item = itemNameToPtr((const char *) name);
+    if (item != NULL)
+    {
+        item->position.x = x;
+        item->position.y = y;
+        item->position.z = z;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_item_get_position
 
