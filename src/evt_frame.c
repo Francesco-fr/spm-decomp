@@ -108,7 +108,24 @@ s32 func_800e8d0c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e8d98
+s32 func_800e8d98(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 r = evtGetValue(entry, args[1]);
+    s32 g = evtGetValue(entry, args[2]);
+    s32 b = evtGetValue(entry, args[3]);
+    s32 a = evtGetValue(entry, args[4]);
+    FrameEntry * frame = func_80068254((const char *) name);
+    frame->wireColor.r = (u8) r;
+    frame->wireColor.g = (u8) g;
+    frame->wireColor.b = (u8) b;
+    frame->wireColor.a = (u8) a;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8e2c
 
