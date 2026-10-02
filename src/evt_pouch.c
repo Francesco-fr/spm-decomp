@@ -64,7 +64,14 @@ s32 evt_pouch_get_xp(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_add_xp
+s32 evt_pouch_add_xp(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    pouchAddXp(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_set_attack
 
