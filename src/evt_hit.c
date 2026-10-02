@@ -207,7 +207,19 @@ s32 func_800eb564(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eb5dc
+s32 func_800eb5dc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    Vec3 normal;
+    hitObjGetNormal((const char *) evtGetValue(entry, args[0]), &normal);
+    evtSetFloat(entry, args[1], normal.x);
+    evtSetFloat(entry, args[2], normal.y);
+    evtSetFloat(entry, args[3], normal.z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eb654
 
