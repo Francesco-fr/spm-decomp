@@ -501,6 +501,16 @@ s32 func_800e0bbc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e0c40
+s32 func_800e0c40(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    CamEntry * cam = camGetPtr(marioGetPtr()->camId);
+    if (seqGetSeq() != 2)
+        return EVT_RET_CONTINUE;
+
+    return cam->projectionType != 1 ? EVT_RET_BLOCK_WEAK : EVT_RET_CONTINUE;
+}
 
 }
