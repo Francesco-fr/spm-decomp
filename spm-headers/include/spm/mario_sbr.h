@@ -5,6 +5,8 @@
 
 CPP_WRAPPER(spm::mario_sbr)
 
+USING(spm::mario::MarioWork)
+
 void marioAdjustMoveDir();
 bool marioCheck1HeldFor3();
 f32 revise360(f32);

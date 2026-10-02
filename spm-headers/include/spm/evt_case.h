@@ -2,8 +2,11 @@
 
 #include <common.h>
 #include <evt_cmd.h>
+#include <spm/evtmgr.h>
 
 CPP_WRAPPER(spm::evt_case)
+
+USING(spm::evtmgr::EvtScriptCode)
 
 // evt_run_case_evt(int caseType, int unk, const char * a2Name, const char * a3Name, EvtScriptCode * script, unk)
 // Same address as evt_run_case_evt (name used by the decomp symbol map)
