@@ -370,7 +370,19 @@ s32 evt_sub_random(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_get_stopwatch
+s32 evt_sub_get_stopwatch(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    EvtEntry * other = evtGetPtrID(evtGetValue(entry, args[0]));
+    s32 msec = (s32) OSTicksToMilliseconds(other->lifetime);
+    if (msec > 600000)
+        msec = 600000;
+    evtSetValue(entry, args[1], msec);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d41a8
 
