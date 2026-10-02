@@ -473,7 +473,12 @@ s32 evt_key_get_buttontrg(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d45ac
+void func_800d45ac(s32 chan, s32 result)
+{
+    if (result != 0)
+        lbl_8050c8b8[chan].lowBat = 0;
+    lbl_805ae8d0[chan] = 1;
+}
 
 // NOT_DECOMPILED func_800d45dc
 
