@@ -768,7 +768,36 @@ s32 func_800f212c(MarioWork * mp, EvtEntry * entry)
 
 // NOT_DECOMPILED func_800f2144
 
-// NOT_DECOMPILED func_800f2310
+s32 func_800f2310(EvtEntry * entry, bool isFirstCall)
+{
+    MarioWork * mp = marioGetPtr();
+    if (isFirstCall)
+    {
+        mp->trigFlags |= 0x80000000;
+        entry->tempS[1] = 0;
+        if (!marioCtrlOnChk())
+        {
+            marioCtrlOn();
+            entry->tempS[1] = 1;
+        }
+        entry->tempS[0] = 0;
+        entry->tempS[2] = 0;
+    }
+
+    s32 ret = func_800f2144(mp, entry);
+    if (ret == 2)
+    {
+        mp->trigFlags &= ~0x80000000;
+        if (entry->tempS[1])
+        {
+            marioCtrlOff();
+            if (mp->ctrl == 0)
+                mp->flags &= ~2;
+        }
+    }
+
+    return ret;
+}
 
 s32 func_800f23e4(EvtEntry * entry, bool isFirstCall)
 {
