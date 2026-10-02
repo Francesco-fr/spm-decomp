@@ -66,7 +66,17 @@ s32 evt_map_set_fog(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_map_fog_onoff
+s32 evt_map_fog_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]))
+        mapFogOn();
+    else
+        mapFogOff();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ed9b0
 
