@@ -153,7 +153,25 @@ s32 evt_fairy_get_pos(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e76d4
+s32 func_800e76d4(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    f32 z = evtGetFloat(entry, args[3]);
+    FairyEntry * fairy = fairyIdToPtr(id);
+    if (fairy != NULL)
+    {
+        fairy->unknown_0x80.x = x;
+        fairy->unknown_0x80.y = y;
+        fairy->unknown_0x80.z = z;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e7784
 
