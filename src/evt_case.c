@@ -36,7 +36,26 @@ s32 func_800e0ca4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e0d78
+s32 func_800e0d78(s32 type, bool flag, const char * name, const char * name2,
+                  EvtScriptCode * script, s32 * lw)
+{
+    CaseEntDef def;
+    CaseEntDef * pDef = &def;
+    if (flag)
+        type |= 0x8000;
+    pDef->flags = (u16) type;
+    pDef->name = name;
+    pDef->name2 = name2;
+    *(s32 *) pDef->unknown_0xc = 0;
+    pDef->script = script;
+    pDef->scriptPriority = 0;
+    if (lw != NULL)
+        memcpy(pDef->lw, lw, sizeof(def.lw));
+    else
+        memset(pDef->lw, 0, sizeof(def.lw));
+
+    return caseEntry(pDef);
+}
 
 // NOT_DECOMPILED func_800e0dfc
 
