@@ -27,7 +27,8 @@ EVT_DECLARE_USER_FUNC(evt_pouch_check_have_item, 2)
 
 EVT_DECLARE_USER_FUNC(evt_pouch_remove_item, 1)
 EVT_UNKNOWN_USER_FUNC(evt_pouch_remove_item_idx)
-EVT_UNKNOWN_USER_FUNC(evt_pouch_add_shop_item)
+// Name typo is in the original symbol
+EVT_UNKNOWN_USER_FUNC(evt_pouch_add_shop_itme)
 EVT_UNKNOWN_USER_FUNC(evt_pouch_remove_shop_item)
 EVT_UNKNOWN_USER_FUNC(evt_pouch_remove_shop_item_idx)
 
