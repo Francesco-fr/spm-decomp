@@ -454,7 +454,16 @@ s32 func_800d3060(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d30e8
+s32 func_800d30e8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 player = evtGetValue(entry, args[0]);
+    spsndSFX_vol(player, (s8) evtGetValue(entry, args[1]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d3144
 
