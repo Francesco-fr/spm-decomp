@@ -401,7 +401,20 @@ s32 func_800f1810(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800f1858
 
-// NOT_DECOMPILED evt_mario_set_pose
+s32 evt_mario_set_pose(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 time = evtGetValue(entry, args[1]);
+    MarioWork * mp = marioGetPtr();
+    mp->curPoseName = (const char *) name;
+    mp->poseTime = (s16) time;
+    mp->trigFlags |= 0x1000;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_wait_anim
 
