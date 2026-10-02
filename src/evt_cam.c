@@ -68,7 +68,28 @@ s32 evt_cam_get_pos(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_cam_shake
+s32 evt_cam_shake(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    f32 z = evtGetFloat(entry, args[3]);
+    s32 time = evtGetValue(entry, args[4]);
+    s32 type = evtGetValue(entry, args[5]);
+    if (isFirstCall)
+    {
+        if (type == 0)
+            func_80058700(id, x, y, z, time);
+        else
+            func_800587a0(id, x, y, z, time);
+    }
+
+    if (func_80058800(id))
+        return EVT_RET_BLOCK_WEAK;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_cam3d_evt_zoom_in
 
