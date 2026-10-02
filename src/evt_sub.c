@@ -652,7 +652,42 @@ s32 func_800d4b4c(void * param, HitObj * hit)
     return !(hit->attr & 0x80000000);
 }
 
-// NOT_DECOMPILED func_800d4b60
+s32 func_800d4b60(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    f32 dirX = evtGetFloat(entry, args[3]);
+    f32 dirY = evtGetFloat(entry, args[4]);
+    f32 dirZ = evtGetFloat(entry, args[5]);
+    f32 hitX;
+    f32 hitY;
+    f32 hitZ;
+    f32 dist = evtGetFloat(entry, args[6]);
+    f32 nx;
+    f32 ny;
+    f32 nz;
+    if (hitCheckFilter(x, y, z, dirX, dirY, dirZ, (void *) func_800d4b4c, &hitX, &hitY, &hitZ,
+                       &dist, &nx, &ny, &nz))
+    {
+        evtSetFloat(entry, args[7], hitX);
+        evtSetFloat(entry, args[8], hitY);
+        evtSetFloat(entry, args[9], hitZ);
+        evtSetFloat(entry, args[10], dist);
+    }
+    else
+    {
+        evtSetFloat(entry, args[7], 0.0f);
+        evtSetFloat(entry, args[8], 0.0f);
+        evtSetFloat(entry, args[9], 0.0f);
+        evtSetFloat(entry, args[10], -1.0f);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_hud_configure
 
