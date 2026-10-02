@@ -745,7 +745,50 @@ s32 func_800d4de4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d4e48
+s32 func_800d4e48(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+
+    char name[64];
+    s32 i;
+
+    if (isFirstCall)
+    {
+        lbl_805ae010->state = 0;
+        lbl_805ae010->flags = 0;
+        lbl_805ae010->alpha = 0;
+        lbl_805ae010->textAlpha = 0;
+        lbl_805ae010->animPoseId = -1;
+        for (i = 0; i < 32; i++)
+        {
+            if (strcmp(gp->mapName, lbl_8040bd08[i]) == 0)
+                break;
+        }
+        if (i < 32)
+        {
+            lbl_805ae010->chapter = i / 4 + 1;
+            lbl_805ae010->level = i % 4 + 1;
+        }
+        else
+        {
+            lbl_805ae010->chapter = 6;
+            lbl_805ae010->level = 1;
+        }
+        lbl_805ae010->tpl = (TPLHeader *) __memAlloc(1, CXGetUncompressedSize(lbl_8032c1b8));
+        CXUncompressLZ(lbl_8032c1b8, lbl_805ae010->tpl);
+        TPLBind(lbl_805ae010->tpl);
+        lbl_805ae010->bgAlpha = 0;
+    }
+    sprintf(name, "etc_opening%d", lbl_805ae010->chapter);
+    if (!animGroupBaseAsync(name, 0, 0))
+        return EVT_RET_BLOCK_WEAK;
+
+    lbl_805ae010->animPoseId = animPoseEntry(name, 0);
+    animPoseSetAnim(lbl_805ae010->animPoseId, "S_1", true);
+    animPoseMain(lbl_805ae010->animPoseId);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d5004
 
