@@ -125,7 +125,7 @@ void windowDispGX_ItemBox(Unk, GXColor colour, f32 x, f32 y, f32 width, f32 heig
 /*
     Draws a solid colour rectangle with a black border
 */
-void windowDispGX2_Waku_col(Mtx34 mtx, u32 gxTexMapId, const GXColor * colour, f32 x, f32 y,
+void windowDispGX2_Waku_col(Mtx34 mtx, u32 gxTexMapId, GXColor colour, f32 x, f32 y,
                             f32 width, f32 height, f32 curve);
 
 /*

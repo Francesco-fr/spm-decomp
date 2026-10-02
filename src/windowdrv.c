@@ -544,7 +544,146 @@ void windowDispGX_ItemBox(Unk param_1, GXColor colour, f32 x, f32 y, f32 width, 
     GXEnd();
 }
 
-// NOT_DECOMPILED windowDispGX2_Waku_col
+void windowDispGX2_Waku_col(Mtx34 mtx, u32 gxTexMapId, GXColor colour, f32 x, f32 y, f32 width,
+                            f32 height, f32 curve)
+{
+    (void) gxTexMapId;
+    (void) curve;
+
+    CamEntry * cam;
+    GXTexObj texObj;
+    Mtx34 posMtx;
+    Mtx34 texMtx;
+    s32 texId;
+    f32 k;
+    f32 bottom;
+    f32 right;
+    f32 half;
+    f32 left;
+    f32 innerLeft;
+    f32 innerRight;
+    f32 innerTop;
+    f32 innerBottom;
+    f32 top;
+
+    cam = camGetCurPtr();
+    k = 8.0f;
+    func_80038b08();
+    GXSetTexCoordGen2(0, 1, 4, 30, 0, 125);
+    PSMTXScale(texMtx, 2.0f, 2.0f, 1.0f);
+    GXLoadTexMtxImm(texMtx, 30, 1);
+
+    if (colour.r == colour.g && colour.g == colour.b)
+    {
+        GXSetTevColor(1, (GXColor) {0xff, 0xff, 0xff, colour.a});
+        texId = 51;
+    }
+    else
+    {
+        GXSetTevColor(1, colour);
+        texId = 52;
+    }
+
+    PSMTXTrans(posMtx, x - -width / 2.0f, y - height / 2.0f, 0.0f);
+    PSMTXConcat(posMtx, mtx, posMtx);
+    PSMTXConcat(cam->viewMtx, posMtx, posMtx);
+    GXLoadPosMtxImm(posMtx, 0);
+    GXSetCurrentMtx(0);
+    sptextureGet(texId, &texObj);
+    GXLoadTexObj(&texObj, 0);
+
+    GXBegin(0x80, 0, 36);
+    half = 0.5f;
+    top = height * half;
+    left = -width * half;
+    right = -width * half + width;
+    innerLeft = -width * half + k;
+    innerTop = height * half - k;
+    innerRight = right - k;
+    bottom = height * half - height;
+    innerBottom = k + bottom;
+    GXPosition3f32(left, top, 0.0f);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(innerLeft, top, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(left, innerTop, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+
+    GXPosition3f32(innerLeft, top, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(innerRight, top, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(innerRight, top, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(right, top, 0.0f);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXPosition3f32(right, innerTop, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(left, innerTop, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(left, innerBottom, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(right, innerTop, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(right, innerBottom, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(left, innerBottom, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+    GXPosition3f32(left, bottom, 0.0f);
+    GXTexCoord2f32(0.0f, 1.0f);
+
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+    GXPosition3f32(innerLeft, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(right, innerBottom, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(right, bottom, 0.0f);
+    GXTexCoord2f32(1.0f, 1.0f);
+    GXPosition3f32(innerRight, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+    GXEnd();
+}
 
 s32 windowCheckID(s32 id)
 {
