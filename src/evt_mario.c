@@ -505,7 +505,15 @@ s32 func_800f212c(MarioWork * mp, EvtEntry * entry)
 
 // NOT_DECOMPILED func_800f2310
 
-// NOT_DECOMPILED func_800f23e4
+s32 func_800f23e4(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_801528d4(marioGetPtr());
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f240c
 
