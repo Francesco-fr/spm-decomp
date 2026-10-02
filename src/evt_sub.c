@@ -601,7 +601,16 @@ s32 evt_sub_animgroup_async(EvtEntry * entry, bool isFirstCall)
     return animGroupBaseAsync(name, 0, 0) != 0;
 }
 
-// NOT_DECOMPILED evt_sub_file_async
+s32 evt_sub_file_async(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 type = evtGetValue(entry, args[0]);
+    const char * name = (const char *) evtGetValue(entry, args[1]);
+
+    return fileAsyncf(type, 0, "%s/%s", getSpmarioDVDRoot(), name) != 0;
+}
 
 // NOT_DECOMPILED evt_sub_load_mapdata_bin
 
