@@ -330,7 +330,27 @@ s32 func_800e82dc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e8350
+s32 func_800e8350(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    FairyEntry * fairy = fairyIdToPtr(evtGetValue(entry, args[0]));
+    if (fairy == NULL)
+    {
+        evtSetFloat(entry, args[1], 0.0f);
+        evtSetFloat(entry, args[2], 0.0f);
+        evtSetFloat(entry, args[3], 0.0f);
+    }
+    else
+    {
+        evtSetFloat(entry, args[1], fairy->unknown_0x60.x);
+        evtSetFloat(entry, args[2], fairy->unknown_0x60.y);
+        evtSetFloat(entry, args[3], fairy->unknown_0x60.z);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e840c
 
