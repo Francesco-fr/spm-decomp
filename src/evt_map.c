@@ -154,7 +154,14 @@ s32 evt_map_playanim(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800edca8
+s32 func_800edca8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    mapDeleteAnimation((const char *) evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_map_checkanim
 
