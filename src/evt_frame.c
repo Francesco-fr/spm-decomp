@@ -24,7 +24,19 @@ s32 evt_frame_offscreen_draw_flag_onoff(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED evt_frame_offscreen_entry
 
-// NOT_DECOMPILED evt_frame_bind_offscreen
+s32 evt_frame_bind_offscreen(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 offsName = evtGetValue(entry, args[1]);
+    s32 callback = evtGetValue(entry, args[2]);
+    func_800691c0((const char *) name, (const char *) offsName);
+    func_80069284((const char *) name, (void *) callback);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_frame_set_img_anim
 
