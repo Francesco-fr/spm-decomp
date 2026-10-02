@@ -906,7 +906,22 @@ s32 func_800d6148(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d61ac
+s32 func_800d61ac(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    EffEntry * effect = effNameToPtr((const char *) evtGetValue(entry, args[0]));
+    s32 type;
+    f32 x;
+    f32 y;
+    f32 z;
+    func_80095278(effect, &type);
+    func_80095258(effect, &x, &y, &z);
+    func_800ad9a0(type % 8, x, y, z, 1.0f);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d6230
 
