@@ -213,7 +213,17 @@ s32 evt_guide_flag0_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_guide_check_flag0
+s32 evt_guide_check_flag0(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 flags = evtGetValue(entry, args[0]);
+    GuideWork * gw = guideGetWork();
+    evtSetValue(entry, args[1], (gw->flag0 & flags) != 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ea9f4
 
