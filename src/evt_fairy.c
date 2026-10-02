@@ -257,7 +257,21 @@ s32 func_800e7aec(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800e7f3c
 
-// NOT_DECOMPILED func_800e80ec
+s32 func_800e80ec(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    s32 value = evtGetValue(entry, args[1]);
+    FairyEntry * fairy = fairyIdToPtr(id);
+    if (fairy == NULL)
+        return EVT_RET_CONTINUE;
+
+    fairy->unknown_0x8 = value;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_fairy_flag_onoff
 
