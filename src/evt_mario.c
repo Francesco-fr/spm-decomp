@@ -640,7 +640,17 @@ s32 func_800f2974(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800f29c8
 
-// NOT_DECOMPILED evt_mario_tamara_onoff
+s32 evt_mario_tamara_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]))
+        marioAddTamara();
+    else
+        marioRemoveTamara();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_tamara_chg_mode
 
