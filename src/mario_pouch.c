@@ -861,7 +861,45 @@ void pouchRemoveItem(s32 itemId)
     }
 }
 
-// NOT_DECOMPILED pouchRemoveItemIdx
+void pouchRemoveItemIdx(s32 itemId, s32 idx)
+{
+    MarioPouchWork * pp;
+    s32 i;
+
+    pp = pouchGetPtr();
+
+    if (itemId >= ITEM_ID_KEY_START && itemId < ITEM_ID_KEY_MAX)
+    {
+        // "Strange"
+        SPM_ASSERT(880, pp->keyItem[idx] == itemId, "おかしい");
+
+        if (idx >= POUCH_KEY_ITEM_MAX)
+            return;
+
+        pp->keyItem[idx] = ITEM_ID_NULL;
+        for (i = idx; i < POUCH_KEY_ITEM_MAX - 1; i++)
+            pp->keyItem[i] = pp->keyItem[i + 1];
+        pp->keyItem[i] = ITEM_ID_NULL;
+    }
+    else if (itemId >= ITEM_ID_USE_START && itemId < ITEM_ID_USE_MAX)
+    {
+        // "Strange"
+        SPM_ASSERT(892, pp->useItem[idx] == itemId, "おかしい");
+
+        if (idx >= POUCH_USE_ITEM_MAX)
+            return;
+
+        pp->useItem[idx] = ITEM_ID_NULL;
+        for (i = idx; i < POUCH_USE_ITEM_MAX - 1; i++)
+            pp->useItem[i] = pp->useItem[i + 1];
+        pp->useItem[i] = ITEM_ID_NULL;
+    }
+    else
+    {
+        // "pouchRemoveItemIdx only supports KeyItem, UseItem"
+        SPM_ASSERT(904, 0, "pouchRemoveItemIdx は KeyItem,UseItem にしか対応していません");
+    }
+}
 
 // NOT_DECOMPILED pouchAddShopItem
 
