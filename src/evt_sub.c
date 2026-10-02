@@ -173,7 +173,26 @@ s32 evt_sub_intpl_msec_init(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_intpl_msec_get_value
+s32 evt_sub_intpl_msec_get_value(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    u64 tickDiff = (s32) entry->lifetime - (s32) entry->unknown_0x190;
+    s32 msec = (s32) OSTicksToMilliseconds(tickDiff);
+    if (msec < entry->lw[15])
+    {
+        entry->lw[0] = (s32) intplGetValue(entry->lw[11], (f32) entry->lw[12],
+                                           (f32) entry->lw[13], msec, entry->lw[15]);
+        entry->lw[1] = 1;
+    }
+    else
+    {
+        entry->lw[0] = entry->lw[13];
+        entry->lw[1] = 0;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_intpl_msec_get_value_para
 
