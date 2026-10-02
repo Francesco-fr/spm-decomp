@@ -941,7 +941,71 @@ s32 func_800d6644(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800d6674
 
-// NOT_DECOMPILED evt_sub_display_room_name
+s32 evt_sub_display_room_name(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 type = evtGetValue(entry, args[1]);
+    RoomNameDispWork * work;
+    u32 msec;
+
+    if (isFirstCall)
+    {
+        work = (RoomNameDispWork *) __memAlloc(1, sizeof(RoomNameDispWork));
+        memset(work, 0, sizeof(RoomNameDispWork));
+        work->state = 0;
+        work->name = name;
+        work->type = type;
+        if (lbl_805ae014 != -1)
+            work->type = lbl_805ae014;
+        lbl_805ae014 = -1;
+        entry->tempS[0] = (s32) work;
+        evtSetValue(NULL, GSWF(422), 1);
+    }
+
+    work = (RoomNameDispWork *) entry->tempS[0];
+    switch (work->state)
+    {
+        case 0:
+            work->time = entry->lifetime;
+            work->state++;
+            break;
+        case 1:
+            msec = OSTicksToMilliseconds((u32) entry->lifetime - (u32) work->time);
+            if (msec < 1000)
+                work->alpha = (s32) intplGetValue(11, -256.0f, 256.0f, (s32) msec, 1000);
+            else
+            {
+                work->time = entry->lifetime;
+                work->state++;
+            }
+            dispEntry(11, 4, 300.0f, func_800d6674, work);
+            break;
+        case 2:
+            msec = OSTicksToMilliseconds((u32) entry->lifetime - (u32) work->time);
+            if (msec > 2000)
+            {
+                work->time = entry->lifetime;
+                work->state++;
+            }
+            dispEntry(11, 4, 300.0f, func_800d6674, work);
+            break;
+        case 3:
+            msec = OSTicksToMilliseconds((u32) entry->lifetime - (u32) work->time);
+            if (msec < 1000)
+                work->alpha = (s32) intplGetValue(11, 256.0f, -256.0f, (s32) msec, 1000);
+            else
+                work->state++;
+            dispEntry(11, 4, 300.0f, func_800d6674, work);
+            break;
+        case 4:
+            __memFree(1, work);
+            evtSetValue(NULL, GSWF(422), 0);
+            return EVT_RET_CONTINUE;
+    }
+
+    return EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_800d776c
 
