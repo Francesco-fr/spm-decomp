@@ -67,7 +67,28 @@ s32 evt_mario_flag8_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ef53c
+s32 func_800ef53c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 idx = evtGetValue(entry, args[0]);
+    MarioWork * mp = marioGetPtr();
+    switch (idx)
+    {
+        case 0:
+            evtSetValue(entry, args[1], (s32) mp->flags);
+            break;
+        case 1:
+            evtSetValue(entry, args[1], (s32) mp->miscFlags);
+            break;
+        case 2:
+            evtSetValue(entry, args[1], (s32) mp->dispFlags);
+            break;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_cont_onoff
 
