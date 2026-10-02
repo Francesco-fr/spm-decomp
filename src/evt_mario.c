@@ -486,7 +486,13 @@ s32 func_800f1abc(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800f2074
 
-// NOT_DECOMPILED func_800f2124
+s32 func_800f2124(MarioWork * mp, EvtEntry * entry)
+{
+    (void) mp;
+    (void) entry;
+
+    return 0;
+}
 
 // NOT_DECOMPILED func_800f212c
 
