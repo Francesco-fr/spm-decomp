@@ -249,7 +249,15 @@ s32 func_800efc54(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_get_height
+s32 evt_mario_get_height(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetFloat(entry, args[0], func_801318f8());
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_direction_reset
 
