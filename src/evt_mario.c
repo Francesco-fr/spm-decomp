@@ -175,7 +175,18 @@ s32 evt_mario_set_pos(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_get_pos
+s32 evt_mario_get_pos(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    MarioWork * mp = marioGetPtr();
+    evtSetFloat(entry, args[0], mp->position.x);
+    evtSetFloat(entry, args[1], mp->position.y);
+    evtSetFloat(entry, args[2], mp->position.z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800efac4
 
