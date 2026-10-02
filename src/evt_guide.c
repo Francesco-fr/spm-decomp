@@ -134,7 +134,15 @@ s32 func_800ea748(EvtEntry * entry, bool isFirstCall)
         return EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED evt_guide_enter_run_mode_1
+s32 evt_guide_enter_run_mode_1(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    guideEnterRunMode1();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_guide_enter_runmode_2
 
