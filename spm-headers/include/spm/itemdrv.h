@@ -27,7 +27,7 @@ typedef struct
 /* 0x10 */ s16 type;
 /* 0x12 */ s16 behaviour;
 /* 0x14 */ Vec3 position;
-/* 0x20 */ u8 unknown_0x20[0x24 - 0x20];
+/* 0x20 */ f32 unknown_0x20;
 /* 0x24 */ IconEntry * icon;
 /* 0x28 */ s32 animPoseId;
 /* 0x2C */ EvtVar switchNumber;
@@ -106,7 +106,7 @@ UNKNOWN_FUNCTION(func_8007a758)
 */
 s32 itemCollect(s32 entryId, ItemEntry * entry);
 
-UNKNOWN_FUNCTION(func_8007bc2c)
+bool func_8007bc2c(const char * name);
 
 /*
     Converts an item type name to the id for that item type
