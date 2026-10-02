@@ -356,7 +356,15 @@ s32 evt_pouch_get_max_stylish_combo(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_get_enemies_defeated
+s32 evt_pouch_get_enemies_defeated(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], pouchGetEnemiesDefeated());
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_increment_enemies_defeated
 
