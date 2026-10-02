@@ -1,3 +1,8 @@
+/*
+    WARNING: Not fully decompiled
+    This file is currently not linked into the final dol
+*/
+
 #include <common.h>
 #include <evt_cmd.h>
 #include <spm/evt_search.h>

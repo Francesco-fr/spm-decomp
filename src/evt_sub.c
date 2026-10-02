@@ -1,3 +1,8 @@
+/*
+    WARNING: Not fully decompiled
+    This file is currently not linked into the final dol
+*/
+
 #include <common.h>
 #include <evt_cmd.h>
 #include <spm/evt_sub.h>
@@ -476,7 +481,7 @@ s32 evt_key_get_buttontrg(EvtEntry * entry, bool isFirstCall)
 void func_800d45ac(s32 chan, s32 result)
 {
     if (result != 0)
-        lbl_8050c8b8[chan].lowBat = 0;
+        lbl_8050c8b8[chan].unknown_0xc = 0;
     lbl_805ae8d0[chan] = 1;
 }
 
@@ -493,7 +498,7 @@ s32 func_800d45dc(EvtEntry * entry, bool isFirstCall)
     if (!lbl_805ae8d0[chan])
         return EVT_RET_BLOCK_WEAK;
 
-    evtSetValue(entry, args[1], lbl_8050c8b8[chan].lowBat != 0);
+    evtSetValue(entry, args[1], lbl_8050c8b8[chan].unknown_0xc != 0);
 
     return EVT_RET_CONTINUE;
 }
