@@ -688,6 +688,13 @@ s32 evt_snd_flag_on(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_flag_off
+s32 evt_snd_flag_off(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    spsndClearFlag((u16) evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 }
