@@ -352,7 +352,18 @@ s32 func_800e8350(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e840c
+s32 func_800e840c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    s32 i;
+    s32 total = fairyGetNum() + fairyGetNumExtra();
+    for (i = 0; i < total; i++)
+        func_8011d300(i);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8468
 
