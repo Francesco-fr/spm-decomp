@@ -310,7 +310,21 @@ s32 func_800ee0b4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ee13c
+s32 func_800ee13c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 group = evtGetValue(entry, args[0]);
+    s32 name = evtGetValue(entry, args[1]);
+    s32 ofsName = evtGetValue(entry, args[2]);
+    if (group == 0)
+        mapObjClearOffScreen((const char *) name, (const char *) ofsName);
+    else
+        mapGrpClearOffScreen((const char *) name, (const char *) ofsName);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mapobj_get_position
 
