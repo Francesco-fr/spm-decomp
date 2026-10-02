@@ -736,7 +736,19 @@ s32 func_800f2e54(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_set_bottomless_cb
+s32 evt_mario_set_bottomless_cb(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 cb = evtGetValue(entry, args[0]);
+    s32 param = evtGetValue(entry, args[1]);
+    MarioWork * mp = marioGetPtr();
+    mp->bottomlessCb = (void *) cb;
+    mp->bottomlessCbParam = param;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_get_bottomless_cb
 
