@@ -371,7 +371,7 @@ config.libs = [
         Object(Matching, "evt_ext.c"),
         Object(Matching, "evt_fade.c"),
         Object(NonMatching, "evt_fairy.c"),
-        Object(NonStarted, "evt_frame.c"),
+        Object(NonMatching, "evt_frame.c"),
         Object(NonMatching, "evt_guide.c"),
         Object(NonMatching, "evt_hit.c"),
         Object(NonMatching, "evt_img.c"),
