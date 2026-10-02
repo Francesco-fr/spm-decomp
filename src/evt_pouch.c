@@ -120,7 +120,14 @@ s32 evt_pouch_get_coins(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_add_coins
+s32 evt_pouch_add_coins(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    pouchAddCoin(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_add_item
 
