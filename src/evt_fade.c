@@ -42,7 +42,18 @@ s32 evt_fade_end_wait(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800e715c
+s32 func_800e715c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    func_80066558(x, y, z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e71dc
 
