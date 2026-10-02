@@ -138,7 +138,16 @@ s32 evt_item_wait_collected(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ed188
+s32 func_800ed188(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    ItemEntry * item = itemNameToPtr((const char *) evtGetValue(entry, args[0]));
+    evtSetValue(entry, args[1], (s32) item);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ed1dc
 
