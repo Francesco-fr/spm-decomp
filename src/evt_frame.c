@@ -96,7 +96,17 @@ s32 func_800e8cd0(EvtEntry * entry, bool isFirstCall)
         EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800e8d0c
+s32 func_800e8d0c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    f32 speed = (f32) evtGetValue(entry, args[1]);
+    func_80068254((const char *) name)->drawSpeed = speed;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8d98
 
