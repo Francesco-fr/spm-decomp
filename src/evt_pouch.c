@@ -366,6 +366,14 @@ s32 evt_pouch_get_enemies_defeated(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_increment_enemies_defeated
+s32 evt_pouch_increment_enemies_defeated(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    pouchSetEnemiesDefeated(pouchGetEnemiesDefeated() + 1);
+
+    return EVT_RET_CONTINUE;
+}
 
 }
