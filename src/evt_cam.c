@@ -334,7 +334,27 @@ s32 evt_cam_look_at_door(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800e0720
+s32 func_800e0720(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 type = evtGetValue(entry, args[0]);
+    f32 value = evtGetFloat(entry, args[1]);
+    CamEntry * cam = camGetPtr(5);
+    if (type == 0)
+    {
+        if (cam->unknown_0xec > value)
+            return EVT_RET_CONTINUE;
+    }
+    else
+    {
+        if (cam->unknown_0xe8 > value)
+            return EVT_RET_CONTINUE;
+    }
+
+    return EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_800e07bc
 
