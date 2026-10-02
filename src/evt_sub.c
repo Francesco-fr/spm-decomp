@@ -622,7 +622,15 @@ s32 evt_sub_load_mapdata_bin(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE_WEAK;
 }
 
-// NOT_DECOMPILED evt_sub_get_fps
+s32 evt_sub_get_fps(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], gp->fps);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_fmt_str_int
 
