@@ -790,7 +790,51 @@ s32 func_800d4e48(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d5004
+void func_800d5004(s32 cameraId, void * param)
+{
+    (void) cameraId;
+    (void) param;
+
+    char msgName[64];
+    Mtx34 mtx;
+    Mtx34 scale;
+    const char * msg;
+    f32 width;
+    f32 maxWidth;
+
+    if (lbl_805ae010->alpha != 0 && !(lbl_805ae010->flags & 1) &&
+        lbl_805ae010->animPoseId != -1)
+    {
+        f32 offsets[8] = {128.0f, 128.0f, 128.0f, 128.0f, 144.0f, 128.0f, 128.0f, 176.0f};
+        PSMTXTrans(mtx, 0.0f, 75.0f + (offsets[(u32) (lbl_805ae010->chapter - 1)] / 2.0f + -240.0f),
+                   0.0f);
+        animPoseMain(lbl_805ae010->animPoseId);
+        animPoseSetFlagF0On(lbl_805ae010->animPoseId, 0x2000);
+        animPoseSetMaterialEvtColor(lbl_805ae010->animPoseId,
+                                    (GXColor) {255, 255, 255, (u8) (lbl_805ae010->alpha / 2)});
+        animPoseDrawMtx(lbl_805ae010->animPoseId, mtx, 1, 0.0f, 1.0f);
+        animPoseDrawMtx(lbl_805ae010->animPoseId, mtx, 2, 0.0f, 1.0f);
+        animPoseDrawMtx(lbl_805ae010->animPoseId, mtx, 3, 0.0f, 1.0f);
+        sprintf(msgName, "sub_title_stg%d_%d", lbl_805ae010->chapter, lbl_805ae010->level);
+        msg = msgSearch(msgName);
+        width = (f32) FontGetMessageWidth(msg);
+        maxWidth = 400.0f;
+        if (width > maxWidth)
+        {
+            PSMTXTrans(mtx, -maxWidth / 2.0f, -130.0f, 0.0f);
+            PSMTXScale(scale, maxWidth / width, 1.0f, 1.0f);
+            PSMTXConcat(mtx, scale, mtx);
+        }
+        else
+        {
+            PSMTXTrans(mtx, -width / 2.0f, -130.0f, 0.0f);
+        }
+        FontDrawStart_alpha((u8) lbl_805ae010->textAlpha);
+        FontDrawColor((GXColor) {255, 255, 255, 255});
+        FontDrawEdge();
+        FontDrawStringMtx(mtx, msg);
+    }
+}
 
 // NOT_DECOMPILED func_800d52a8
 
