@@ -66,7 +66,23 @@ s32 func_800e0dfc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e0e24
+s32 func_800e0e24(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 keepScript = evtGetValue(entry, args[0]);
+    s32 id = evtGetValue(entry, args[1]);
+    if (keepScript == 0)
+    {
+        CaseEntry * caseEntry = caseIdToPtr(id);
+        if (caseEntry != NULL && evtCheckID(caseEntry->evtId))
+            evtDeleteID(caseEntry->evtId);
+    }
+    caseDelete(id);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e0eb0
 
