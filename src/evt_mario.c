@@ -515,7 +515,16 @@ s32 func_800f23e4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f240c
+s32 func_800f240c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 param_1 = evtGetValue(entry, entry->pCurData[0]);
+    marioGetPtr();
+    func_80152900(param_1);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_fairy_reset
 
