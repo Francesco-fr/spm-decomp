@@ -119,7 +119,20 @@ s32 func_800ea718(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ea748
+s32 func_800ea748(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    GuideWork * gw = guideGetWork();
+    if (gw->flag3 & 2)
+        return EVT_RET_BLOCK_WEAK;
+
+    if (animPoseGetLoopTimes(gw->animPoseId) >= 1.0f)
+        return EVT_RET_CONTINUE;
+    else
+        return EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED evt_guide_enter_run_mode_1
 
