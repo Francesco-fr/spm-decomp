@@ -51,68 +51,69 @@ UNKNOWN_FUNCTION(spsndPause)
 UNKNOWN_FUNCTION(spsndUnpause)
 UNKNOWN_FUNCTION(func_8023872c)
 UNKNOWN_FUNCTION(spsndSetPosDirListener)
-void spsndSetSFXReverbMode(u8 mode);
+void spsndSetSFXReverbMode(s32 mode);
 UNKNOWN_FUNCTION(func_80238804)
-UNKNOWN_FUNCTION(func_80238868)
-UNKNOWN_FUNCTION(spsndSetFlag)
+void func_80238868(s32 param_1);
+void spsndSetFlag(u16 flags);
 void spsndClearFlag(u16 flags);
 UNKNOWN_FUNCTION(spsndGetFlag)
 UNKNOWN_FUNCTION(func_802388f4)
 UNKNOWN_FUNCTION(func_80238b04)
 UNKNOWN_FUNCTION(spsndSFXMain)
 s32 __spsndSFXOn(const char * name, u8 volume, u8 pan, s32 delay, Vec3 * position, u32 param_6);
-void spsndSFXOn(const char * name);
+s32 spsndSFXOn(const char * name);
 void spsndSFXOnVol(const char * name, u8 volume);
-UNKNOWN_FUNCTION(spsndSFXOn_UnkEffect)
+s32 spsndSFXOn_UnkEffect(const char * name, s32 param_2);
 u32 _spsndSFXOn(const char * name, Vec3 * position, u32 param_3);
 s32 spsndSFXOn_3D(const char * name, Vec3 * position); // Thunks to _spsndSFXOn, technically void on its own
 void spsndSFXOff(s32 player);
 void func_8023b38c(u32 param_1, u32 param_2);
 void spsndSetSfxPlayerPos(u32 player, Vec3 * position);
-UNKNOWN_FUNCTION(spsndSFX_vol)
+void spsndSFX_vol(s32 player, s8 volume);
 UNKNOWN_FUNCTION(spsndSFX_pit)
-UNKNOWN_FUNCTION(spsndSFX_delay)
-UNKNOWN_FUNCTION(func_8023b680)
-UNKNOWN_FUNCTION(func_8023b77c)
-UNKNOWN_FUNCTION(func_8023b858)
-UNKNOWN_FUNCTION(func_8023b974)
-UNKNOWN_FUNCTION(spsndSFX_flagOn)
-UNKNOWN_FUNCTION(spsndSFX_flagOff)
-UNKNOWN_FUNCTION(spsndSFX_chkName)
-UNKNOWN_FUNCTION(spsndSFX_chk)
-UNKNOWN_FUNCTION(spsndSFX_getIdPlayingName)
+void spsndSFX_delay(s32 player, s32 delay);
+void func_8023b680(s32 player, s32 param_2);
+void func_8023b77c(s32 player);
+void func_8023b858(s32 player, s32 param_2, s32 param_3);
+void func_8023b974(s32 player, s32 param_2);
+void spsndSFX_flagOn(s32 player, u32 flags);
+void spsndSFX_flagOff(s32 player, u32 flags);
+s32 spsndSFX_chkName(const char * name);
+s32 spsndSFX_chk(s32 player);
+s32 spsndSFX_getIdPlayingName(const char * name);
 UNKNOWN_FUNCTION(spsndGetSFXEntry)
 UNKNOWN_FUNCTION(spsndBGMMain)
 s32 spsndBGMOn_f_d(u32 flags, const char * name, s32 fadeMsec);
 bool spsndBGMOn(u32 flags, const char * name);
-UNKNOWN_FUNCTION(spsndBGMOn_f_d_alt)
+s32 spsndBGMOn_f_d_alt(u32 flags, const char * name, s32 fadeMsec);
 bool spsndBGMOff_f_d(s32 player, u32 fadeoutTime);
-UNKNOWN_FUNCTION(spsndBGMOff)
+bool spsndBGMOff(s32 player);
 bool spsndBGMOff_f_d_alt(s32 player, s32 fadeoutTime);
 s32 spsndBGMFadeout(s32 player, s32 fadeMsec);
-UNKNOWN_FUNCTION(func_8023cc90)
-UNKNOWN_FUNCTION(func_8023cc98)
+void func_8023cc90(s32 player);
+void func_8023cc98(s32 player, s32 param_2);
 s32 spsndBGMFadein(s32 player, s32 fadeMsec);
-UNKNOWN_FUNCTION(func_8023ce1c)
+void func_8023ce1c(s32 player, s32 param_2);
 void func_8023ce20(s32 player, s32 param_2, s32 param_3);
-UNKNOWN_FUNCTION(func_8023cf14)
+void func_8023cf14(s32 player, s32 param_2);
 void spsndBGMSetVol(s32 player, s32 volume, u32 fadeMsec);
-UNKNOWN_FUNCTION(func_8023d0dc)
+void func_8023d0dc(s32 player, s32 param_2);
 bool spsndCheckBgmPlaying(s32 player);
-UNKNOWN_FUNCTION(spsndGetBgmName)
+void func_8023cfe8(s32 player, s32 param_2, s32 param_3);
+const char * spsndGetBgmName(s32 player);
 UNKNOWN_FUNCTION(func_8023d1f8)
 UNKNOWN_FUNCTION(func_8023d218)
 UNKNOWN_FUNCTION(func_8023d2b8)
 UNKNOWN_FUNCTION(spsndENVMain)
 UNKNOWN_FUNCTION(spsndENVOn_f_d)
-UNKNOWN_FUNCTION(spsndENVOn)
+void spsndENVOn(s32 flags, const char * name, s32 fadeMsec);
 bool func_8023db5c(s32 param_1, s32 param_2);
-UNKNOWN_FUNCTION(func_8023dc88)
+void func_8023dc88(s32 param_1);
 bool func_8023dc90(s32 param_1, s32 param_2);
-UNKNOWN_FUNCTION(func_8023dc94)
-UNKNOWN_FUNCTION(func_8023dda4)
-UNKNOWN_FUNCTION(func_8023de90)
-UNKNOWN_FUNCTION(func_8023dfa0)
-UNKNOWN_FUNCTION(func_8023e08c)
+void func_8023dc94(s32 param_1, s32 param_2, s32 param_3);
+void func_8023dda4(s32 param_1, s32 param_2);
+void func_8023de90(s32 param_1, s32 param_2, s32 param_3);
+void func_8023dfa0(s32 param_1, s32 param_2);
+void func_8023e08c(s32 param_1, s32 param_2, s32 param_3);
 
 CPP_WRAPPER_END()

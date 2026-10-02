@@ -1,0 +1,133 @@
+#include <common.h>
+#include <evt_cmd.h>
+#include <spm/evt_npc.h>
+#include <spm/evt_snd.h>
+#include <spm/evtmgr.h>
+#include <spm/evtmgr_cmd.h>
+#include <spm/mario.h>
+#include <spm/npcdrv.h>
+#include <spm/spmario_snd.h>
+
+extern "C" {
+
+// Id of the last sound effect played by a script (owned by an unsplit sbss object)
+extern s32 lbl_805ae8c8;
+
+s32 evt_snd_bgmon(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 param_1 = args[0];
+    spsndBGMOn((u32) param_1, (const char *) evtGetValue(entry, args[1]));
+
+    return EVT_RET_CONTINUE;
+}
+
+// NOT_DECOMPILED evt_snd_bgmon_f_d
+
+// NOT_DECOMPILED evt_snd_bgmoff
+
+// NOT_DECOMPILED evt_snd_bgmoff_f_d
+
+// NOT_DECOMPILED func_800d2268
+
+// NOT_DECOMPILED evt_snd_channel_fadeout
+
+// NOT_DECOMPILED func_800d22d8
+
+// NOT_DECOMPILED func_800d231c
+
+// NOT_DECOMPILED func_800d2388
+
+// NOT_DECOMPILED func_800d23cc
+
+// NOT_DECOMPILED func_800d2438
+
+// NOT_DECOMPILED func_800d247c
+
+// NOT_DECOMPILED evt_snd_get_bgm_wait_time
+
+// NOT_DECOMPILED evt_snd_get_bgm_name
+
+// NOT_DECOMPILED evt_snd_sfxon
+
+// NOT_DECOMPILED func_800d2834
+
+// NOT_DECOMPILED func_800d2894
+
+// NOT_DECOMPILED evt_snd_sfxon_character
+
+// NOT_DECOMPILED evt_snd_sfxon_3d
+
+// NOT_DECOMPILED func_800d2a58
+
+// NOT_DECOMPILED evt_snd_sfxon_npc
+
+// NOT_DECOMPILED evt_snd_sfxon_npc_delay
+
+// NOT_DECOMPILED evt_snd_sfxon_3d_player
+
+// NOT_DECOMPILED func_800d2c58
+
+// NOT_DECOMPILED evt_snd_sfxon_3d_player_character
+
+// NOT_DECOMPILED func_800d2db8
+
+// NOT_DECOMPILED func_800d2ed0
+
+// NOT_DECOMPILED evt_snd_sfxoff
+
+// NOT_DECOMPILED func_800d2fa4
+
+// NOT_DECOMPILED func_800d3000
+
+// NOT_DECOMPILED evt_snd_get_last_sfx_id
+
+// NOT_DECOMPILED func_800d3060
+
+// NOT_DECOMPILED func_800d30e8
+
+// NOT_DECOMPILED func_800d3144
+
+// NOT_DECOMPILED func_800d31a0
+
+// NOT_DECOMPILED func_800d31d0
+
+// NOT_DECOMPILED func_800d3248
+
+// NOT_DECOMPILED evt_snd_sfx_wait
+
+// NOT_DECOMPILED evt_snd_sfx_wait_name
+
+// NOT_DECOMPILED evt_snd_sfx_flag_on
+
+// NOT_DECOMPILED evt_snd_sfx_flag_off
+
+// NOT_DECOMPILED func_800d33dc
+
+// NOT_DECOMPILED evt_snd_envon
+
+// NOT_DECOMPILED evt_snd_envon_f
+
+// NOT_DECOMPILED func_800d34b8
+
+// NOT_DECOMPILED func_800d34e4
+
+// NOT_DECOMPILED func_800d3528
+
+// NOT_DECOMPILED func_800d3594
+
+// NOT_DECOMPILED func_800d35d8
+
+// NOT_DECOMPILED func_800d3644
+
+// NOT_DECOMPILED func_800d3688
+
+// NOT_DECOMPILED evt_snd_set_sfx_reverb_mode
+
+// NOT_DECOMPILED evt_snd_flag_on
+
+// NOT_DECOMPILED evt_snd_flag_off
+
+}
