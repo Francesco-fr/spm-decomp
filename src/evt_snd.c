@@ -521,7 +521,15 @@ s32 evt_snd_sfx_wait(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_sfx_wait_name
+s32 evt_snd_sfx_wait_name(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (spsndSFX_chkName((const char *) evtGetValue(entry, entry->pCurData[0])))
+        return EVT_RET_BLOCK_WEAK;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_sfx_flag_on
 
