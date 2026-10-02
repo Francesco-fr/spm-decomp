@@ -720,7 +720,36 @@ s32 func_800f2008(MarioWork * mp, EvtEntry * entry)
     return ret;
 }
 
-// NOT_DECOMPILED func_800f2074
+s32 func_800f2074(MarioWork * mp, EvtEntry * entry)
+{
+    s32 ret = 0;
+
+    switch (entry->tempS[0])
+    {
+        case 0:
+            if (mp->miscFlags & 0x400000)
+                marioChgMot(0x46);
+            else if (mp->miscFlags & 0x100)
+            {
+                if (mp->hitObjs1[2] != NULL)
+                    marioChgMot(0);
+                else
+                    marioChgMot(0x45);
+            }
+            else
+            {
+                marioChgMot(0);
+            }
+            entry->tempS[0] = 1;
+            break;
+
+        case 1:
+            ret = 2;
+            break;
+    }
+
+    return ret;
+}
 
 s32 func_800f2124(MarioWork * mp, EvtEntry * entry)
 {
