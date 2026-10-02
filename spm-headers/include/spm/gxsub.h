@@ -23,7 +23,7 @@ void gxsubInit(); // general use
 void gxsubInit_Cam(CamEntry * camera); // gxsubInit + specify active camera
 void gxsubInit_Colour(); // sets vertex format to include colours
                          // (incompatible with normal functions)
-void gxsubDrawQuad(f32 x, f32 y, f32 width, f32 height, const GXColor * colour);
+void gxsubDrawQuad(f32 x, f32 y, f32 width, f32 height, GXColor colour);
 void gxsubDrawQuadMtx(Mtx34 mtx, f32 width, f32 height, const GXColor * colour);
 void gxsubDrawQuadGradient(f32 x, f32 y, f32 width, f32 height, GXColor * startColour,
                            GXColor * endColour); // requires gxsubInit_Colour

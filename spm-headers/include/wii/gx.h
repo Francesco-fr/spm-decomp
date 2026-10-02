@@ -184,7 +184,7 @@ void GXSetTevColorIn(u8 stage, u32 a, u32 b, u32 c, u32 d);
 void GXSetTevAlphaIn(u8 stage, u32 a, u32 b, u32 c, u32 d);
 void GXSetTevColorOp(u8 stage, u32 op, u32 bias, u32 scale, u8 clamp, u32 out_reg);
 void GXSetTevAlphaOp(u8 stage, u32 op, u32 bias, u32 scale, u8 clamp, u32 out_reg);
-UNKNOWN_FUNCTION(GXSetTevColor)
+void GXSetTevColor(u32 id, GXColor colour);
 UNKNOWN_FUNCTION(GXSetTevColorS10)
 UNKNOWN_FUNCTION(GXSetTevKColor)
 UNKNOWN_FUNCTION(GXSetTevKColorSel)

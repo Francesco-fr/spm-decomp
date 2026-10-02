@@ -94,7 +94,7 @@ void windowMain();
 
 UNKNOWN_FUNCTION(func_80038b08)
 UNKNOWN_FUNCTION(func_80038cc0)
-UNKNOWN_FUNCTION(func_80038fb8)
+void func_80038fb8(s32, f32 x, f32 y, f32 width, f32 height);
 
 /*
     Draws the background for a sign message
@@ -108,7 +108,7 @@ UNKNOWN_FUNCTION(func_800393c8)
 */
 void windowDispGX_System(s32 type, u8 alpha, f32 x, f32 y, f32 width, f32 height);
 
-UNKNOWN_FUNCTION(func_80039b80)
+void func_80039b80(u8 alpha, f32 x, f32 y, f32 width, f32 height);
 void func_80039d40(s32 type, Unk, u8 alpha, bool, f32 x, f32 y, f32 width, f32 height, f32,
                    f32);
 

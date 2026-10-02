@@ -131,7 +131,23 @@ void func_80038b08()
 
 // NOT_DECOMPILED windowDispGX_System
 
-// NOT_DECOMPILED func_80039b80
+void func_80039b80(u8 alpha, f32 x, f32 y, f32 width, f32 height)
+{
+    CamEntry * cam = camGetCurPtr();
+    gxsubInit_Cam(cam);
+    gxsubDrawQuad(x, y, width, height, (GXColor) {0x3d, 0x00, 0x89, (u8) (alpha * 60 / 100)});
+    func_80038b08();
+    GXSetTevColor(1, (GXColor) {0xff, 0xff, 0xff, alpha});
+    GXLoadPosMtxImm(cam->viewMtx, 0);
+    GXSetCurrentMtx(0);
+
+    f32 scaleX = width / 560.0f;
+    f32 scaleY = height / 176.0f;
+    func_80038fb8(61, x, y, 560.0f * scaleX - 16.0f, 176.0f * scaleY - 16.0f);
+    func_80038fb8(61, x + 560.0f * scaleX, y, -16.0f, 176.0f * scaleY - 16.0f);
+    func_80038fb8(61, x, y - 176.0f * scaleY, 560.0f * scaleX - 16.0f, -16.0f);
+    func_80038fb8(61, x + 560.0f * scaleX, y - 176.0f * scaleY, -16.0f, -16.0f);
+}
 
 // NOT_DECOMPILED func_80039d40
 
