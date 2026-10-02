@@ -829,7 +829,15 @@ s32 func_800f30bc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f315c
+s32 func_800f315c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    marioUnlockRespawnPos();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_set_pane_boundaries
 
