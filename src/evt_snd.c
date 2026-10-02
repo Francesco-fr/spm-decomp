@@ -24,7 +24,18 @@ s32 evt_snd_bgmon(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_bgmon_f_d
+s32 evt_snd_bgmon_f_d(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 param_1 = args[0];
+    s32 param_2 = evtGetValue(entry, args[1]);
+    s32 param_3 = evtGetValue(entry, args[2]);
+    spsndBGMOn_f_d_alt((u32) param_1, (const char *) param_2, param_3);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_bgmoff
 
