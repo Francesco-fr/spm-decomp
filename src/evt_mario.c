@@ -438,7 +438,19 @@ s32 func_800f1a08(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f1a4c
+s32 func_800f1a4c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    MarioWork * mp = marioGetPtr();
+    if (mp->trigFlags & 1)
+        evtSetValue(entry, args[0], mp->prevMotionId);
+    else
+        evtSetValue(entry, args[0], mp->motionId);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f1abc
 
