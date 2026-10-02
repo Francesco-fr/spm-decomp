@@ -90,7 +90,37 @@ s32 func_800ead20(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eadec
+s32 func_800eadec(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    u32 attr = (u32) evtGetValue(entry, args[0]);
+    MarioWork * mp = marioGetPtr();
+    if (mp->hitObjs1[2] != NULL)
+    {
+        for (s32 i = 0; i < mp->numHitObjRideArray; i++)
+        {
+            if (mp->hitObjRideArray[i] != NULL && (attr & hitGetAttr(mp->hitObjRideArray[i])))
+            {
+                evtSetValue(entry, args[1], 1);
+                return EVT_RET_CONTINUE;
+            }
+        }
+    }
+    else
+    {
+        if (mp->hitObjs1[7] != NULL && (attr & hitGetAttr(mp->hitObjs1[7])))
+        {
+            evtSetValue(entry, args[1], 1);
+            return EVT_RET_CONTINUE;
+        }
+    }
+
+    evtSetValue(entry, args[1], 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eaed0
 
