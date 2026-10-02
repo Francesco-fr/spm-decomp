@@ -408,7 +408,19 @@ s32 evt_sub_get_dist(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_get_dir
+s32 evt_sub_get_dir(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x1 = (f32) evtGetValue(entry, args[0]);
+    f32 z1 = (f32) evtGetValue(entry, args[1]);
+    f32 x2 = (f32) evtGetValue(entry, args[2]);
+    f32 z2 = (f32) evtGetValue(entry, args[3]);
+    evtSetFloat(entry, args[4], angleABf(x1, z1, x2, z2));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_get_system_flag
 
