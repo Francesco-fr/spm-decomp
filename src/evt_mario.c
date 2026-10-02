@@ -358,7 +358,15 @@ s32 evt_mario_face(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_face_free
+s32 evt_mario_face_free(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    marioUnlockFacing();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f0304
 
