@@ -539,7 +539,26 @@ s32 func_800f1c1c(MarioWork * mp, EvtEntry * entry)
     return ret;
 }
 
-// NOT_DECOMPILED func_800f1c88
+s32 func_800f1c88(MarioWork * mp, EvtEntry * entry)
+{
+    s32 ret = 0;
+
+    switch (entry->tempS[0])
+    {
+        case 0:
+            if (mp->motionId != 0x28)
+                marioChgMot(0x28);
+            entry->tempS[0] = 1;
+            break;
+
+        case 1:
+            if (!(mp->miscFlags & 0x4000))
+                ret = 2;
+            break;
+    }
+
+    return ret;
+}
 
 // NOT_DECOMPILED func_800f1d0c
 
