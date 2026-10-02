@@ -294,7 +294,23 @@ s32 evt_sub_spline_get_value(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_spline_get_value_manual
+s32 evt_sub_spline_get_value_manual(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    SplineWork * work = (SplineWork *) entry->lw[15];
+    f32 progress = (f32) evtGetValue(entry, args[0]);
+    Vec3 pos;
+
+    progress = progress / (work->useTime != 0 ? (f32) work->msec : (f32) work->max);
+    spline_getvalue(&pos, progress, work->count, work->points, work->table1, work->table2);
+    evtSetValue(entry, args[1], FLOAT(pos.x));
+    evtSetValue(entry, args[2], FLOAT(pos.y));
+    evtSetValue(entry, args[3], FLOAT(pos.z));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_spline_free
 
