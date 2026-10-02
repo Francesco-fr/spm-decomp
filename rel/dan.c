@@ -652,9 +652,9 @@ bool danCheckKeyInMapBbox()
     {
         if (CHECK_ANY_MASK(item->flags, 0x1) &&
             ((item->type == ITEM_ID_KEY_DAN_KEY) || (item->type == ITEM_ID_KEY_URA_DAN_KEY)) &&
-            (min.x <= item->position.x) && (max.x >= item->position.x) &&
-            (min.y <= item->position.y) && (max.y >= item->position.y) &&
-            (min.z <= item->position.z) && (max.z >= item->position.z))
+            !(min.x > item->position.x) && !(max.x < item->position.x) &&
+            !(min.y > item->position.y) && !(max.y < item->position.y) &&
+            !(min.z > item->position.z) && !(max.z < item->position.z))
             break;
     }
 
