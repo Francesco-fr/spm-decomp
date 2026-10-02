@@ -164,7 +164,14 @@ s32 evt_snd_get_bgm_name(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_sfxon
+s32 evt_snd_sfxon(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    lbl_805ae8c8 = spsndSFXOn((const char *) evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d2834
 
