@@ -783,7 +783,24 @@ s32 func_800f2fa8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f2fec
+s32 func_800f2fec(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 which = evtGetValue(entry, args[0]);
+    f32 value = evtGetFloat(entry, args[1]);
+    MarioWork * mp = marioGetPtr();
+    if (!(mp->flags & 0x400000))
+        return EVT_RET_CONTINUE;
+
+    if (which == 0)
+        mp->unknown_0x1500 = value;
+    else
+        mp->unknown_0x1504 = value;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f3074
 
