@@ -656,7 +656,15 @@ s32 evt_mario_tamara_onoff(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800f2c00
 
-// NOT_DECOMPILED func_800f2c98
+s32 func_800f2c98(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_80114af0();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f2cbc
 
