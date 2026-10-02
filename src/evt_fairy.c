@@ -273,7 +273,25 @@ s32 func_800e80ec(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_fairy_flag_onoff
+s32 evt_fairy_flag_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 on = evtGetValue(entry, args[0]);
+    s32 id = evtGetValue(entry, args[1]);
+    s32 flags = evtGetValue(entry, args[2]);
+    FairyEntry * fairy = fairyIdToPtr(id);
+    if (fairy == NULL)
+        return EVT_RET_CONTINUE;
+
+    if (on)
+        fairy->flag0 |= flags;
+    else
+        fairy->flag0 &= ~flags;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_fairy_flag_onoff_all
 
