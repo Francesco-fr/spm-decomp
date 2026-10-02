@@ -376,7 +376,7 @@ config.libs = [
         Object(NonStarted, "evt_hit.c"),
         Object(NonStarted, "evt_img.c"),
         Object(NonStarted, "evt_item.c"),
-        Object(NonStarted, "evt_map.c"),
+        Object(NonMatching, "evt_map.c"),
         Object(NonStarted, "evt_mario.c"),
         Object(NonStarted, "evt_mobj.c"),
         Object(NonStarted, "evt_msg.c"),

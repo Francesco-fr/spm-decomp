@@ -165,7 +165,8 @@ typedef struct _MapObj
 /* 0x000 */ u32 flag0;
 /* 0x004 */ u32 flag4;
 /* 0x008 */ u8 blendMode;
-/* 0x009 */ u8 unknown_0x9[0xc - 0x9];
+/* 0x009 */ u8 unknown_0x9;
+/* 0x00A */ u8 unknown_0xa[0xc - 0xa];
 /* 0x00C */ MapFileJoint * joint;
 /* 0x010 */ GXColor colour;
 /* 0x014 */ u8 unknown_0x14[0x1c - 0x14];
@@ -184,7 +185,7 @@ typedef struct _MapObj
 /* 0x0FE */ u16 gxBboxBottom;
 /* 0x100 */ void * dl_buf[8]; // display list pointers
 /* 0x120 */ u32 dl_size[8]; // display list sizes
-/* 0x140 */ u8 unknown_0x140[0x144 - 0x140];
+/* 0x140 */ s32 unknown_0x140;
 } MapObj;
 SIZE_ASSERT(MapObj, 0x144)
 
@@ -481,8 +482,8 @@ void mapGrpFlag4Off(bool allowSubName, const char * name, u32 mask);
     Sets the offscreen id of a MapObj (and its children)
 */
 void _setOffScrnId(MapObj * obj, s16 ofsId, bool allowSiblings);
-void mapObjSetOffscreen(const char * objName, const char * ofsName);
-void mapGrpSetOffscreen(const char * objName, const char * ofsName);
+void mapObjSetOffScreen(const char * objName, const char * ofsName);
+void mapGrpSetOffScreen(const char * objName, const char * ofsName);
 
 /*
     Removes the offscreen id of a MapObj (and its children), checking the name is correct
@@ -520,7 +521,7 @@ UNKNOWN_FUNCTION(func_80090270)
 /*
     Sets the fog parameters for a map group
 */
-void mapSetFog(s32 groupId, s32 type, GXColor * colour, f32 startZ, s32 endZ);
+void mapSetFog(s32 groupId, s32 type, GXColor colour, f32 startZ, f32 endZ);
 
 /*
     Enables/disables fog
@@ -531,8 +532,8 @@ void mapFogOff();
 /*
     Sets/gets a blend colour of the active group's first map entry
 */
-void mapSetBlend(GXColor * colour);
-void mapSetBlend2(GXColor * colour);
+void mapSetBlend(GXColor colour);
+void mapSetBlend2(GXColor colour);
 void mapGetBlend(GXColor * colour);
 void mapGetBlend2(GXColor * colour);
 
@@ -545,14 +546,14 @@ void mapBlendOff2();
 /*
     Sets the colour of the active group's first map entry
 */
-void mapSetColor(GXColor * colour);
+void mapSetColor(GXColor colour);
 
 /*
     Sets the colour of a MapObj (and its children)
 */
-void mapObjSetColor(const char * name, GXColor * colour);
+void mapObjSetColor(const char * name, GXColor colour);
 DECOMP_STATIC(void mapdrv_setColor(MapObj * obj, GXColor * colour, bool allowSiblings))
-void mapGrpSetColor(const char * name, GXColor * colour);
+void mapGrpSetColor(const char * name, GXColor colour);
 
 UNKNOWN_FUNCTION(spline_maketable)
 UNKNOWN_FUNCTION(spline_getvalue)
