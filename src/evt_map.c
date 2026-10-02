@@ -78,7 +78,23 @@ s32 evt_map_fog_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ed9b0
+s32 func_800ed9b0(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 which = evtGetValue(entry, args[0]);
+    s32 r = evtGetValue(entry, args[1]);
+    s32 g = evtGetValue(entry, args[2]);
+    s32 b = evtGetValue(entry, args[3]);
+    s32 a = evtGetValue(entry, args[4]);
+    if (which == 0)
+        mapSetBlend((GXColor) {(u8) r, (u8) g, (u8) b, (u8) a});
+    else
+        mapSetBlend2((GXColor) {(u8) r, (u8) g, (u8) b, (u8) a});
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eda74
 
