@@ -116,7 +116,15 @@ s32 func_802416e8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_80241728
+s32 func_80241728(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    returnToWiiMenu();
+
+    return EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_8024174c
 
