@@ -722,7 +722,13 @@ s32 evt_sub_hud_configure(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d4db0
+s32 func_800d4db0(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    return func_80199cf8() ? EVT_RET_BLOCK_WEAK : EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d4de4
 
