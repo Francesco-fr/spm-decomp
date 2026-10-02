@@ -75,7 +75,25 @@ s32 evt_item_flag_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ecf80
+s32 func_800ecf80(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 on = evtGetValue(entry, args[0]);
+    s32 name = evtGetValue(entry, args[1]);
+    u32 flags = (u32) evtGetValue(entry, args[2]);
+    ItemEntry * item = itemNameToPtr((const char *) name);
+    if (item != NULL)
+    {
+        if (on)
+            iconFlagOn(item->name, flags);
+        else
+            iconFlagOff(item->name, flags);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ed020
 
