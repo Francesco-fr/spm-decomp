@@ -578,7 +578,14 @@ s32 func_800f2544(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_set_gravity
+s32 evt_set_gravity(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    marioSetGravity(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_get_gravity
 
