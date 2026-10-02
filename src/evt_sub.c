@@ -216,7 +216,33 @@ s32 evt_sub_intpl_msec_get_value_para(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_spline_init
+s32 evt_sub_spline_init(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 useTime = evtGetValue(entry, args[0]);
+    s32 mode = evtGetValue(entry, args[1]);
+    Vec3 * points = (Vec3 *) evtGetValue(entry, args[2]);
+    s32 count = evtGetValue(entry, args[3]);
+    s32 max = evtGetValue(entry, args[4]);
+    s32 msec = evtGetValue(entry, args[5]);
+    SplineWork * work = (SplineWork *) __memAlloc(1, sizeof(SplineWork));
+    entry->lw[15] = (s32) work;
+    work->count = count;
+    work->table1 = (f32 *) __memAlloc(1, count * sizeof(f32));
+    work->points = points;
+    work->table2 = (Vec3 *) __memAlloc(1, count * sizeof(Vec3));
+    spline_maketable(count, work->points, work->table1, work->table2);
+    work->useTime = useTime;
+    work->mode = mode;
+    work->progress = 0;
+    work->max = max;
+    work->msec = msec;
+    work->startTime = entry->lifetime;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_spline_get_value
 
