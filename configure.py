@@ -358,7 +358,7 @@ config.libs = [
         Object(NonStarted, "eff_map_bubble.c"),
         Object(NonStarted, "eff_score.c"),
         Object(NonMatching, "evt_snd.c"),
-        Object(NonStarted, "evt_sub.c"),
+        Object(NonMatching, "evt_sub.c"),
         Object(Matching, "evtmgr.c"),
         Object(Matching, "evtmgr_cmd.c"),
         Object(NonMatching, "evt_ac.c"),

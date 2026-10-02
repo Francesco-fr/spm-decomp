@@ -204,7 +204,7 @@ UNKNOWN_FUNCTION(func_80058388)
 s32 func_800583b4();
 void func_80058404(s32 camId, s32 param_2);
 UNKNOWN_FUNCTION(func_8005869c)
-UNKNOWN_FUNCTION(func_800586c8)
+void func_800586c8(s32 camId, Vec3 * pos, f32 param_3, f32 param_4, f32 param_5);
 void func_80058700(s32 camId, f32 x, f32 y, f32 z, s32 time);
 void func_800587a0(s32 camId, f32 x, f32 y, f32 z, s32 time);
 s32 func_80058800(s32 camId);

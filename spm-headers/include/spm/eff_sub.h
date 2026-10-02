@@ -22,5 +22,6 @@ SIZE_ASSERT(EffSubWork, 0x100)
 DECOMP_STATIC(EffSubWork * effsub_wp)
 
 void effSubMain();
+void func_800611d8(bool param_1);
 
 CPP_WRAPPER_END()

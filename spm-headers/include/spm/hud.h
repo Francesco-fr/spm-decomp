@@ -23,18 +23,18 @@ void hudReInit();
 UNKNOWN_FUNCTION(hudLoadStats)
 void hudMain();
 UNKNOWN_FUNCTION(hudGetPos)
-UNKNOWN_FUNCTION(hudUnhideAlt)
+void hudUnhideAlt();
 void hudHide();
-UNKNOWN_FUNCTION(func_80199b0c)
-UNKNOWN_FUNCTION(func_80199b5c)
-UNKNOWN_FUNCTION(hudUnhide)
-UNKNOWN_FUNCTION(func_80199c74)
-UNKNOWN_FUNCTION(func_80199c88)
+void func_80199b0c();
+void func_80199b5c();
+void hudUnhide();
+void func_80199c74();
+void func_80199c88();
 UNKNOWN_FUNCTION(func_80199c9c)
 UNKNOWN_FUNCTION(func_80199cb0)
 typedef void (CountdownDoneCb)();
 void hudStartCountdown(u32 length, CountdownDoneCb * cb);
-UNKNOWN_FUNCTION(func_80199cf8)
+bool func_80199cf8();
 UNKNOWN_FUNCTION(hudUpdateStats)
 UNKNOWN_FUNCTION(hudDisp)
 void func_8019af88();

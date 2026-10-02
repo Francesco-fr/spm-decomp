@@ -64,7 +64,23 @@ UNKNOWN_FUNCTION(WPADSetExtensionCallback)
 UNKNOWN_FUNCTION(WPADGetDataFormat)
 UNKNOWN_FUNCTION(WPADSetDataFormat)
 UNKNOWN_FUNCTION(__infoCallback)
-UNKNOWN_FUNCTION(WPADGetInfoAsync)
+typedef struct
+{
+    BOOL dpd;
+    BOOL speaker;
+    BOOL attach;
+    BOOL lowBat;
+    BOOL nearempty;
+    u8 battery;
+    u8 led;
+    u8 protocol;
+    u8 firmware;
+} WPADInfo;
+SIZE_ASSERT(WPADInfo, 0x18)
+
+typedef void (WPADCallback)(s32 chan, s32 result);
+
+s32 WPADGetInfoAsync(s32 chan, WPADInfo * info, WPADCallback * callback);
 void WPADControlMotor(s32 controller, u32 onOff);
 UNKNOWN_FUNCTION(WPADEnableMotor)
 bool WPADIsMotorEnabled();

@@ -1,16 +1,18 @@
 #pragma once
 
 #include <common.h>
+#include <spm/filemgr.h>
 #include <spm/seqdrv.h>
 
 CPP_WRAPPER(spm::seq_game)
 
+USING(spm::filemgr::FileEntry)
 USING(spm::seqdrv::SeqWork)
 
 UNKNOWN_FUNCTION(seqGamePreloadScriptsSpawnedNpcs)
 UNKNOWN_FUNCTION(seqGameReadConnectedMapNames)
 UNKNOWN_FUNCTION(seqGamePreloadConnectedMaps)
-UNKNOWN_FUNCTION(loadMapdataBin)
+FileEntry * loadMapdataBin(const char * name);
 void seq_gameInit(SeqWork * work);
 void seq_gameMain(SeqWork * work);
 void seq_gameExit(SeqWork * work);

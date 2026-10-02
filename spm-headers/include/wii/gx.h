@@ -213,11 +213,12 @@ UNKNOWN_FUNCTION(GXDrawCube)
 UNKNOWN_FUNCTION(GXBeginDisplayList)
 UNKNOWN_FUNCTION(GXEndDisplayList)
 UNKNOWN_FUNCTION(GXCallDisplayList)
-UNKNOWN_FUNCTION(GXProject)
+void GXProject(f32 x, f32 y, f32 z, Mtx34 viewMtx, f32 * projection, f32 * viewport,
+               f32 * screenX, f32 * screenY, f32 * screenZ);
 UNKNOWN_FUNCTION(__GXSetProjection)
 void GXSetProjection(Mtx44 mtx, GXProjectionType type);
-UNKNOWN_FUNCTION(GXSetProjectionv)
-UNKNOWN_FUNCTION(GXGetProjectionv)
+void GXSetProjectionv(const f32 * proj);
+void GXGetProjectionv(f32 * proj);
 void GXLoadPosMtxImm(Mtx34 mtx, u32 pnidx);
 UNKNOWN_FUNCTION(GXLoadNrmMtxImm)
 void GXSetCurrentMtx(u32 mtx);

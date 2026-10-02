@@ -1,0 +1,292 @@
+#include <common.h>
+#include <evt_cmd.h>
+#include <spm/evt_sub.h>
+#include <spm/evtmgr.h>
+#include <spm/animdrv.h>
+#include <spm/camdrv.h>
+#include <spm/dispdrv.h>
+#include <spm/eff_pure_heart.h>
+#include <spm/eff_sub.h>
+#include <spm/effdrv.h>
+#include <spm/evtmgr_cmd.h>
+#include <spm/filemgr.h>
+#include <spm/fontmgr.h>
+#include <spm/gxsub.h>
+#include <spm/hitdrv.h>
+#include <spm/hud.h>
+#include <spm/itemdrv.h>
+#include <spm/item_data_ids.h>
+#include <spm/lz_embedded.h>
+#include <spm/mario.h>
+#include <spm/mario_motion.h>
+#include <spm/mario_status.h>
+#include <spm/mobjdrv.h>
+#include <spm/nameent.h>
+#include <spm/parse.h>
+#include <spm/mapdrv.h>
+#include <spm/memory.h>
+#include <spm/msgdrv.h>
+#include <spm/pausewin.h>
+#include <spm/seq_game.h>
+#include <spm/spmario.h>
+#include <spm/spmario_snd.h>
+#include <spm/system.h>
+#include <spm/winmgr.h>
+#include <spm/wpadmgr.h>
+#include <wii/cx.h>
+#include <wii/gx.h>
+#include <wii/mtx.h>
+#include <wii/os.h>
+#include <wii/tpl.h>
+#include <wii/wpad.h>
+#include <msl/math.h>
+#include <msl/stdio.h>
+#include <msl/string.h>
+
+extern "C" {
+
+typedef struct
+{
+/* 0x00 */ s32 count;
+/* 0x04 */ f32 * table1;
+/* 0x08 */ Vec3 * points;
+/* 0x0C */ Vec3 * table2;
+/* 0x10 */ s32 progress;
+/* 0x14 */ s32 max;
+/* 0x18 */ s32 mode;
+/* 0x1C */ s32 msec;
+/* 0x20 */ OSTime startTime;
+/* 0x28 */ s32 useTime;
+/* 0x2C */ u8 unknown_0x2c[0x30 - 0x2c];
+} SplineWork;
+SIZE_ASSERT(SplineWork, 0x30)
+
+typedef struct
+{
+/* 0x00 */ s32 state;
+/* 0x04 */ u32 flags;
+/* 0x08 */ OSTime time;
+/* 0x10 */ s32 alpha;
+/* 0x14 */ s32 chapter;
+/* 0x18 */ s32 level;
+/* 0x1C */ EffEntry * effect;
+/* 0x20 */ s32 animPoseId;
+/* 0x24 */ u8 unknown_0x24[0x28 - 0x24];
+/* 0x28 */ s32 textAlpha;
+/* 0x2C */ TPLHeader * tpl;
+/* 0x30 */ s32 bgAlpha;
+/* 0x34 */ u8 unknown_0x34[0x38 - 0x34];
+} RoomNameWork;
+SIZE_ASSERT(RoomNameWork, 0x38)
+
+typedef struct
+{
+/* 0x00 */ s32 name;
+/* 0x04 */ s32 type;
+/* 0x08 */ s32 state;
+/* 0x0C */ s32 alpha;
+/* 0x10 */ OSTime time;
+/* 0x18 */ u8 unknown_0x18[0x28 - 0x18];
+} RoomNameDispWork;
+SIZE_ASSERT(RoomNameDispWork, 0x28)
+
+typedef struct
+{
+/* 0x00 */ u16 flags;
+/* 0x04 */ s32 maxLen;
+/* 0x08 */ s32 done;
+/* 0x0C */ s32 winIds[2];
+/* 0x14 */ s32 cursorX;
+/* 0x18 */ s32 cursorY;
+/* 0x1C */ s32 len;
+/* 0x20 */ char buf[32];
+/* 0x40 */ s32 cols;
+/* 0x44 */ s32 rows;
+/* 0x48 */ const char ** table;
+/* 0x4C */ s32 count;
+} PasswordWork;
+SIZE_ASSERT(PasswordWork, 0x50)
+
+typedef struct
+{
+/* 0x000 */ const char * table[126];
+/* 0x1F8 */ const char * tableEn[126];
+/* 0x3F0 */ const char * numTable[12];
+/* 0x420 */ const char * numTableEn[12];
+/* 0x450 */ WindowDesc descs[2];
+} PasswordData;
+SIZE_ASSERT(PasswordData, 0x4a0)
+
+typedef struct
+{
+/* 0x0 */ s32 id;
+/* 0x4 */ s32 weight;
+} RandomCookEntry;
+
+extern RoomNameWork * lbl_805ae010;
+extern PasswordData lbl_80410168;
+extern char lbl_8050c970[32];
+extern RandomCookEntry lbl_8040e44c[];
+extern s32 lbl_805ae014;
+extern const char * lbl_8040bd08[32];
+extern const u8 lbl_8032c1b8[];
+
+s32 func_800b6754();
+EffEntry * func_800acc54(s32 param_1);
+bool func_800accd4(EffEntry * effect);
+EffEntry * func_800ad9a0(s32 type, f32 x, f32 y, f32 z, f32 scale);
+EffEntry * func_800af230(s32 param_1);
+bool func_800af2b0(EffEntry * effect);
+EffEntry * func_800b99f4(s32 chapter, s32 level);
+bool func_800b9a90(EffEntry * effect);
+void func_800b9ab8(EffEntry * effect, s32 param_2);
+
+extern WPADInfo lbl_8050c8b8[4];
+extern u8 lbl_805ae8d0[4];
+extern char lbl_8050c918[32];
+
+s32 func_800d378c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], func_800b6754());
+
+    return EVT_RET_CONTINUE;
+}
+
+// NOT_DECOMPILED evt_sub_intpl_msec_init
+
+// NOT_DECOMPILED evt_sub_intpl_msec_get_value
+
+// NOT_DECOMPILED evt_sub_intpl_msec_get_value_para
+
+// NOT_DECOMPILED evt_sub_spline_init
+
+// NOT_DECOMPILED evt_sub_spline_get_value
+
+// NOT_DECOMPILED evt_sub_spline_get_value_manual
+
+// NOT_DECOMPILED evt_sub_spline_free
+
+// NOT_DECOMPILED evt_sub_get_sincos
+
+// NOT_DECOMPILED evt_sub_rumble_onoff
+
+// NOT_DECOMPILED evt_sub_random
+
+// NOT_DECOMPILED evt_sub_get_stopwatch
+
+// NOT_DECOMPILED func_800d41a8
+
+// NOT_DECOMPILED evt_sub_get_dist
+
+// NOT_DECOMPILED evt_sub_get_dir
+
+// NOT_DECOMPILED evt_sub_get_system_flag
+
+// NOT_DECOMPILED func_800d4460
+
+// NOT_DECOMPILED evt_key_get_button
+
+// NOT_DECOMPILED evt_key_get_buttonrep
+
+// NOT_DECOMPILED evt_key_get_buttontrg
+
+// NOT_DECOMPILED func_800d45ac
+
+// NOT_DECOMPILED func_800d45dc
+
+// NOT_DECOMPILED func_800d46a4
+
+// NOT_DECOMPILED func_800d46d8
+
+// NOT_DECOMPILED evt_sub_get_mapname
+
+// NOT_DECOMPILED evt_sub_get_entername
+
+// NOT_DECOMPILED evt_sub_set_entername
+
+// NOT_DECOMPILED func_800d47e4
+
+// NOT_DECOMPILED evt_sub_get_language
+
+// NOT_DECOMPILED evt_sub_animgroup_async
+
+// NOT_DECOMPILED evt_sub_file_async
+
+// NOT_DECOMPILED evt_sub_load_mapdata_bin
+
+// NOT_DECOMPILED evt_sub_get_fps
+
+// NOT_DECOMPILED evt_sub_fmt_str_int
+
+// NOT_DECOMPILED func_800d4b4c
+
+// NOT_DECOMPILED func_800d4b60
+
+// NOT_DECOMPILED evt_sub_hud_configure
+
+// NOT_DECOMPILED func_800d4db0
+
+// NOT_DECOMPILED func_800d4de4
+
+// NOT_DECOMPILED func_800d4e48
+
+// NOT_DECOMPILED func_800d5004
+
+// NOT_DECOMPILED func_800d52a8
+
+// NOT_DECOMPILED func_800d5588
+
+// NOT_DECOMPILED func_800d59ac
+
+// NOT_DECOMPILED func_800d59f0
+
+// NOT_DECOMPILED func_800d5a24
+
+// NOT_DECOMPILED func_800d5a60
+
+// NOT_DECOMPILED func_800d5a94
+
+// NOT_DECOMPILED func_800d5acc
+
+// NOT_DECOMPILED func_800d5e80
+
+// NOT_DECOMPILED func_800d6148
+
+// NOT_DECOMPILED func_800d61ac
+
+// NOT_DECOMPILED func_800d6230
+
+// NOT_DECOMPILED func_800d6298
+
+// NOT_DECOMPILED func_800d6308
+
+// NOT_DECOMPILED func_800d6644
+
+// NOT_DECOMPILED func_800d6674
+
+// NOT_DECOMPILED evt_sub_display_room_name
+
+// NOT_DECOMPILED func_800d776c
+
+// NOT_DECOMPILED func_800d7858
+
+// NOT_DECOMPILED evt_sub_get_save_name
+
+// NOT_DECOMPILED evt_sub_zero_vector
+
+// NOT_DECOMPILED evt_sub_item_select_menu
+
+// NOT_DECOMPILED func_800d7b9c
+
+// NOT_DECOMPILED func_800d7e70
+
+// NOT_DECOMPILED func_800d815c
+
+// NOT_DECOMPILED func_800d8498
+
+// NOT_DECOMPILED func_800d8700
+
+}

@@ -33,6 +33,7 @@ void func_8015eff4();
 
 bool func_80166968();
 void func_801669ac();
+bool func_80166ae0();
 void func_8016c608();
 void func_8016ccc0();
 

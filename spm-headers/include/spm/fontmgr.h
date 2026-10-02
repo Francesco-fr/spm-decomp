@@ -61,7 +61,7 @@ void FontDrawNoiseOff();
     Set the text colour to a pre-defined or custom one
 */
 void FontDrawColorIDX(u32 idx);
-void FontDrawColor(GXColor * color); // Warning: Overwrites color.a
+void FontDrawColor(GXColor color); // Passed by value (the callee overwrites its copy's alpha)
 
 void FontDrawColor_();
 

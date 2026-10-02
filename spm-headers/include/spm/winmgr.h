@@ -126,7 +126,7 @@ s32 winMgrEntry(WindowDesc * desc);
 /*
     Sets user data parameter for a window
 */
-void winMgrSetParam(void * param);
+void winMgrSetParam(s32 id, void * param);
 
 /*
     Opens a window
@@ -141,7 +141,7 @@ void winMgrCloseAutoDelete(s32 id);
 /*
     Checks the action flag of a window
 */
-void winMgrAction(s32 id);
+s32 winMgrAction(s32 id);
 
 /*
     Sets the position and scale of a window
@@ -170,6 +170,8 @@ void winMgrSetPriority(s32 id, s32 priority);
     Extra item is added at the start of the list
 */
 WinmgrSelect * winMgrSelectEntry(s32 type, s32 extraItem, u32 flags);
+// Same address as winMgrSelectEntry (name used by the decomp symbol map)
+WinmgrSelect * func_8003bc78(s32 type, s32 extraItem, u32 flags);
 
 /*
     Get the resulting item id of a selection window
@@ -177,17 +179,23 @@ WinmgrSelect * winMgrSelectEntry(s32 type, s32 extraItem, u32 flags);
     0 means undecided
 */
 s32 winMgrSelect(WinmgrSelect * select);
+// Same address as winMgrSelect (name used by the decomp symbol map)
+s32 func_8003c8a8(WinmgrSelect * select);
 
 
 /*
     Deletes a selection window
 */
 void winMgrSelectDelete(WinmgrSelect * select);
+// Same address as winMgrSelectDelete (name used by the decomp symbol map)
+void func_8003c90c(WinmgrSelect * select);
 
 /*
     Returns the index of the item currently selected
 */
 s32 winMgrSelectGetIndex(WinmgrSelect * select);
+// Returns the selected item index (decomp symbol map name)
+s32 func_8003c9d0(WinmgrSelect * select);
 
 /*
     WindowDesc.mainFunc/dispFuncs for a WinmgrSelect window

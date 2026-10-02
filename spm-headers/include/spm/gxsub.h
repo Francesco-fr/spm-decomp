@@ -15,7 +15,7 @@ USING(wii::tpl::TPLHeader)
 
 void gxsubInit_Tpl(TPLHeader * tpl);
 void gxsubDrawTextureMtx(u32 texId, Mtx34 mtx, const GXColor * colour);
-void gxsubDrawTexture(u32 texId, f32 x, f32 y, f32 width, f32 height, const GXColor * colour);
+void gxsubDrawTexture(u32 texId, f32 x, f32 y, f32 width, f32 height, GXColor colour);
 f32 gxsubGetTexWidth(u32 texId);
 f32 gxsubGetTexHeight(u32 texId);
 void gxsubEnableTexAlpha();

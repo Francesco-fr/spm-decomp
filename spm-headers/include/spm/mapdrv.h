@@ -555,8 +555,9 @@ void mapObjSetColor(const char * name, GXColor colour);
 DECOMP_STATIC(void mapdrv_setColor(MapObj * obj, GXColor * colour, bool allowSiblings))
 void mapGrpSetColor(const char * name, GXColor colour);
 
-UNKNOWN_FUNCTION(spline_maketable)
-UNKNOWN_FUNCTION(spline_getvalue)
+void spline_maketable(s32 count, Vec3 * points, f32 * table1, Vec3 * table2);
+void spline_getvalue(Vec3 * out, f32 progress, s32 count, Vec3 * points, f32 * table1,
+                     Vec3 * table2);
 
 /*
     Applies relocations to a map.dat file and generates its context

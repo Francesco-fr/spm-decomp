@@ -71,8 +71,14 @@ typedef struct _EvtEntry
             {
                 s32 tempS[3];
                 u32 tempU[3];
+                f32 tempF[3];
             }; // Temp values with meanings varying by instruction / user func
-/* 0x080 */ u8 unknown_0x80[0x94 - 0x80];
+/* 0x080 */ union
+            {
+                s32 unknown_0x80[3];
+                f32 unknown_0x80f[3];
+            };
+/* 0x08C */ u8 unknown_0x8c[0x94 - 0x8c];
 /* 0x094 */ UserFunc * userFunc; // Function set & called by the user_func opcode
 /* 0x098 */ s32 lw[16]; // Local Work variables
 /* 0x0D8 */ u32 lf[3]; // Local Flag variables
@@ -100,7 +106,8 @@ typedef struct _EvtEntry
 /* 0x180 */ f32 unknown_0x180;
 /* 0x184 */ f32 unknown_0x184;
 /* 0x188 */ s32 msgPri;
-/* 0x18C */ u8 unknown_0x18c[0x198 - 0x18c];
+/* 0x18C */ u8 unknown_0x18c[0x190 - 0x18c];
+/* 0x190 */ OSTime unknown_0x190;
 /* 0x198 */ EvtScriptCode * scriptStart; // Pointer to the start of this script
 /* 0x19C */ const char * name; // debug thing, unused?
 /* 0x1A0 */ void * pPrevInstruction; // Pointer to last instruction executed
