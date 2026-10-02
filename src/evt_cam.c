@@ -231,7 +231,32 @@ s32 func_800e02bc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_cam_zoom_to_coords
+s32 evt_cam_zoom_to_coords(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 time = evtGetValue(entry, args[0]);
+    s32 type = evtGetValue(entry, args[1]);
+    CamEntry * cam = camGetPtr(5);
+    if (cam->cameraMode == 2)
+    {
+        cam->zoomStartPos.x = cam->pos.x;
+        cam->zoomStartPos.y = cam->pos.y;
+        cam->zoomStartPos.z = cam->pos.z;
+        cam->zoomStartTarget.x = cam->target.x;
+        cam->zoomStartTarget.y = cam->target.y;
+        cam->zoomStartTarget.z = cam->target.z;
+        cam->zoomStartTime = gp->time;
+        cam->zoomTime = time;
+        cam->zoomType = type;
+        cam->unknown_0xe4 = 0;
+        cam->cameraMode = 2;
+        cam->unknown_0x250 = 1;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_cam_look_at_door
 
