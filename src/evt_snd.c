@@ -138,7 +138,15 @@ s32 func_800d2438(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d247c
+s32 func_800d247c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (spsndCheckBgmPlaying(entry->pCurData[0]))
+        return EVT_RET_BLOCK_WEAK;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_get_bgm_wait_time
 
