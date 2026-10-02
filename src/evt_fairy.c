@@ -316,7 +316,19 @@ s32 evt_fairy_flag_onoff_all(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e82dc
+s32 func_800e82dc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    FairyEntry * fairy = fairyIdToPtr(evtGetValue(entry, args[0]));
+    if (fairy == NULL)
+        evtSetValue(entry, args[1], 0);
+    else
+        evtSetValue(entry, args[1], fairy->runMode);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8350
 
