@@ -410,7 +410,139 @@ void windowDispGX_Message(s32 type, Unk param_2, u8 alpha, f32 x, f32 y, f32 wid
     }
 }
 
-// NOT_DECOMPILED windowDispGX_ItemBox
+void windowDispGX_ItemBox(Unk param_1, GXColor colour, f32 x, f32 y, f32 width, f32 height)
+{
+    (void) param_1;
+
+    CamEntry * cam;
+    GXTexObj texObj;
+    Mtx34 mtx;
+    Mtx34 texMtx;
+    s32 texId;
+    f32 k;
+    f32 bottom;
+    f32 right;
+    f32 half;
+    f32 innerLeft;
+    f32 innerRight;
+    f32 innerTop;
+    f32 innerBottom;
+
+    cam = camGetCurPtr();
+    k = 8.0f;
+    func_80038b08();
+    GXSetTexCoordGen2(0, 1, 4, 30, 0, 125);
+    PSMTXScale(texMtx, 2.0f, 2.0f, 1.0f);
+    GXLoadTexMtxImm(texMtx, 30, 1);
+
+    if (colour.r == colour.g && colour.g == colour.b)
+    {
+        GXSetTevColor(1, (GXColor) {0xff, 0xff, 0xff, colour.a});
+        texId = 51;
+    }
+    else
+    {
+        GXSetTevColor(1, colour);
+        texId = 52;
+    }
+
+    PSMTXIdentity(mtx);
+    PSMTXConcat(cam->viewMtx, mtx, mtx);
+    GXLoadPosMtxImm(mtx, 0);
+    GXSetCurrentMtx(0);
+    sptextureGet(texId, &texObj);
+    GXLoadTexObj(&texObj, 0);
+
+    GXBegin(0x80, 0, 36);
+    right = x + width;
+    innerLeft = x + k;
+    half = 0.5f;
+    innerTop = y - k;
+    innerRight = right - k;
+    bottom = y - height;
+    innerBottom = k + bottom;
+    GXPosition3f32(x, y, 0.0f);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(innerLeft, y, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(x, innerTop, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+
+    GXPosition3f32(innerLeft, y, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(innerRight, y, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(innerRight, y, 0.0f);
+    GXTexCoord2f32(half, 0.0f);
+    GXPosition3f32(right, y, 0.0f);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXPosition3f32(right, innerTop, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(x, innerTop, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(x, innerBottom, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+
+    GXPosition3f32(innerLeft, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(innerRight, innerTop, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(right, innerTop, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(right, innerBottom, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+
+    GXPosition3f32(x, innerBottom, 0.0f);
+    GXTexCoord2f32(0.0f, half);
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerLeft, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+    GXPosition3f32(x, bottom, 0.0f);
+    GXTexCoord2f32(0.0f, 1.0f);
+
+    GXPosition3f32(innerLeft, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(innerRight, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+    GXPosition3f32(innerLeft, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+
+    GXPosition3f32(innerRight, innerBottom, 0.0f);
+    GXTexCoord2f32(half, half);
+    GXPosition3f32(right, innerBottom, 0.0f);
+    GXTexCoord2f32(1.0f, half);
+    GXPosition3f32(right, bottom, 0.0f);
+    GXTexCoord2f32(1.0f, 1.0f);
+    GXPosition3f32(innerRight, bottom, 0.0f);
+    GXTexCoord2f32(half, 1.0f);
+    GXEnd();
+}
 
 // NOT_DECOMPILED windowDispGX2_Waku_col
 

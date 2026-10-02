@@ -120,7 +120,7 @@ void windowDispGX_Message(s32 type, Unk, u8 alpha, f32 x, f32 y, f32 width, f32 
 /*
     Draws the background for an item list
 */
-void windowDispGX_ItemBox(Unk, GXColor * colour, f32 x, f32 y, f32 width, f32 height);
+void windowDispGX_ItemBox(Unk, GXColor colour, f32 x, f32 y, f32 width, f32 height);
 
 /*
     Draws a solid colour rectangle with a black border
