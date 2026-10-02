@@ -307,7 +307,20 @@ s32 func_800f013c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f0160
+s32 func_800f0160(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    MarioWork * mp = marioGetPtr();
+    if (marioCheck3d() == 1)
+    {
+        func_801502bc();
+        mp->directionWorld = mp->directionView = 90.0f;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f01ac
 
