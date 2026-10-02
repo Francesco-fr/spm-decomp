@@ -49,7 +49,20 @@ s32 evt_img_set_paper(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_img_set_paper_anim
+s32 evt_img_set_paper_anim(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 anim = evtGetValue(entry, args[1]);
+    bool flag = gp->unknown_0xc4 != 0;
+    ImgEntry * img = func_8007706c((const char *) name, flag);
+    img->unknown_0x108 = anim;
+    img->animStartTime = animTimeGetTime(flag);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_img_alloc_capture
 
