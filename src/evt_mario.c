@@ -597,7 +597,20 @@ s32 evt_get_gravity(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f262c
+s32 func_800f262c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 type = evtGetValue(entry, entry->pCurData[0]);
+    if (type == 2)
+        func_801173b4();
+    else if (type == 1)
+        func_8011730c();
+    else
+        func_801174ec();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f267c
 
