@@ -229,7 +229,16 @@ s32 func_800ede70(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800edec8
+s32 func_800edec8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 duration = mapGetPlayDuration((const char *) evtGetValue(entry, args[0]));
+    evtSetValue(entry, args[1], (s32) duration);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mapobj_flag_onoff
 
