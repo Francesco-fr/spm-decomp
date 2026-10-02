@@ -39,7 +39,21 @@ s32 evt_item_set_position(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_item_get_position
+s32 evt_item_get_position(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    ItemEntry * item = itemNameToPtr((const char *) evtGetValue(entry, args[0]));
+    if (item != NULL)
+    {
+        evtSetFloat(entry, args[1], item->position.x);
+        evtSetFloat(entry, args[2], item->position.y);
+        evtSetFloat(entry, args[3], item->position.z);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_item_flag_onoff
 
