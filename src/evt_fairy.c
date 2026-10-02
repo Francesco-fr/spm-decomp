@@ -396,7 +396,19 @@ s32 evt_fairy_reset(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800e8518
 
-// NOT_DECOMPILED func_800e86dc
+s32 func_800e86dc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    s32 animName = evtGetValue(entry, args[1]);
+    FairyEntry * fairy = fairyIdToPtr(id);
+    if (fairy != NULL)
+        fairySetAnim(fairy, (const char *) animName);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8748
 
