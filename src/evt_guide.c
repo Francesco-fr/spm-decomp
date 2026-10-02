@@ -154,7 +154,19 @@ s32 evt_guide_enter_runmode_2(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ea7e8
+s32 func_800ea7e8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    Vec3 pos;
+    func_80121ba4(&pos);
+    evtSetFloat(entry, args[0], pos.x);
+    evtSetFloat(entry, args[1], pos.y);
+    evtSetFloat(entry, args[2], pos.z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ea858
 
