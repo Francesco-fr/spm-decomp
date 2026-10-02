@@ -297,7 +297,15 @@ s32 func_800eff6c(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED evt_mario_face_coords
 
-// NOT_DECOMPILED func_800f013c
+s32 func_800f013c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_801502bc();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f0160
 
