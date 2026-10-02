@@ -126,7 +126,17 @@ s32 func_800ed0bc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_item_wait_collected
+s32 evt_item_wait_collected(EvtEntry * entry, bool isFirstCall)
+{
+    s32 name = evtGetValue(entry, entry->pCurData[0]);
+    if (isFirstCall)
+        return EVT_RET_BLOCK_WEAK;
+
+    if (func_8007bc2c((const char *) name))
+        return EVT_RET_BLOCK_WEAK;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ed188
 
