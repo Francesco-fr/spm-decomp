@@ -553,7 +553,33 @@ s32 evt_sub_set_entername(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d47e4
+s32 func_800d47e4(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 centre = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    f32 z = evtGetFloat(entry, args[3]);
+    CamEntry * cam = camGetPtr(5);
+    f32 screenX;
+    f32 screenY;
+    f32 screenZ;
+    GXProject(x, y, z, cam->viewMtx, cam->projection, cam->viewport, &screenX, &screenY,
+              &screenZ);
+    if (centre)
+    {
+        screenX = screenX - 304.0f;
+        screenY = 240.0f - screenY;
+        screenX = screenX * ((f32) gp->framebufferHeight * cam->aspect /
+                             (f32) gp->framebufferWidth);
+    }
+    evtSetFloat(entry, args[4], screenX);
+    evtSetFloat(entry, args[5], screenY);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_get_language
 
