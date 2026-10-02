@@ -336,7 +336,15 @@ s32 evt_pouch_get_total_coins_collected(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_get_max_jump_combo
+s32 evt_pouch_get_max_jump_combo(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], pouchGetMaxJumpCombo());
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_get_max_stylish_combo
 
