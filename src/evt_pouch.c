@@ -187,7 +187,17 @@ s32 evt_pouch_remove_shop_item(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_remove_shop_item_idx
+s32 evt_pouch_remove_shop_item_idx(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 itemId = evtGetValue(entry, args[0]);
+    s32 idx = evtGetValue(entry, args[1]);
+    pouchRemoveShopItemIdx(itemId, idx);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_set_pixl_selected
 
