@@ -1053,7 +1053,18 @@ s32 evt_sub_get_save_name(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_zero_vector
+s32 evt_sub_zero_vector(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    Vec3 zero = {0.0f, 0.0f, 0.0f};
+    evtSetFloat(entry, args[0], zero.x);
+    evtSetFloat(entry, args[1], zero.y);
+    evtSetFloat(entry, args[2], zero.z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_item_select_menu
 
