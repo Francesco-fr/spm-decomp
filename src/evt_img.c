@@ -114,7 +114,22 @@ s32 evt_img_wait_animend(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ec998
+s32 func_800ec998(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    u8 r = (u8) evtGetValue(entry, args[1]);
+    u8 g = (u8) evtGetValue(entry, args[2]);
+    u8 b = (u8) evtGetValue(entry, args[3]);
+    u8 a = (u8) evtGetValue(entry, args[4]);
+    ImgEntry * img = func_8007706c((const char *) name, gp->unknown_0xc4 != 0);
+    animPoseSetFlagF0On(img->animPoseId, 0x2000);
+    animPoseSetMaterialEvtColor(img->animPoseId, (GXColor) {r, g, b, a});
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eca64
 
