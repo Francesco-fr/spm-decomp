@@ -107,7 +107,32 @@ void windowMain()
 
 // NOT_DECOMPILED func_80039d40
 
-// NOT_DECOMPILED windowDispGX_Message
+void windowDispGX_Message(s32 type, Unk param_2, u8 alpha, f32 x, f32 y, f32 width, f32 height,
+                          f32 param_9, f32 param_10)
+{
+    func_80038b08();
+
+    switch (type)
+    {
+        case 1:
+            func_80039d40(type, param_2, alpha, true, x, y, width, height, param_9, param_10);
+            func_80039d40(type, param_2, alpha, false, x, y, width, height, param_9, param_10);
+            break;
+
+        case 11:
+        case 12:
+            func_80038cc0();
+            func_80039d40(type, param_2, alpha, true, x, y, width, height, param_9, param_10);
+            func_80038b08();
+            func_80039d40(type, param_2, alpha, false, x, y, width, height, param_9, param_10);
+            break;
+
+        default:
+            func_80039d40(type, param_2, alpha, true, x, y, width, height, param_9, param_10);
+            func_80039d40(type, param_2, alpha, false, x, y, width, height, param_9, param_10);
+            break;
+    }
+}
 
 // NOT_DECOMPILED windowDispGX_ItemBox
 

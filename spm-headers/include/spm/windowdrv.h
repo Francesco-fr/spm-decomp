@@ -109,7 +109,8 @@ UNKNOWN_FUNCTION(func_800393c8)
 void windowDispGX_System(s32 type, u8 alpha, f32 x, f32 y, f32 width, f32 height);
 
 UNKNOWN_FUNCTION(func_80039b80)
-UNKNOWN_FUNCTION(func_80039d40)
+void func_80039d40(s32 type, Unk, u8 alpha, bool, f32 x, f32 y, f32 width, f32 height, f32,
+                   f32);
 
 /*
     Draws the background for a regular message
