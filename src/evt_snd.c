@@ -421,7 +421,14 @@ s32 func_800d2fa4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d3000
+s32 func_800d3000(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    func_80238868(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_get_last_sfx_id
 
