@@ -518,7 +518,20 @@ s32 func_800d46d8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_get_mapname
+s32 evt_sub_get_mapname(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    char * name;
+    if (evtGetValue(entry, args[0]) == 0)
+        name = gp->mapName;
+    else
+        name = gp->prevMapName;
+    evtSetValue(entry, args[1], (s32) name);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_get_entername
 
