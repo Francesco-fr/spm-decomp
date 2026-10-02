@@ -96,7 +96,17 @@ s32 func_800ed9b0(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eda74
+s32 func_800eda74(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]) == 0)
+        mapBlendOff();
+    else
+        mapBlendOff2();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800edab4
 
