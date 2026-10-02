@@ -440,6 +440,13 @@ s32 func_800e87ac(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e8824
+s32 func_800e8824(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    func_800698ac(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 }
