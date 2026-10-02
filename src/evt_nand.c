@@ -126,7 +126,15 @@ s32 func_80241728(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_8024174c
+s32 func_8024174c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    nandUpdateSave(gp->saveFileId);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_80241778
 
