@@ -185,7 +185,18 @@ s32 func_800d2834(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d2894
+s32 func_800d2894(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 delay = evtGetValue(entry, args[1]);
+    lbl_805ae8c8 = spsndSFXOn((const char *) name);
+    spsndSFX_delay(lbl_805ae8c8, delay);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_sfxon_character
 
