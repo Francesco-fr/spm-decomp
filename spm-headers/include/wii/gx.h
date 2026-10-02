@@ -150,13 +150,13 @@ void GXInitTexObjData(GXTexObj * texObj, void * image);
 UNKNOWN_FUNCTION(GXInitTexObjWrapMode)
 UNKNOWN_FUNCTION(GXInitTexObjTlut)
 UNKNOWN_FUNCTION(GXInitTexObjFilter)
-UNKNOWN_FUNCTION(GXGetTexObjWidth)
-UNKNOWN_FUNCTION(GXGetTexObjHeight)
+u16 GXGetTexObjWidth(const GXTexObj * texObj);
+u16 GXGetTexObjHeight(const GXTexObj * texObj);
 UNKNOWN_FUNCTION(GXGetTexObjFmt)
 UNKNOWN_FUNCTION(GXGetTexObjMipMap)
 UNKNOWN_FUNCTION(GXGetTexObjTlut)
 UNKNOWN_FUNCTION(GXLoadTexObjPreLoaded)
-UNKNOWN_FUNCTION(GXLoadTexObj)
+void GXLoadTexObj(GXTexObj * texObj, u32 id);
 UNKNOWN_FUNCTION(GXInitTlutObj)
 UNKNOWN_FUNCTION(GXLoadTlut)
 UNKNOWN_FUNCTION(GXInitTexCacheRegion)
@@ -221,7 +221,7 @@ UNKNOWN_FUNCTION(GXGetProjectionv)
 void GXLoadPosMtxImm(Mtx34 mtx, u32 pnidx);
 UNKNOWN_FUNCTION(GXLoadNrmMtxImm)
 void GXSetCurrentMtx(u32 mtx);
-UNKNOWN_FUNCTION(GXLoadTexMtxImm)
+void GXLoadTexMtxImm(const Mtx34 mtx, u32 id, u32 type);
 UNKNOWN_FUNCTION(__GXSetViewport)
 UNKNOWN_FUNCTION(GXSetViewportJitter)
 UNKNOWN_FUNCTION(GXSetViewport)
@@ -236,5 +236,32 @@ UNKNOWN_FUNCTION(GXSetGPMetric)
 UNKNOWN_FUNCTION(GXClearGPMetric)
 
 inline void GXEnd() { }
+
+// Write-gather pipe for sending commands and vertex data to the GPU
+typedef union
+{
+    u8 _u8;
+    s8 _s8;
+    u16 _u16;
+    s16 _s16;
+    u32 _u32;
+    s32 _s32;
+    f32 _f32;
+} PPCWGPipe;
+
+#define GXWGFifo (*(volatile PPCWGPipe *) 0xCC008000)
+
+inline void GXPosition3f32(f32 x, f32 y, f32 z)
+{
+    GXWGFifo._f32 = x;
+    GXWGFifo._f32 = y;
+    GXWGFifo._f32 = z;
+}
+
+inline void GXTexCoord2f32(f32 s, f32 t)
+{
+    GXWGFifo._f32 = s;
+    GXWGFifo._f32 = t;
+}
 
 CPP_WRAPPER_END()

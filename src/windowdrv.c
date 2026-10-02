@@ -4,6 +4,7 @@
 */
 
 #include <common.h>
+#include <msl/math.h>
 #include <msl/string.h>
 #include <spm/camdrv.h>
 #include <spm/effdrv.h>
@@ -123,7 +124,32 @@ void func_80038b08()
 
 // NOT_DECOMPILED func_80038cc0
 
-// NOT_DECOMPILED func_80038fb8
+void func_80038fb8(s32 texId, f32 x, f32 y, f32 width, f32 height)
+{
+    GXTexObj texObj;
+    Mtx34 mtx;
+    f32 scaleX;
+    f32 scaleY;
+
+    sptextureGet(texId, &texObj);
+    GXSetTexCoordGen2(0, 1, 4, 30, 0, 125);
+    scaleY = fabsf(height) / GXGetTexObjHeight(&texObj);
+    scaleX = fabsf(width) / GXGetTexObjWidth(&texObj);
+    PSMTXScale(mtx, scaleX, scaleY, 1.0f);
+    GXLoadTexMtxImm(mtx, 30, 1);
+    GXLoadTexObj(&texObj, 0);
+
+    GXBegin(0x80, 0, 4);
+    GXPosition3f32(x, y, 0.0f);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(x + width, y, 0.0f);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXPosition3f32(x + width, y - height, 0.0f);
+    GXTexCoord2f32(1.0f, 1.0f);
+    GXPosition3f32(x, y - height, 0.0f);
+    GXTexCoord2f32(0.0f, 1.0f);
+    GXEnd();
+}
 
 // NOT_DECOMPILED windowDispGX_Kanban
 
