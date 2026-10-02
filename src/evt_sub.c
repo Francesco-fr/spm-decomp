@@ -894,7 +894,17 @@ s32 func_800d5a94(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800d5e80
 
-// NOT_DECOMPILED func_800d6148
+s32 func_800d6148(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    const char * name = (const char *) evtGetValue(entry, args[0]);
+    s32 val = evtGetValue(entry, args[1]);
+    func_800952d8(effNameToPtr(name), val);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d61ac
 
