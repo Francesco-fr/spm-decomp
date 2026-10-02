@@ -258,7 +258,81 @@ s32 evt_cam_zoom_to_coords(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_cam_look_at_door
+s32 evt_cam_look_at_door(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    MarioWork * mp = marioGetPtr();
+    CamEntry * cam = camGetPtr(5);
+    s32 wait = evtGetValue(entry, args[0]);
+    s32 to3d = evtGetValue(entry, args[1]);
+
+    if (isFirstCall)
+    {
+        entry->tempS[0] = 0;
+        if (!camCheck3d(mp->camId))
+        {
+            if (to3d)
+                func_80058404(mp->camId, 0);
+            else
+                return EVT_RET_CONTINUE;
+        }
+        else
+        {
+            if (!to3d)
+            {
+                if ((mp->dispFlags & 0x80000000) && strcmp(gp->mapName, "mac_03") != 0)
+                {
+                    if (evtDoorGetActiveDoorDesc() == NULL)
+                    {
+                        Vec3 dir = *(Vec3 *) camGetPtr(mp->camId)->viewMtx[2];
+                        if (dir.x > 0.0f)
+                            entry->tempS[0] = 2;
+                        else
+                            entry->tempS[0] = 1;
+                    }
+                    else
+                    {
+                        Vec3 dir = *(Vec3 *) camGetPtr(mp->camId)->viewMtx[2];
+                        if (dir.z > 0.0f)
+                            entry->tempS[0] = 2;
+                        else
+                            entry->tempS[0] = 1;
+                    }
+                }
+                func_80058404(mp->camId, 1);
+            }
+            else
+            {
+                return EVT_RET_CONTINUE;
+            }
+        }
+
+        if (to3d)
+            spsndSFXOn("SFX_SYS_3D1");
+        else
+            spsndSFXOn("SFX_SYS_2D1");
+    }
+
+    if (!wait || cam->unknown_0xe4 >= cam->unknown_0xe0)
+    {
+        if (entry->tempS[0] == 1)
+        {
+            mp->dispDirectionTarget = 180.0f;
+            mp->directionView = func_80150688(mp->dispDirectionTarget);
+            mp->directionWorld = mp->directionView;
+        }
+        else if (entry->tempS[0] == 2)
+        {
+            mp->dispDirectionTarget = 0.0f;
+            mp->directionView = func_80150688(mp->dispDirectionTarget);
+            mp->directionWorld = mp->directionView;
+        }
+
+        return EVT_RET_CONTINUE;
+    }
+
+    return EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_800e0720
 
