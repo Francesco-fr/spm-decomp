@@ -10,6 +10,8 @@
 #include <spm/mario_motion.h>
 #include <spm/mario_sbr.h>
 #include <spm/mario_status.h>
+#include <spm/seqdrv.h>
+#include <spm/mot_fairy_other.h>
 #include <spm/mot_slit.h>
 #include <spm/mot_swim.h>
 #include <spm/system.h>
@@ -18,6 +20,8 @@ extern "C" {
 
 // Unknown unit
 void func_80130c80(s32 param_1);
+
+typedef s32 (MarioEvtHandler)(MarioWork * mp, EvtEntry * entry);
 
 s32 evt_mario_flag0_onoff(EvtEntry * entry, bool isFirstCall)
 {
@@ -462,7 +466,37 @@ s32 func_800f1abc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f1b08
+s32 func_800f1b08(MarioWork * mp, EvtEntry * entry)
+{
+    s32 ret = 0;
+
+    switch (entry->tempS[0])
+    {
+        case 0:
+            if (mp->flags & 0x100000)
+            {
+                if (seqGetSeq() != 2)
+                {
+                    func_80176918();
+                    marioChgMot(0);
+                    ret = 2;
+                }
+                else
+                {
+                    func_80176880();
+                    entry->tempS[0] = 1;
+                }
+            }
+            break;
+
+        case 1:
+            if (!func_801768b4())
+                ret = 2;
+            break;
+    }
+
+    return ret;
+}
 
 // NOT_DECOMPILED func_800f1ba8
 

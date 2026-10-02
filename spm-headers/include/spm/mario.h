@@ -323,7 +323,7 @@ typedef struct
 /* 0x002E */ u16 prevMotionId; // see enum above
 /* 0x0030 */ u8 unknown_0x30[0x34 - 0x30];
     // freeze the player when > 0 (for cutscenes, talking, etc)
-/* 0x0034 */ u8 ctrl;
+/* 0x0034 */ s8 ctrl;
 /* 0x0035 */ u8 keyOff;
 /* 0x0036 */ u8 unknown_0x36[0x38 - 0x36];
 /* 0x0038 */ s8 character; // see enum above
@@ -558,7 +558,7 @@ UNKNOWN_FUNCTION(func_801222a4)
 */
 void marioSetAnimGroup(s32 group);
 
-UNKNOWN_FUNCTION(func_8012244c)
+void func_8012244c(s32 param_1);
 
 /*
     Re-reads the characterProperties for the current character into marioWork

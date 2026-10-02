@@ -31,4 +31,9 @@ void func_8015affc(f32 x, f32 y, f32 z);
 void func_8015b0bc(bool param_1);
 void func_8015eff4();
 
+bool func_80166968();
+void func_801669ac();
+void func_8016c608();
+void func_8016ccc0();
+
 CPP_WRAPPER_END()
