@@ -20,7 +20,25 @@ s32 func_800df9a8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800dfa00
+s32 func_800dfa00(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    AcEntry * ac = acNameToPtr((const char *) name);
+
+    // "Couldn't find AC [%s]"
+    SPM_ASSERT(43, ac, "ＡＣがみつかりません[ %s ]", name);
+
+    s32 results = func_8003f5d8(ac);
+    if (results < 2)
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[1], results);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800dfaac
 
