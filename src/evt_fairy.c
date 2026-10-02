@@ -72,7 +72,14 @@ s32 func_800e7404(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e7428
+s32 func_800e7428(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    fairyIdEnterRunMode2(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e7458
 
