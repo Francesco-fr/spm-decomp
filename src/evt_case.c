@@ -84,7 +84,18 @@ s32 func_800e0e24(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e0eb0
+s32 func_800e0eb0(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    s32 idx = evtGetValue(entry, args[1]);
+    s32 value = evtGetValue(entry, args[2]);
+    caseIdToPtr(id)->lw[idx] = value;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e0f30
 
