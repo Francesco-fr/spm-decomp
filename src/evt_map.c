@@ -400,7 +400,14 @@ s32 evt_mapobj_blendmode(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ee9f4
+void func_800ee9f4(MapObj * obj, s32 value, bool noSiblings)
+{
+    obj->unknown_0x9 = (u8) value;
+    if (obj->firstChild != NULL)
+        func_800ee9f4(obj->firstChild, value, false);
+    if (!noSiblings && obj->nextSibling != NULL)
+        func_800ee9f4(obj->nextSibling, value, false);
+}
 
 // NOT_DECOMPILED func_800eec8c
 
