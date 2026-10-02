@@ -42,7 +42,18 @@ s32 evt_cam_flag_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_cam_get_at
+s32 evt_cam_get_at(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    CamEntry * cam = camGetPtr(evtGetValue(entry, args[0]));
+    evtSetFloat(entry, args[1], cam->target.x);
+    evtSetFloat(entry, args[2], cam->target.y);
+    evtSetFloat(entry, args[3], cam->target.z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_cam_get_pos
 
