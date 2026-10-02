@@ -38,7 +38,7 @@ void PSMTXCopy(const Mtx34 src, Mtx34 dest);
 void PSMTXConcat(const Mtx34 a, const Mtx34 b, Mtx34 ab);
 UNKNOWN_FUNCTION(PSMTXInverse)
 UNKNOWN_FUNCTION(PSMTXInvXpose)
-UNKNOWN_FUNCTION(PSMTXRotRad)
+void PSMTXRotRad(Mtx34 dest, char axis, f32 rad);
 UNKNOWN_FUNCTION(PSMTXRotTrig)
 UNKNOWN_FUNCTION(__PSMTXRotAxisRadInternal)
 UNKNOWN_FUNCTION(PSMTXRotAxisRad)
@@ -50,7 +50,8 @@ UNKNOWN_FUNCTION(PSMTXQuat)
 UNKNOWN_FUNCTION(C_MTXLookAt)
 UNKNOWN_FUNCTION(C_MTXLightFrustum)
 UNKNOWN_FUNCTION(C_MTXLightPerspective)
-UNKNOWN_FUNCTION(C_MTXLightOrtho)
+void C_MTXLightOrtho(Mtx34 dest, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS,
+                     f32 transT);
 UNKNOWN_FUNCTION(PSMTXMultVec)
 UNKNOWN_FUNCTION(PSMTXMultVecArray)
 UNKNOWN_FUNCTION(PSMTXMultVecSR)

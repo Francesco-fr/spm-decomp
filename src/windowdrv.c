@@ -21,7 +21,7 @@ extern "C" {
 
 // .sbss
 static WindowEntry * wp;
-static u32 lbl_805ae794;
+static f32 lbl_805ae794;
 static u32 lbl_805ae798;
 static u32 lbl_805ae79c;
 
@@ -122,7 +122,61 @@ void func_80038b08()
     GXSetCurrentMtx(0);
 }
 
-// NOT_DECOMPILED func_80038cc0
+void func_80038cc0()
+{
+    GXTexObj texObj;
+    Mtx34 mtx;
+    Mtx34 lightMtx;
+
+    GXSetCullMode(0);
+    GXSetZCompLoc(1);
+    GXSetAlphaCompare(7, 0, 0, 7, 0);
+    GXSetBlendMode(1, 4, 5, 7);
+    GXSetZMode(1, 7, 0);
+
+    GXColor fogColour = {0xff, 0xff, 0xff, 0xff};
+    GXSetFog(0, 0.0f, 0.0f, 0.0f, 0.0f, &fogColour);
+
+    GXClearVtxDesc();
+    GXSetVtxDesc(9, 1);
+    GXSetVtxDesc(13, 1);
+    GXSetVtxAttrFmt(0, 9, 1, 4, 0);
+    GXSetVtxAttrFmt(0, 13, 1, 4, 0);
+    GXSetTexCoordGen2(0, 1, 4, 60, 0, 125);
+    GXSetTexCoordGen2(1, 1, 0, 33, 0, 125);
+
+    GXSetNumChans(0);
+    GXSetNumTexGens(2);
+    GXSetNumTevStages(2);
+
+    // Scroll texture
+    lbl_805ae794 += 0.005f;
+    if (lbl_805ae794 > 1.0f)
+        lbl_805ae794 -= 1.0f;
+    C_MTXLightOrtho(lightMtx, 0.0f, 512.0f, 0.0f, 512.0f, 0.5f, 0.5f, -lbl_805ae794,
+                    -lbl_805ae794);
+    PSMTXRotRad(mtx, 'z', 0.7853982f);
+    PSMTXConcat(lightMtx, mtx, mtx);
+    GXLoadTexMtxImm(mtx, 33, 1);
+    effGetTexObj(34, &texObj);
+    GXLoadTexObj(&texObj, 1);
+
+    GXSetTevOrder(0, 0, 0, 0xff);
+    GXSetTevColorOp(0, 0, 0, 0, 1, 0);
+    GXSetTevAlphaOp(0, 0, 0, 0, 1, 0);
+    GXSetTevColorIn(0, 15, 2, 8, 15);
+    GXSetTevAlphaIn(0, 7, 1, 4, 7);
+    GXSetTevSwapMode(0, 0, 0);
+
+    GXSetTevOrder(1, 1, 1, 0xff);
+    GXSetTevColorOp(1, 0, 0, 0, 1, 0);
+    GXSetTevAlphaOp(1, 0, 0, 0, 1, 0);
+    GXSetTevColorIn(1, 15, 15, 15, 8);
+    GXSetTevAlphaIn(1, 7, 7, 7, 0);
+    GXSetTevSwapMode(1, 0, 0);
+
+    GXSetCurrentMtx(0);
+}
 
 void func_80038fb8(s32 texId, f32 x, f32 y, f32 width, f32 height)
 {
