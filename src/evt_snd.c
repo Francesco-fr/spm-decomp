@@ -262,7 +262,18 @@ s32 func_800d2a58(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_sfxon_npc
+s32 evt_snd_sfxon_npc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 npcName = evtGetValue(entry, args[1]);
+    NPCEntry * npc = evtNpcNameToPtr(entry, (const char *) npcName);
+    lbl_805ae8c8 = spsndSFXOn_3D((const char *) name, &npc->position);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_sfxon_npc_delay
 
