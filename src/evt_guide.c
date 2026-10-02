@@ -248,7 +248,15 @@ s32 func_800ea9f4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_guide_get_can_search
+s32 evt_guide_get_can_search(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], guideCanSearch() != 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eaadc
 
