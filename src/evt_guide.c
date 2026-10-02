@@ -80,7 +80,17 @@ s32 func_800e9ddc(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800e9e14
 
-// NOT_DECOMPILED func_800e9ff8
+s32 func_800e9ff8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    f32 angle = evtGetFloat(entry, entry->pCurData[0]);
+    GuideWork * gw = guideGetWork();
+    gw->rotation.y = reviseAngle(angle);
+    gw->rotation.z = gw->rotation.y;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ea05c
 
