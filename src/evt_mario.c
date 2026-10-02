@@ -416,7 +416,16 @@ s32 evt_mario_set_pose(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_wait_anim
+s32 evt_mario_wait_anim(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    if (marioGetPtr()->trigFlags & 0x1000)
+        return EVT_RET_BLOCK_WEAK;
+
+    return marioIsAnimFinished() ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_800f1a08
 
