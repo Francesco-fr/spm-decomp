@@ -352,7 +352,15 @@ void func_800ee290(MapObj * obj, s32 value)
         func_800ee290(obj->nextSibling, value);
 }
 
-// NOT_DECOMPILED func_800ee51c
+s32 func_800ee51c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 cb = evtGetValue(entry, entry->pCurData[0]);
+    mapGetWork()->entries[0].unloadCb = (MapEntryUnloadCb *) cb;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mapdisp_onoff
 
