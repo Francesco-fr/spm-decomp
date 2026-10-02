@@ -54,7 +54,15 @@ s32 evt_pouch_set_max_hp(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_get_xp
+s32 evt_pouch_get_xp(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], pouchGetXp());
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_add_xp
 
