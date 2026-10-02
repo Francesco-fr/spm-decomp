@@ -923,6 +923,17 @@ s32 evt_mario_check_3d(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800f33b0
 
-// NOT_DECOMPILED evt_mario_calc_damage_to_enemy
+s32 evt_mario_calc_damage_to_enemy(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 param_1 = evtGetValue(entry, args[0]);
+    s32 param_2 = evtGetValue(entry, args[1]);
+    EvtVar retVar = args[2];
+    evtSetValue(entry, retVar, marioCalcDamageToEnemy(param_1, param_2));
+
+    return EVT_RET_CONTINUE;
+}
 
 }
