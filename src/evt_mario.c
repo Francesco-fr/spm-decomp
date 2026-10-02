@@ -526,7 +526,15 @@ s32 func_800f240c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_fairy_reset
+s32 evt_mario_fairy_reset(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_80130c80(4);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_swim_onoff
 
