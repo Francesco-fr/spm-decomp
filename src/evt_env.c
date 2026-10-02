@@ -42,7 +42,15 @@ s32 func_800e6748(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e6778
+s32 func_800e6778(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_800646b8();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e679c
 
