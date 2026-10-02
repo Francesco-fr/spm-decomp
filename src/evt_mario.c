@@ -762,7 +762,15 @@ s32 evt_mario_get_bottomless_cb(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_set_anim_change_handler
+s32 evt_mario_set_anim_change_handler(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 handler = evtGetValue(entry, entry->pCurData[0]);
+    marioGetPtr()->animChangeHandler = (MarioAnimChangeHandler *) handler;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f2fa8
 
