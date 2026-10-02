@@ -23,69 +23,14 @@ s32 evt_fade_entry(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-s32 evt_fade_end_wait(EvtEntry * entry, bool isFirstCall)
-{
-    (void) isFirstCall;
+// NOT_DECOMPILED evt_fade_end_wait
 
-    s32 id = evtGetValue(entry, entry->pCurData[0]);
-    if (id == -1)
-    {
-        if (fadeIsFinish())
-            return EVT_RET_CONTINUE;
-    }
-    else
-    {
-        if (func_80067824(id))
-            return EVT_RET_CONTINUE;
-    }
+// NOT_DECOMPILED func_800e715c
 
-    return EVT_RET_BLOCK_WEAK;
-}
+// NOT_DECOMPILED func_800e71dc
 
-s32 func_800e715c(EvtEntry * entry, bool isFirstCall)
-{
-    (void) isFirstCall;
+// NOT_DECOMPILED func_800e720c
 
-    EvtScriptCode * args = entry->pCurData;
-    f32 x = evtGetFloat(entry, args[0]);
-    f32 y = evtGetFloat(entry, args[1]);
-    f32 z = evtGetFloat(entry, args[2]);
-    func_80066558(x, y, z);
-
-    return EVT_RET_CONTINUE;
-}
-
-s32 func_800e71dc(EvtEntry * entry, bool isFirstCall)
-{
-    (void) isFirstCall;
-
-    func_8006783c(evtGetValue(entry, entry->pCurData[0]));
-
-    return EVT_RET_CONTINUE;
-}
-
-s32 func_800e720c(EvtEntry * entry, bool isFirstCall)
-{
-    (void) isFirstCall;
-
-    EvtScriptCode * args = entry->pCurData;
-    s32 in = evtGetValue(entry, args[0]);
-    s32 out = evtGetValue(entry, args[1]);
-    fadeSetMapChangeTransition(in, out);
-
-    return EVT_RET_CONTINUE;
-}
-
-s32 func_800e7268(EvtEntry * entry, bool isFirstCall)
-{
-    (void) isFirstCall;
-
-    EvtScriptCode * args = entry->pCurData;
-    s32 in = evtGetValue(entry, args[0]);
-    s32 out = evtGetValue(entry, args[1]);
-    func_80067914(in, out);
-
-    return EVT_RET_CONTINUE;
-}
+// NOT_DECOMPILED func_800e7268
 
 }
