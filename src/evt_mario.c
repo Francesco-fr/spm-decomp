@@ -564,7 +564,19 @@ s32 func_800f24d8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f2544
+s32 func_800f2544(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    const char * name = NULL;
+    MarioWork * mp = marioGetPtr();
+    if (mp->hitObjs1[7] != NULL)
+        name = hitGetName(mp->hitObjs1[7]);
+    evtSetValue(entry, args[0], (s32) name);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_set_gravity
 
