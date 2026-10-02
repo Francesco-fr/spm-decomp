@@ -10,4 +10,6 @@ f32 marioGetHitboxWidth();
 
 // more
 
+f32 func_801318f8();
+
 CPP_WRAPPER_END()

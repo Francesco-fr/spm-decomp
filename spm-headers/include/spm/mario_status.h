@@ -27,4 +27,8 @@ void marioStatusApplyStatuses(s32 status, s32 lv);
 
 // more
 
+void func_8015affc(f32 x, f32 y, f32 z);
+void func_8015b0bc(bool param_1);
+void func_8015eff4();
+
 CPP_WRAPPER_END()

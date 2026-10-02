@@ -345,7 +345,8 @@ typedef struct
 /* 0x0120 */ s32 camId;
 /* 0x0124 */ u8 unknown_0x124[0x128 - 0x124];
 /* 0x0128 */ Vec3i framebufferPos;
-/* 0x0134 */ u8 unknown_0x134[0x148 - 0x134];
+/* 0x0134 */ Vec3 unknown_0x134;
+/* 0x0140 */ u8 unknown_0x140[0x148 - 0x140];
 /* 0x0148 */ f32 xzSpeed; // current horizontal speed
 /* 0x014C */ f32 walkSpeed; // base walk speed
 /* 0x0150 */ f32 dashSpeed; // base dash speed
@@ -353,7 +354,8 @@ typedef struct
 /* 0x0160 */ f32 lastGroundSpeed; // xzSpeed when last on ground
 /* 0x0164 */ u8 unknown_0x164[0x168 - 0x164];
 /* 0x0168 */ f32 unknown_0x168;
-/* 0x016C */ u8 unknown_0x16c[0x174 - 0x16c];
+/* 0x016C */ u8 unknown_0x16c[0x170 - 0x16c];
+/* 0x0170 */ f32 unknown_0x170;
 /* 0x0174 */ f32 directionWorld; // degrees
 /* 0x0178 */ f32 directionView; // degrees
 /* 0x017C */ u8 unknown_0x17c[0x180 - 0x17c];
@@ -410,7 +412,8 @@ typedef struct
 /* 0x0320 */ s16 held2Time;
 /* 0x0322 */ u8 unknown_0x322[0x348 - 0x322];
 /* 0x0348 */ s32 sfxIds[4];
-/* 0x0358 */ u8 unknown_0x358[0x368 - 0x358];
+/* 0x0358 */ u32 unknown_0x358;
+/* 0x035C */ u8 unknown_0x35c[0x368 - 0x35c];
 /* 0x0368 */ f32 unknown_0x368;
 /* 0x036C */ f32 unknown_0x36c;
 /* 0x0370 */ s32 unknown_0x370;
@@ -482,7 +485,13 @@ typedef struct
 /* 0x14C4 */ u8 unknown_0x14c4[0x14dc - 0x14c4];
 /* 0x14DC */ MarioAcrobatCallback * acrobatCb;
 /* 0x14E0 */ s32 acrobatStage;
-/* 0x14E4 */ u8 unknown_0x14e4[0x1550 - 0x14e4];
+/* 0x14E4 */ u8 unknown_0x14e4[0x14f4 - 0x14e4];
+/* 0x14F4 */ void * bottomlessCb;
+/* 0x14F8 */ s32 bottomlessCbParam;
+/* 0x14FC */ u8 unknown_0x14fc[0x1500 - 0x14fc];
+/* 0x1500 */ f32 unknown_0x1500;
+/* 0x1504 */ f32 unknown_0x1504;
+/* 0x1508 */ u8 unknown_0x1508[0x1550 - 0x1508];
 /* 0x1550 */ s32 pane; // row of the map on z-axis the player is in, -1 if no panes
 /* 0x1554 */ MarioPaneBoundary * paneBoundaries; // null if no panes
 /* 0x1558 */ MarioPaneChangeFunc * paneChangeFunc;
@@ -835,9 +844,9 @@ UNKNOWN_FUNCTION(func_8012b018)
 /*
     Returns whether the player is in 3d
 */
-bool marioCheck3d();
+s32 marioCheck3d();
 
-UNKNOWN_FUNCTION(func_8012b090)
+s32 func_8012b090();
 UNKNOWN_FUNCTION(func_8012b218)
 UNKNOWN_FUNCTION(func_8012b2c4)
 UNKNOWN_FUNCTION(func_8012b370)
@@ -905,8 +914,8 @@ UNKNOWN_FUNCTION(func_8012cc98)
 UNKNOWN_FUNCTION(func_8012cd9c)
 UNKNOWN_FUNCTION(func_8012ce4c)
 UNKNOWN_FUNCTION(func_8012cea8)
-UNKNOWN_FUNCTION(func_8012cf20)
-UNKNOWN_FUNCTION(func_8012cf44)
+void func_8012cf20();
+void func_8012cf44(s32 param_1);
 
 /*
     Forces respawn position
@@ -945,8 +954,8 @@ UNKNOWN_FUNCTION(func_8012d8b4)
 void marioAddAngeko();
 void marioRemoveAngeko();
 
-UNKNOWN_FUNCTION(func_8012d98c)
-UNKNOWN_FUNCTION(func_8012d9fc)
+void func_8012d98c();
+void func_8012d9fc(s32 param_1);
 bool func_8012dab0();
 
 CPP_WRAPPER_END()
