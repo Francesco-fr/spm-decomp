@@ -383,7 +383,22 @@ void func_800ee59c(MapObj * obj, s32 blendMode, bool noSiblings)
         func_800ee59c(obj->nextSibling, blendMode, false);
 }
 
-// NOT_DECOMPILED evt_mapobj_blendmode
+s32 evt_mapobj_blendmode(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 group = evtGetValue(entry, args[0]);
+    s32 name = evtGetValue(entry, args[1]);
+    s32 blendMode = evtGetValue(entry, args[2]);
+    MapObj * obj = mapGetMapObj((const char *) name);
+    if (group == 0)
+        obj->blendMode = (u8) blendMode;
+    else
+        func_800ee59c(obj, blendMode, true);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ee9f4
 
