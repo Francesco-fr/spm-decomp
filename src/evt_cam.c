@@ -165,7 +165,34 @@ s32 evt_cam3d_evt_zoom_in(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e01f8
+s32 func_800e01f8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    CamEntry * cam = camGetPtr(5);
+    cam->zoomStartPos.x = cam->pos.x;
+    cam->zoomStartPos.y = cam->pos.y;
+    cam->zoomStartPos.z = cam->pos.z;
+    cam->zoomStartTarget.x = cam->target.x;
+    cam->zoomStartTarget.y = cam->target.y;
+    cam->zoomStartTarget.z = cam->target.z;
+    cam->zoomDestPos.x = cam->pos.x;
+    cam->zoomDestPos.y = cam->pos.y;
+    cam->zoomDestPos.z = cam->pos.z;
+    cam->zoomDestTarget.x = cam->target.x;
+    cam->zoomDestTarget.y = cam->target.y;
+    cam->zoomDestTarget.z = cam->target.z;
+    cam->zoomStartTime = gp->time;
+    cam->zoomTime = 0;
+    cam->zoomType = 11;
+    cam->unknown_0xe4 = 0;
+    cam->cameraMode = 2;
+    cam->unknown_0x250 = 0;
+    cam->zoomProjectionType = cam->projectionType;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e02bc
 
