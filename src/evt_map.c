@@ -362,7 +362,17 @@ s32 func_800ee51c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mapdisp_onoff
+s32 evt_mapdisp_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]))
+        mapDispOn();
+    else
+        mapDispOff();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ee59c
 
