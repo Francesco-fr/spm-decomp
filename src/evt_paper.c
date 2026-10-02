@@ -20,14 +20,6 @@ s32 evt_paper_entry(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-s32 evt_paper_delete(EvtEntry * entry, bool isFirstCall)
-{
-    (void) isFirstCall;
-
-    s32 name = evtGetValue(entry, entry->pCurData[0]);
-    animPaperPoseRelease(animPaperPoseGetId((const char *) name, 0));
-
-    return EVT_RET_CONTINUE;
-}
+// NOT_DECOMPILED evt_paper_delete
 
 }
