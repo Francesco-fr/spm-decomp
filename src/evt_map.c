@@ -374,7 +374,14 @@ s32 evt_mapdisp_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ee59c
+void func_800ee59c(MapObj * obj, s32 blendMode, bool noSiblings)
+{
+    obj->blendMode = (u8) blendMode;
+    if (obj->firstChild != NULL)
+        func_800ee59c(obj->firstChild, blendMode, false);
+    if (!noSiblings && obj->nextSibling != NULL)
+        func_800ee59c(obj->nextSibling, blendMode, false);
+}
 
 // NOT_DECOMPILED evt_mapobj_blendmode
 
