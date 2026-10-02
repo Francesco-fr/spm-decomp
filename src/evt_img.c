@@ -82,7 +82,14 @@ s32 evt_img_free_capture(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_img_clear_virtual_space
+s32 evt_img_clear_virtual_space(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    func_80077178(func_8007706c((const char *) evtGetValue(entry, entry->pCurData[0]), gp->unknown_0xc4 != 0));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_img_release
 
