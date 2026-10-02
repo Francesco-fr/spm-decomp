@@ -114,7 +114,15 @@ s32 evt_mario_key_on(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED evt_mario_key_off
 
-// NOT_DECOMPILED evt_mario_key_off2
+s32 evt_mario_key_off2(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    marioKeyOff();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ef814
 
