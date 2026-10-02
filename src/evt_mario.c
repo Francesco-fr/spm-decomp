@@ -204,7 +204,21 @@ s32 func_800efac4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800efb50
+s32 func_800efb50(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    MarioWork * mp = marioGetPtr();
+    mp->scale.x = x;
+    mp->scale.y = y;
+    mp->scale.z = z;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800efbdc
 
