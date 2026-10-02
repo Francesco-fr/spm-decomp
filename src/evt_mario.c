@@ -666,7 +666,17 @@ s32 func_800f2c98(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f2cbc
+s32 func_800f2cbc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]))
+        marioAddAngeko();
+    else
+        marioRemoveAngeko();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f2cfc
 
