@@ -38,7 +38,17 @@ s32 evt_frame_bind_offscreen(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_frame_set_img_anim
+s32 evt_frame_set_img_anim(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 animDef = evtGetValue(entry, args[1]);
+    func_80069334((const char *) name, (const char *) animDef);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_frame_set_color
 
