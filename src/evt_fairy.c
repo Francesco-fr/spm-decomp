@@ -113,7 +113,19 @@ s32 evt_fairy_set_pos(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_fairy_set_pos_all
+s32 evt_fairy_set_pos_all(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    Vec3 pos = {x, y, z};
+    fairySetAllPositions(&pos);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_fairy_get_pos
 
