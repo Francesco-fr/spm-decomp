@@ -632,7 +632,18 @@ s32 evt_sub_get_fps(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_fmt_str_int
+s32 evt_sub_fmt_str_int(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    const char * str = (const char *) evtGetValue(entry, args[0]);
+    s32 n = evtGetValue(entry, args[1]);
+    sprintf(lbl_8050c918, "%s_%d", str, n);
+    evtSetValue(entry, args[2], (s32) lbl_8050c918);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d4b4c
 
