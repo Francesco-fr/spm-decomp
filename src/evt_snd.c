@@ -555,7 +555,16 @@ s32 evt_snd_sfx_flag_off(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d33dc
+s32 func_800d33dc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    evtSetValue(entry, args[1], spsndSFX_getIdPlayingName((const char *) name));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_envon
 
