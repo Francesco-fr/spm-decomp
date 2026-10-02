@@ -511,7 +511,15 @@ s32 func_800d3248(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_sfx_wait
+s32 evt_snd_sfx_wait(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (spsndSFX_chk(evtGetValue(entry, entry->pCurData[0])))
+        return EVT_RET_BLOCK_WEAK;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_snd_sfx_wait_name
 
