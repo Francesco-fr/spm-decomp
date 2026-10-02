@@ -326,7 +326,19 @@ s32 func_800ee13c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mapobj_get_position
+s32 evt_mapobj_get_position(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    Vec3 pos;
+    mapObjGetPos((const char *) evtGetValue(entry, args[0]), &pos);
+    evtSetValue(entry, args[1], FLOAT(pos.x));
+    evtSetValue(entry, args[2], FLOAT(pos.y));
+    evtSetValue(entry, args[3], FLOAT(pos.z));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ee290
 
