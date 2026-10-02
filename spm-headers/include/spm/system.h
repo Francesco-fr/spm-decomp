@@ -75,6 +75,12 @@ const char * getSpmarioDVDRoot();
 const char * getMapdataDvdRoot();
 
 /*
+    Returns "./a"
+    Stripped, original name unknown (only its string remains in the pool)
+*/
+STRIPPED(const char * getAnimDvdRoot())
+
+/*
     Assertion failure handlers
 */
 s32 NORETURN __assert(const char * filename, s32 line, const char * assertion);

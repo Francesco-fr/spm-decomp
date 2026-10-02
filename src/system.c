@@ -69,6 +69,12 @@ const char * getMapdataDvdRoot()
     return "./map";
 }
 
+// Stripped, original name unknown (only its string remains in the pool)
+const char * getAnimDvdRoot()
+{
+    return "./a";
+}
+
 s32 __assert(const char * filename, s32 line, const char * assertion)
 {
     OSPanic(filename, line, assertion);
