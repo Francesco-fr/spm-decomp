@@ -410,7 +410,19 @@ s32 func_800e86dc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e8748
+s32 func_800e8748(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    FairyEntry * fairy = fairyIdToPtr(evtGetValue(entry, entry->pCurData[0]));
+    if (fairy == NULL)
+        return EVT_RET_CONTINUE;
+
+    if (fairy->flag2 & 2)
+        return EVT_RET_BLOCK_WEAK;
+
+    return func_8011ea48(fairy) ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_800e87ac
 
