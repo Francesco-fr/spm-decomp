@@ -240,7 +240,32 @@ s32 func_800edec8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mapobj_flag_onoff
+s32 evt_mapobj_flag_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 group = evtGetValue(entry, args[0]);
+    s32 on = evtGetValue(entry, args[1]);
+    s32 name = evtGetValue(entry, args[2]);
+    u32 mask = (u32) args[3];
+    if (group == 0)
+    {
+        if (on == 0)
+            mapObjFlagOff(false, (const char *) name, mask);
+        else
+            mapObjFlagOn(false, (const char *) name, mask);
+    }
+    else
+    {
+        if (on == 0)
+            mapGrpFlagOff(false, (const char *) name, mask);
+        else
+            mapGrpFlagOn(false, (const char *) name, mask);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mapobj_flag4_onoff
 
