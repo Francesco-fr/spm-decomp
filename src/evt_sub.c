@@ -543,7 +543,15 @@ s32 evt_sub_get_entername(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_set_entername
+s32 evt_sub_set_entername(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    strcpy(gp->doorName, (const char *) evtGetValue(entry, args[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d47e4
 
