@@ -432,7 +432,16 @@ s32 evt_sub_get_system_flag(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d4460
+s32 func_800d4460(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtGetValue(entry, args[0]);
+    evtSetValue(entry, args[1], 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_key_get_button
 
