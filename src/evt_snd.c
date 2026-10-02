@@ -576,7 +576,17 @@ s32 evt_snd_envon(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_snd_envon_f
+s32 evt_snd_envon_f(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 flags = args[0];
+    s32 name = args[1];
+    spsndENVOn(flags, (const char *) name, evtGetValue(entry, args[2]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d34b8
 
