@@ -65,7 +65,18 @@ s32 func_800e9da4(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e9ddc
+s32 func_800e9ddc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    GuideWork * gw = guideGetWork();
+    gw->rotation.x = 90.0f;
+    gw->rotation.y = 180.0f;
+    gw->rotation.z = 180.0f;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e9e14
 
