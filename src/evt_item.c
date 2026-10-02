@@ -112,7 +112,19 @@ s32 func_800ed020(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ed0bc
+s32 func_800ed0bc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    f32 value = evtGetFloat(entry, args[1]);
+    ItemEntry * item = itemNameToPtr((const char *) name);
+    if (item != NULL)
+        item->unknown_0x20 = value;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_item_wait_collected
 
