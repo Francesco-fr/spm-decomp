@@ -32,7 +32,15 @@ s32 func_8024a6a8(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_8024a7c4
 
-// NOT_DECOMPILED func_8024ace4
+s32 func_8024ace4(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    func_8024a5e8();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_8024ad08
 
