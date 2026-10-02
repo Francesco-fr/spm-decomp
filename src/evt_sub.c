@@ -1043,7 +1043,15 @@ s32 func_800d7858(EvtEntry * entry, bool isFirstCall)
     return func_8014701c() ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED evt_sub_get_save_name
+s32 evt_sub_get_save_name(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], (s32) gp->saveName);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_zero_vector
 
