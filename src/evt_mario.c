@@ -259,7 +259,16 @@ s32 evt_mario_get_height(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_direction_reset
+s32 evt_mario_direction_reset(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    if (marioGetPtr() != NULL)
+        func_80150478();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800efd58
 
