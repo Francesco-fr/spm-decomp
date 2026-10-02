@@ -850,7 +850,15 @@ s32 func_800d59ac(EvtEntry * entry, bool isFirstCall)
     return state == lbl_805ae010->state ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800d59f0
+s32 func_800d59f0(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    lbl_805ae010->state = evtGetValue(entry, args[0]);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d5a24
 
