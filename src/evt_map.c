@@ -409,7 +409,28 @@ void func_800ee9f4(MapObj * obj, s32 value, bool noSiblings)
         func_800ee9f4(obj->nextSibling, value, false);
 }
 
-// NOT_DECOMPILED func_800eec8c
+s32 func_800eec8c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 group = evtGetValue(entry, args[0]);
+    s32 name = evtGetValue(entry, args[1]);
+    s32 value = evtGetValue(entry, args[2]);
+    MapObj * obj = mapGetMapObj((const char *) name);
+    if (obj == NULL)
+    {
+        mapErrorEntry(0, (const char *) name);
+        return EVT_RET_CONTINUE;
+    }
+
+    if (group == 0)
+        obj->unknown_0x9 = (u8) value;
+    else
+        func_800ee9f4(obj, value, true);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eee68
 
