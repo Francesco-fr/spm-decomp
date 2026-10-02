@@ -127,7 +127,31 @@ s32 evt_fairy_set_pos_all(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_fairy_get_pos
+s32 evt_fairy_get_pos(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    FairyEntry * fairy = fairyIdToPtr(evtGetValue(entry, args[0]));
+    f32 x, y, z;
+    if (fairy != NULL)
+    {
+        x = fairy->position.x;
+        y = fairy->position.y;
+        z = fairy->position.z;
+    }
+    else
+    {
+        x = 0.0f;
+        y = x;
+        z = x;
+    }
+    evtSetFloat(entry, args[1], x);
+    evtSetFloat(entry, args[2], y);
+    evtSetFloat(entry, args[3], z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e76d4
 
