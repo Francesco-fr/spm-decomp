@@ -427,7 +427,16 @@ s32 evt_mario_wait_anim(EvtEntry * entry, bool isFirstCall)
     return marioIsAnimFinished() ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800f1a08
+s32 func_800f1a08(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 motionId = evtGetValue(entry, entry->pCurData[0]);
+    marioGetPtr();
+    marioChgMot(motionId);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f1a4c
 
