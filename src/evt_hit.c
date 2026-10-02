@@ -221,7 +221,32 @@ s32 func_800eb5dc(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eb654
+s32 func_800eb654(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 group = evtGetValue(entry, args[0]);
+    s32 on = evtGetValue(entry, args[1]);
+    s32 name = evtGetValue(entry, args[2]);
+    EvtVar mask = args[3];
+    if (group == 0)
+    {
+        if (on == 0)
+            hitObjFlagOff(false, (const char *) name, (u16) mask);
+        else
+            hitObjFlagOn(false, (const char *) name, (u16) mask);
+    }
+    else
+    {
+        if (on == 0)
+            hitGrpFlagOff(false, (const char *) name, (u16) mask);
+        else
+            hitGrpFlagOn(false, (const char *) name, (u16) mask);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_hitobj_attr_onoff
 
