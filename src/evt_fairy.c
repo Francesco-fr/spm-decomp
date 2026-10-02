@@ -209,7 +209,26 @@ s32 func_800e77d0(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e7868
+s32 func_800e7868(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    s32 i;
+    s32 total = fairyGetNum() + fairyGetNumExtra();
+    for (i = 0; i < total; i++)
+    {
+        FairyEntry * fairy = fairyIdToPtr(i);
+        if (fairy != NULL)
+        {
+            fairy->rotation.x = 90.0f;
+            fairy->rotation.y = 180.0f;
+            fairy->rotation.z = 180.0f;
+        }
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e7900
 
