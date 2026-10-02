@@ -163,7 +163,19 @@ s32 func_800edca8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_map_checkanim
+s32 evt_map_checkanim(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 finished;
+    f32 remaining;
+    mapCheckAnimation((const char *) evtGetValue(entry, args[0]), &finished, &remaining);
+    evtSetValue(entry, args[1], finished);
+    evtSetValue(entry, args[2], (s32) remaining);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800edd50
 
