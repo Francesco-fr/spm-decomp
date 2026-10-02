@@ -263,7 +263,20 @@ s32 evt_pouch_change_char_selectable(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_change_pixl_selectable
+s32 evt_pouch_change_pixl_selectable(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 selectable = evtGetValue(entry, args[0]);
+    s32 id = evtGetValue(entry, args[1]);
+    if (selectable)
+        pouchMakePixlSelectable(id);
+    else
+        pouchMakePixlNotSelectable(id);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_get_level
 
