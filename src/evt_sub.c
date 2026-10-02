@@ -384,7 +384,15 @@ s32 evt_sub_get_stopwatch(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d41a8
+s32 func_800d41a8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[1], sysMsec2Frame(evtGetValue(entry, args[0])));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_get_dist
 
