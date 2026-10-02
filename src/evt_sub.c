@@ -730,7 +730,20 @@ s32 func_800d4db0(EvtEntry * entry, bool isFirstCall)
     return func_80199cf8() ? EVT_RET_BLOCK_WEAK : EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d4de4
+s32 func_800d4de4(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 enable = evtGetValue(entry, args[0]);
+    s32 id = evtGetValue(entry, args[1]);
+    if (enable)
+        func_80193874(id);
+    else
+        func_80193860(id);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d4e48
 
