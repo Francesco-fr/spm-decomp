@@ -317,7 +317,14 @@ s32 evt_pouch_get_arcade_tokens(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_set_arcade_tokens
+s32 evt_pouch_set_arcade_tokens(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    pouchSetArcadeTokens(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_get_total_coins_collected
 
