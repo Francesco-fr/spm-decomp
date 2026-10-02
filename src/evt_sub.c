@@ -840,7 +840,15 @@ void func_800d5004(s32 cameraId, void * param)
 
 // NOT_DECOMPILED func_800d5588
 
-// NOT_DECOMPILED func_800d59ac
+s32 func_800d59ac(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 state = evtGetValue(entry, args[0]);
+
+    return state == lbl_805ae010->state ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_800d59f0
 
