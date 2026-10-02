@@ -340,7 +340,17 @@ s32 evt_mapobj_get_position(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ee290
+void func_800ee290(MapObj * obj, s32 value)
+{
+    if (obj == NULL)
+        return;
+
+    obj->unknown_0x140 = value;
+    if (obj->firstChild != NULL)
+        func_800ee290(obj->firstChild, value);
+    if (obj->nextSibling != NULL)
+        func_800ee290(obj->nextSibling, value);
+}
 
 // NOT_DECOMPILED func_800ee51c
 
