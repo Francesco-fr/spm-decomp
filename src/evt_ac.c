@@ -40,6 +40,13 @@ s32 func_800dfa00(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800dfaac
+s32 func_800dfaac(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    acDelete(acNameToPtr((const char *) evtGetValue(entry, entry->pCurData[0])));
+
+    return EVT_RET_CONTINUE;
+}
 
 }
