@@ -902,7 +902,14 @@ s32 func_800f3310(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f3334
+s32 func_800f3334(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    func_8012d9fc(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_check_3d
 
