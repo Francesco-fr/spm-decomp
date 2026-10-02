@@ -591,7 +591,15 @@ s32 evt_sub_get_language(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_animgroup_async
+s32 evt_sub_animgroup_async(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    const char * name = (const char *) evtGetValue(entry, args[0]);
+
+    return animGroupBaseAsync(name, 0, 0) != 0;
+}
 
 // NOT_DECOMPILED evt_sub_file_async
 
