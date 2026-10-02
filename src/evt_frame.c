@@ -139,7 +139,21 @@ s32 func_800e8e2c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e8e94
+s32 func_800e8e94(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    f32 z = evtGetFloat(entry, args[3]);
+    func_80068254((const char *) name)->wireDrawRotation.x = x;
+    func_80068254((const char *) name)->wireDrawRotation.y = y;
+    func_80068254((const char *) name)->wireDrawRotation.z = z;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8f4c
 
