@@ -396,7 +396,22 @@ s32 func_800e08f8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e092c
+s32 func_800e092c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    MarioWork * mp = marioGetPtr();
+    CamEntry * cam = camGetPtr(mp->camId);
+    func_800531a0();
+    func_800547a0();
+    cam->unknown_0x100.x = mp->position.x;
+    cam->unknown_0x100.y = mp->position.y;
+    cam->unknown_0x100.z = mp->position.z;
+    cam->unknown_0x10c = cam->unknown_0x100.y;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_cam_check_dimension
 
