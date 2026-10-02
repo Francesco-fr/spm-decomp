@@ -533,7 +533,15 @@ s32 evt_sub_get_mapname(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_get_entername
+s32 evt_sub_get_entername(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], (s32) gp->doorName);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_set_entername
 
