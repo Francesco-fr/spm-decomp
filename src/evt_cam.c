@@ -426,7 +426,18 @@ s32 evt_cam_check_dimension(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e0a14
+s32 func_800e0a14(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    if (camGetPtr(11)->flag & 0x10000000)
+        evtSetValue(entry, args[0], 1);
+    else
+        evtSetValue(entry, args[0], 0);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e0a84
 
