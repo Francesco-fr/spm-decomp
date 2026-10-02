@@ -424,7 +424,21 @@ s32 func_800e8748(EvtEntry * entry, bool isFirstCall)
     return func_8011ea48(fairy) ? EVT_RET_CONTINUE : EVT_RET_BLOCK_WEAK;
 }
 
-// NOT_DECOMPILED func_800e87ac
+s32 func_800e87ac(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    s32 handler = evtGetValue(entry, args[1]);
+    FairyEntry * fairy = fairyIdToPtr(id);
+    if (fairy == NULL)
+        return EVT_RET_CONTINUE;
+
+    fairy->animChangeHandler = (FairyAnimChangeHandler *) handler;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8824
 
