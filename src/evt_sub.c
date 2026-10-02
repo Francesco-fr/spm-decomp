@@ -336,7 +336,28 @@ s32 evt_sub_get_sincos(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_rumble_onoff
+s32 evt_sub_rumble_onoff(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 mode = evtGetValue(entry, args[0]);
+    s32 controller = evtGetValue(entry, args[1]);
+    switch (mode)
+    {
+        case 0:
+            wpadRumbleOn(controller);
+            break;
+        case 1:
+            wpadRumbleOff(controller);
+            break;
+        case 2:
+            wpadRumbleOff(controller);
+            break;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_random
 
