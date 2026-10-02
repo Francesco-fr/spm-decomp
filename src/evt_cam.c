@@ -439,7 +439,23 @@ s32 func_800e0a14(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e0a84
+s32 func_800e0a84(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 no = evtGetValue(entry, args[0]);
+    f32 param_2 = evtGetFloat(entry, args[1]);
+    f32 param_3 = evtGetFloat(entry, args[2]);
+
+    // "Strange"
+    SPM_ASSERT(451, no == 0 || no == 1, "おかしい");
+
+    lbl_80407d88[no].unknown_0x18 = param_2;
+    lbl_80407d88[no].unknown_0x1c = param_3;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e0b58
 
