@@ -911,7 +911,15 @@ s32 func_800f3334(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_check_3d
+s32 evt_mario_check_3d(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], marioCheck3d());
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f33b0
 
