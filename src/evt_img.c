@@ -18,7 +18,20 @@ s32 evt_img_entry(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_img_set_position
+s32 evt_img_set_position(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    f32 x = evtGetFloat(entry, args[1]);
+    f32 y = evtGetFloat(entry, args[2]);
+    ImgEntry * img = func_8007706c((const char *) name, gp->unknown_0xc4 != 0);
+    img->position.x = x;
+    img->position.y = y;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_img_set_paper
 
