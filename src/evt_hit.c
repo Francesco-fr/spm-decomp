@@ -162,7 +162,22 @@ s32 func_800eb15c(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_hit_bind_mapobj
+s32 evt_hit_bind_mapobj(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    const char * hit_name = (const char *) evtGetValue(entry, args[0]);
+    const char * map_name = (const char *) evtGetValue(entry, args[1]);
+
+    // "There's no object with that name"
+    SPM_ASSERT(228, hit_name, "そんな名前のオブジェはない");
+    SPM_ASSERT(229, map_name, "そんな名前のオブジェはない");
+
+    hitBindMapObj(hit_name, map_name);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_hit_bind_update
 
