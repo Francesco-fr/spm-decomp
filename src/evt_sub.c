@@ -422,7 +422,15 @@ s32 evt_sub_get_dir(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_get_system_flag
+s32 evt_sub_get_system_flag(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[0], (s32) gp->flags);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d4460
 
