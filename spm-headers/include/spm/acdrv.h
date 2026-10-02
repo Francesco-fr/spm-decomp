@@ -138,6 +138,9 @@ bool acIsRunning();
 */
 AcEntry * acNameToPtr(const char * name);
 
+// acReturnResults in the mod linker map
+s32 func_8003f5d8(AcEntry * entry);
+
 /*
     Displays the message for the pausewin entry of an ac entry
 */

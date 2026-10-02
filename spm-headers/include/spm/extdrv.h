@@ -6,9 +6,9 @@ CPP_WRAPPER(spm::extdrv)
 
 void extInit();
 UNKNOWN_FUNCTION(extInit)
-UNKNOWN_FUNCTION(extEntry)
+void extEntry(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5);
 UNKNOWN_FUNCTION(extMakeTexture)
-UNKNOWN_FUNCTION(extReset)
+void extReset();
 void extMain();
 UNKNOWN_FUNCTION(compare)
 UNKNOWN_FUNCTION(extGetPosePtr)

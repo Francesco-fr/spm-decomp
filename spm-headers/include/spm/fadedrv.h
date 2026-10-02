@@ -46,13 +46,13 @@ DECOMP_STATIC(FadeWork * fadedrv_wp)
 
 void fadeInit();
 void fadeEntry(s32 transitionType, s32 lengthMsec, GXColor colour);
-UNKNOWN_FUNCTION(func_80066558)
+void func_80066558(f32 x, f32 y, f32 z);
 void fadeMain();
 UNKNOWN_FUNCTION(func_80066e4c)
 UNKNOWN_FUNCTION(func_80067588)
 bool fadeIsFinish();
-UNKNOWN_FUNCTION(func_80067824)
-UNKNOWN_FUNCTION(func_8006783c)
+bool func_80067824(s32 id);
+void func_8006783c(s32 param_1);
 s32 fadeGetMapChangeInTransition();
 s32 fadeGetMapChangeOutTransition();
 
@@ -62,6 +62,9 @@ s32 fadeGetMapChangeOutTransition();
     for callers (in map change and minigames) of fadeEntry to use
 */
 void fadeSetMapChangeTransition(s32 in, s32 out);
+
+// fadeSetTransitionLengths in the mod linker map
+void func_80067914(s32 in, s32 out);
 
 s32 fadeGetFadeOutLength();
 s32 fadeGetFadeInLength();

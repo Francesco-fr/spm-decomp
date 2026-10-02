@@ -98,9 +98,9 @@ CaseEntry * caseCheckHitObj2(HitObj * hitObj);
 */
 CaseEntry * caseIdToPtr(s32 id);
 
-UNKNOWN_FUNCTION(func_8005adec)
-UNKNOWN_FUNCTION(func_8005ae08)
-UNKNOWN_FUNCTION(func_8005ae24)
-UNKNOWN_FUNCTION(func_8005ae64)
+void func_8005adec(s32 id);
+void func_8005ae08(s32 id);
+void func_8005ae24();
+void func_8005ae64();
 
 CPP_WRAPPER_END()
