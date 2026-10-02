@@ -232,7 +232,22 @@ s32 func_800e7868(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800e7900
 
-// NOT_DECOMPILED func_800e7aec
+s32 func_800e7aec(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 id = evtGetValue(entry, args[0]);
+    f32 angle = evtGetFloat(entry, args[1]);
+    FairyEntry * fairy = fairyIdToPtr(id);
+    if (fairy != NULL)
+    {
+        fairy->rotation.y = reviseAngle(angle);
+        fairy->rotation.z = fairy->rotation.y;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e7b78
 
