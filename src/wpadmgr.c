@@ -70,8 +70,10 @@ void wpadInit()
     WPADSetAutoSleepTime(4);
 }
 
-void wpadAllRumbleOff()
+void wpadAllRumbleOff(bool param_1)
 {
+    (void) param_1;
+
     for (int i = 0; i < 4; i++)
         WPADControlMotor(i, 0);
 }

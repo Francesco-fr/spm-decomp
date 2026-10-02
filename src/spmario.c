@@ -89,7 +89,122 @@ static void wiiRumbleCheck();
 
 // NOT_DECOMPILED spmarioInit
 
-// NOT_DECOMPILED spmarioMain
+void spmarioMain()
+{
+    wpadMain();
+
+    if (!homebuttonMain())
+    {
+        seqMain();
+        nandMain();
+        sptextureMain();
+        msgdrvMain();
+        bgMain();
+        shadowMain();
+        animMain();
+        camMain();
+        windowMain();
+        mapMain();
+        hitMain();
+        evtmgrMain();
+        hitRecalcMatrices();
+        mapDisp();
+        marioMain();
+        pouchMain();
+        mobjMain();
+        fadeMain();
+        frameMain();
+        imgMain();
+        lightMain();
+        offscreenMain();
+        itemMain();
+        npcMain();
+        caseMain();
+        iconMain();
+        extMain();
+        envMain();
+        winMgrMain();
+        hudMain();
+        pausewinMain();
+        acMain();
+        effMain();
+        relMain();
+    }
+
+    spsndMain();
+
+    if (DVDGetDriveStatus() == -1 && doResetButtonRestart)
+    {
+        doResetButtonRestart = false;
+        OSSetResetCallback(resetButtonRestart);
+    }
+
+    if (doShutdown && DVDGetDriveStatus() == -1 && doShutdown)
+        doShutdown = false;
+
+    if (doResetButtonRestart || doHomeButtonRestart)
+    {
+        VISetBlack(true);
+        VIFlush();
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        wpadAllRumbleOff(true);
+        spsndExit();
+        DVDMgrDelete();
+        if (OSGetCurrentThread() != &DVDCheckThread)
+            OSCancelThread(&DVDCheckThread);
+        while (nandIsExec())
+        {
+            nandMain();
+            VIWaitForRetrace();
+        }
+        OSRestart(resetCode);
+        while (true) { }
+    }
+
+    if (doShutdown)
+    {
+        VISetBlack(true);
+        VIFlush();
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        wpadAllRumbleOff(false);
+        spsndExit();
+        DVDMgrDelete();
+        if (OSGetCurrentThread() != &DVDCheckThread)
+            OSCancelThread(&DVDCheckThread);
+        while (nandIsExec())
+        {
+            nandMain();
+            VIWaitForRetrace();
+        }
+        OSShutdownSystem();
+        while (true) { }
+    }
+
+    if (doReturnToMenu)
+    {
+        VISetBlack(true);
+        VIFlush();
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        VIWaitForRetrace();
+        wpadAllRumbleOff(true);
+        spsndExit();
+        DVDMgrDelete();
+        if (OSGetCurrentThread() != &DVDCheckThread)
+            OSCancelThread(&DVDCheckThread);
+        while (nandIsExec())
+        {
+            nandMain();
+            VIWaitForRetrace();
+        }
+        OSReturnToMenu();
+        while (true) { }
+    }
+}
 
 void spmarioDisp()
 {

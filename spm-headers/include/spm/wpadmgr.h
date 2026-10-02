@@ -64,7 +64,7 @@ void wpadInit();
 /*
     Stops vibration of all controllers
 */
-void wpadAllRumbleOff();
+void wpadAllRumbleOff(bool param_1); // param_1 is unused
 
 /*
     Updates all controllers
