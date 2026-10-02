@@ -645,7 +645,12 @@ s32 evt_sub_fmt_str_int(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d4b4c
+s32 func_800d4b4c(void * param, HitObj * hit)
+{
+    (void) param;
+
+    return !(hit->attr & 0x80000000);
+}
 
 // NOT_DECOMPILED func_800d4b60
 
