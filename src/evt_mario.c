@@ -872,7 +872,15 @@ s32 evt_mario_set_pane(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_pane_change_func
+s32 evt_mario_pane_change_func(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 func = evtGetValue(entry, entry->pCurData[0]);
+    marioGetPtr()->paneChangeFunc = (MarioPaneChangeFunc *) func;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_get_pane_change_func
 
