@@ -23,7 +23,24 @@ s32 evt_fade_entry(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_fade_end_wait
+s32 evt_fade_end_wait(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 id = evtGetValue(entry, entry->pCurData[0]);
+    if (id == -1)
+    {
+        if (fadeIsFinish())
+            return EVT_RET_CONTINUE;
+    }
+    else
+    {
+        if (func_80067824(id))
+            return EVT_RET_CONTINUE;
+    }
+
+    return EVT_RET_BLOCK_WEAK;
+}
 
 // NOT_DECOMPILED func_800e715c
 
