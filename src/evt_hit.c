@@ -134,7 +134,33 @@ void func_800eaed0(HitObj * hitObj, s32 value)
         func_800eaed0(hitObj->nextSibling, value);
 }
 
-// NOT_DECOMPILED func_800eb15c
+s32 func_800eb15c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 name = evtGetValue(entry, args[0]);
+    s32 recursive = evtGetValue(entry, args[1]);
+    s32 value = evtGetValue(entry, args[2]);
+    if (!recursive)
+    {
+        HitObj * hitObj = hitNameToPtr((const char *) name);
+        if (hitObj != NULL)
+            hitObj->unknown_0xe2 = (s16) value;
+    }
+    else
+    {
+        HitObj * hitObj = hitNameToPtr((const char *) name);
+        if (hitObj != NULL)
+        {
+            hitObj->unknown_0xe2 = (s16) value;
+            if (hitObj->child != NULL)
+                func_800eaed0(hitObj->child, value);
+        }
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_hit_bind_mapobj
 
