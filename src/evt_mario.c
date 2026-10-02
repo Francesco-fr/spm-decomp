@@ -862,7 +862,15 @@ s32 evt_mario_get_pane_for_pos(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_set_pane
+s32 evt_mario_set_pane(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 pane = evtGetValue(entry, entry->pCurData[0]);
+    marioGetPtr()->pane = pane;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_pane_change_func
 
