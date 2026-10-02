@@ -38,7 +38,8 @@ typedef struct
 /* 0x04 */ u8 unknown_0x4[0x8 - 0x4];
 /* 0x08 */ s32 animPoseId;
 /* 0x0C */ char curAnimName[4];
-/* 0x10 */ u8 unknown_0x10[0x1c - 0x10];
+/* 0x10 */ s32 unknown_0x10;
+/* 0x14 */ u8 unknown_0x14[0x1c - 0x14];
 /* 0x1C */ GuideAnimChangeHandler * animChangeHandler;
     /*
         Run modes are from 0-5
@@ -48,7 +49,12 @@ typedef struct
 /* 0x24 */ s32 prevRunMode;
 /* 0x28 */ u8 unknown_0x28[0x40 - 0x28];
 /* 0x40 */ Vec3 pos;
-/* 0x4C */ u8 unknown_0x4c[0xb4 - 0x4c];
+/* 0x4C */ u8 unknown_0x4c[0x58 - 0x4c];
+/* 0x58 */ Vec3 unknown_0x58;
+/* 0x64 */ Vec3 unknown_0x64;
+/* 0x70 */ u8 unknown_0x70[0x78 - 0x70];
+/* 0x78 */ Vec3 rotation;
+/* 0x84 */ u8 unknown_0x84[0xb4 - 0x84];
 } GuideWork;
 SIZE_ASSERT(GuideWork, 0xb4)
 
@@ -116,11 +122,11 @@ void guideEnterRunMode1();
 void guideEnterRunMode2();
 void guideEnterRunMode5(f32, f32, Vec3 *);
 
-UNKNOWN_FUNCTION(func_80121ba4)
-UNKNOWN_FUNCTION(func_80121bc8)
+void func_80121ba4(Vec3 * out);
+void func_80121bc8();
 UNKNOWN_FUNCTION(func_80121bcc)
-UNKNOWN_FUNCTION(guideCanSearch)
-UNKNOWN_FUNCTION(func_80121d84)
+s32 guideCanSearch();
+s32 func_80121d84();
 UNKNOWN_FUNCTION(func_80121db4)
 UNKNOWN_FUNCTION(func_80121e18)
 
