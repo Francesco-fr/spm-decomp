@@ -92,8 +92,8 @@ bool windowDeleteID(s32 id);
 */
 void windowMain();
 
-UNKNOWN_FUNCTION(func_80038b08)
-UNKNOWN_FUNCTION(func_80038cc0)
+void func_80038b08();
+void func_80038cc0();
 void func_80038fb8(s32, f32 x, f32 y, f32 width, f32 height);
 
 /*
@@ -101,7 +101,7 @@ void func_80038fb8(s32, f32 x, f32 y, f32 width, f32 height);
 */
 void windowDispGX_Kanban(s32 type, GXColor colour, f32 x, f32 y, f32 width, f32 height);
 
-UNKNOWN_FUNCTION(func_800393c8)
+void func_800393c8(s32 texId1, s32 texId2, f32 x, f32 y, f32 width, f32 height, f32 scroll);
 
 /*
     Draws the background for a system message

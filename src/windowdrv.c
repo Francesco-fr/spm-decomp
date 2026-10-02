@@ -248,7 +248,53 @@ void windowDispGX_Kanban(s32 type, GXColor colour, f32 x, f32 y, f32 width, f32 
     }
 }
 
-// NOT_DECOMPILED func_800393c8
+void func_800393c8(s32 texId1, s32 texId2, f32 x, f32 y, f32 width, f32 height, f32 scroll)
+{
+    GXTexObj texObj0;
+    GXTexObj texObj1;
+    GXTexObj texObj2;
+    Mtx34 scale;
+    Mtx34 mtx;
+    f32 transX;
+    f32 transY;
+    f32 scaleX;
+    f32 scaleY;
+
+    sptextureGet(6, &texObj0);
+    sptextureGet(texId1, &texObj1);
+    sptextureGet(texId2, &texObj2);
+    GXLoadTexObj(&texObj0, 0);
+    GXLoadTexObj(&texObj1, 1);
+    GXLoadTexObj(&texObj2, 2);
+    GXSetNumTexGens(2);
+
+    GXSetTexCoordGen2(0, 1, 4, 30, 0, 125);
+    transY = -y / GXGetTexObjHeight(&texObj0) - scroll;
+    transX = scroll + x / GXGetTexObjWidth(&texObj0);
+    PSMTXTrans(mtx, transX, transY, 0.0f);
+    scaleY = fabsf(height) / GXGetTexObjHeight(&texObj0);
+    scaleX = fabsf(width) / GXGetTexObjWidth(&texObj0);
+    PSMTXScale(scale, scaleX, scaleY, 1.0f);
+    PSMTXConcat(mtx, scale, mtx);
+    GXLoadTexMtxImm(mtx, 30, 1);
+
+    GXSetTexCoordGen2(1, 1, 4, 33, 0, 125);
+    scaleY = fabsf(height) / GXGetTexObjHeight(&texObj1);
+    scaleX = fabsf(width) / GXGetTexObjWidth(&texObj1);
+    PSMTXScale(scale, scaleX, scaleY, 1.0f);
+    GXLoadTexMtxImm(scale, 33, 1);
+
+    GXBegin(0x80, 0, 4);
+    GXPosition3f32(x, y, 0.0f);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(x + width, y, 0.0f);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXPosition3f32(x + width, y - height, 0.0f);
+    GXTexCoord2f32(1.0f, 1.0f);
+    GXPosition3f32(x, y - height, 0.0f);
+    GXTexCoord2f32(0.0f, 1.0f);
+    GXEnd();
+}
 
 // NOT_DECOMPILED windowDispGX_System
 
