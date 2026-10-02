@@ -144,7 +144,15 @@ s32 evt_guide_enter_run_mode_1(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_guide_enter_runmode_2
+s32 evt_guide_enter_runmode_2(EvtEntry * entry, bool isFirstCall)
+{
+    (void) entry;
+    (void) isFirstCall;
+
+    guideEnterRunMode2();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ea7e8
 
