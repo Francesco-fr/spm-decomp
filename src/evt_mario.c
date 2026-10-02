@@ -322,7 +322,17 @@ s32 func_800f0160(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800f01ac
+s32 func_800f01ac(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    f32 angle = evtGetFloat(entry, entry->pCurData[0]);
+    MarioWork * mp = marioGetPtr();
+    mp->dispDirectionTarget = reviseAngle(angle);
+    mp->dispDirectionCurrent = mp->dispDirectionTarget;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800f0210
 
