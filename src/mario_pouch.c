@@ -951,7 +951,27 @@ void pouchRemoveShopItem(s32 itemId)
     pp->shopItem[j] = ITEM_ID_NULL;
 }
 
-// NOT_DECOMPILED pouchRemoveShopItemIdx
+void pouchRemoveShopItemIdx(s32 itemId, s32 idx)
+{
+    MarioPouchWork * pp;
+    s32 i;
+
+    pp = pouchGetPtr();
+
+    // "That isn't stored"
+    SPM_ASSERT(952, itemId >= ITEM_ID_USE_START && itemId < ITEM_ID_USE_MAX,
+               "それは預ってない\n");
+    // "Strange"
+    SPM_ASSERT(953, pp->shopItem[idx] == itemId, "おかしい");
+
+    if (idx >= POUCH_SHOP_ITEM_MAX)
+        return;
+
+    pp->shopItem[idx] = ITEM_ID_NULL;
+    for (i = idx; i < POUCH_SHOP_ITEM_MAX - 1; i++)
+        pp->shopItem[i] = pp->shopItem[i + 1];
+    pp->shopItem[i] = ITEM_ID_NULL;
+}
 
 PouchCharOrPixlInfo * pouchGetCharInfo(s32 slot)
 {
