@@ -138,7 +138,15 @@ s32 evt_pouch_add_item(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_check_have_item
+s32 evt_pouch_check_have_item(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetValue(entry, args[1], pouchCheckHaveItem(evtGetValue(entry, args[0])));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_remove_item
 
