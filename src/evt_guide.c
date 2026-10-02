@@ -225,7 +225,28 @@ s32 evt_guide_check_flag0(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ea9f4
+s32 func_800ea9f4(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    s32 on = evtGetValue(entry, entry->pCurData[0]);
+    GuideWork * gw = guideGetWork();
+    if (!func_80121d84())
+        return EVT_RET_CONTINUE;
+
+    if (on)
+    {
+        gw->flag0 |= 0x100;
+        if (gw->runMode == 2)
+            guideEnterRunMode(1);
+    }
+    else
+    {
+        gw->flag0 &= ~0x100;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_guide_get_can_search
 
