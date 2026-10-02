@@ -22,7 +22,7 @@ extern "C" {
 // .sbss
 static WindowEntry * wp;
 static f32 lbl_805ae794;
-static u32 lbl_805ae798;
+static f32 lbl_805ae798;
 static u32 lbl_805ae79c;
 
 void windowInit()
@@ -296,7 +296,72 @@ void func_800393c8(s32 texId1, s32 texId2, f32 x, f32 y, f32 width, f32 height, 
     GXEnd();
 }
 
-// NOT_DECOMPILED windowDispGX_System
+void windowDispGX_System(s32 type, u8 alpha, f32 x, f32 y, f32 width, f32 height)
+{
+    CamEntry * cam;
+    Mtx34 mtx;
+
+    cam = camGetCurPtr();
+
+    // Scroll pattern once per frame
+    if (lbl_805ae79c != gp->frameCounter)
+        lbl_805ae798 += 0.005f;
+    lbl_805ae79c = gp->frameCounter;
+    if (lbl_805ae798 > 10.0f)
+        lbl_805ae798 -= 10.0f;
+
+    func_80038b08();
+    GXSetTevColor(1, (GXColor) {0xff, 0xff, 0xff, alpha});
+    GXSetNumTevStages(4);
+
+    GXSetTevOrder(0, 0, 0, 0xff);
+    GXSetTevColorOp(0, 0, 0, 0, 1, 0);
+    GXSetTevAlphaOp(0, 0, 0, 0, 1, 0);
+    GXSetTevColorIn(0, 15, 15, 15, 8);
+    GXSetTevAlphaIn(0, 7, 7, 7, 4);
+    GXSetTevSwapMode(0, 0, 0);
+
+    GXSetTevOrder(1, 1, 1, 0xff);
+    GXSetTevColorOp(1, 0, 0, 0, 1, 0);
+    GXSetTevAlphaOp(1, 0, 0, 0, 1, 0);
+    GXSetTevColorIn(1, 15, 15, 15, 0);
+    GXSetTevAlphaIn(1, 7, 0, 4, 7);
+    GXSetTevSwapMode(1, 0, 0);
+
+    GXSetTevOrder(2, 1, 2, 0xff);
+    GXSetTevColorOp(2, 0, 0, 0, 1, 0);
+    GXSetTevAlphaOp(2, 0, 0, 0, 1, 0);
+    GXSetTevColorIn(2, 0, 8, 9, 15);
+    GXSetTevAlphaIn(2, 7, 7, 7, 0);
+    GXSetTevSwapMode(2, 0, 0);
+
+    GXSetTevOrder(3, 0xff, 0xff, 0xff);
+    GXSetTevColorOp(3, 0, 0, 0, 1, 0);
+    GXSetTevAlphaOp(3, 0, 0, 0, 1, 0);
+    GXSetTevColorIn(3, 15, 0, 2, 15);
+    GXSetTevAlphaIn(3, 7, 0, 1, 7);
+    GXSetTevSwapMode(3, 0, 0);
+
+    PSMTXTrans(mtx, x, y, 0.0f);
+    PSMTXConcat(cam->viewMtx, mtx, mtx);
+    GXLoadPosMtxImm(mtx, 0);
+    GXSetCurrentMtx(0);
+
+    if (type != 13)
+    {
+        func_800393c8(42, 46, 0.0f, 0.0f, width - 32.0f, height - 32.0f, lbl_805ae798);
+        func_800393c8(43, 47, 0.0f, -(height - 32.0f), width - 32.0f, 32.0f, lbl_805ae798);
+        func_800393c8(44, 48, width - 32.0f, 0.0f, 32.0f, height - 32.0f, lbl_805ae798);
+        func_800393c8(45, 49, width - 32.0f, -(height - 32.0f), 32.0f, 32.0f, lbl_805ae798);
+    }
+    else
+    {
+        func_800393c8(62, 66, 0.0f, 0.0f, width - 32.0f, height - 32.0f, 0.0f);
+        func_800393c8(63, 67, 0.0f, -(height - 32.0f), width - 32.0f, 32.0f, 0.0f);
+        func_800393c8(64, 68, width - 32.0f, 0.0f, 32.0f, height - 32.0f, 0.0f);
+        func_800393c8(65, 69, width - 32.0f, -(height - 32.0f), 32.0f, 32.0f, 0.0f);
+    }
+}
 
 void func_80039b80(u8 alpha, f32 x, f32 y, f32 width, f32 height)
 {
