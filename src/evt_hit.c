@@ -193,7 +193,19 @@ s32 evt_hit_bind_update(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eb564
+s32 func_800eb564(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    Vec3 pos;
+    hitObjGetPos((const char *) evtGetValue(entry, args[0]), &pos);
+    evtSetFloat(entry, args[1], pos.x);
+    evtSetFloat(entry, args[2], pos.y);
+    evtSetFloat(entry, args[3], pos.z);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eb5dc
 
