@@ -126,7 +126,17 @@ s32 evt_mario_key_off2(EvtEntry * entry, bool isFirstCall)
 
 // NOT_DECOMPILED func_800ef814
 
-// NOT_DECOMPILED func_800ef8c8
+s32 func_800ef8c8(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    if (evtGetValue(entry, entry->pCurData[0]))
+        marioBgModeOn();
+    else
+        marioBgModeOff();
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_get_character
 
