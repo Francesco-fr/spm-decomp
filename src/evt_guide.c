@@ -92,7 +92,15 @@ s32 func_800e9ff8(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800ea05c
+s32 func_800ea05c(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    evtSetFloat(entry, args[0], guideGetWork()->rotation.y);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800ea0a8
 
