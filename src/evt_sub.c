@@ -359,7 +359,16 @@ s32 evt_sub_rumble_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_sub_random
+s32 evt_sub_random(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 max = evtGetValue(entry, args[0]);
+    evtSetValue(entry, args[1], rand() % (max + 1));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_sub_get_stopwatch
 
