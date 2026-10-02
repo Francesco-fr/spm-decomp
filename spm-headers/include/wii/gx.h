@@ -78,7 +78,7 @@ UNKNOWN_FUNCTION(GXGetVtxAttrFmt)
 UNKNOWN_FUNCTION(GXGetVtxAttrFmtv)
 UNKNOWN_FUNCTION(GXSetArray)
 UNKNOWN_FUNCTION(GXInvalidateVtxCache)
-void GXSetTexCoordGen2(u8 dst_coord, u32 func, u32 src_param, u32 mtx, u8 normalize, u32 postmtx);
+void GXSetTexCoordGen2(u8, u32, u32, u32, u8, u32);
 void GXSetNumTexGens(u32 nr);
 UNKNOWN_FUNCTION(GXSetMisc)
 UNKNOWN_FUNCTION(GXFlush)
@@ -180,10 +180,10 @@ UNKNOWN_FUNCTION(__GXUpdateBPMask)
 UNKNOWN_FUNCTION(__GXSetIndirectMask)
 UNKNOWN_FUNCTION(__GXFlushTextureState)
 void GXSetTevOp(u8 tevstage, u8 mode);
-void GXSetTevColorIn(u8 stage, u32 a, u32 b, u32 c, u32 d);
-void GXSetTevAlphaIn(u8 stage, u32 a, u32 b, u32 c, u32 d);
-void GXSetTevColorOp(u8 stage, u32 op, u32 bias, u32 scale, u8 clamp, u32 out_reg);
-void GXSetTevAlphaOp(u8 stage, u32 op, u32 bias, u32 scale, u8 clamp, u32 out_reg);
+void GXSetTevColorIn(u8, u32, u32, u32, u32);
+void GXSetTevAlphaIn(u8, u32, u32, u32, u32);
+void GXSetTevColorOp(u8, u32, u32, u32, u8, u32);
+void GXSetTevAlphaOp(u8, u32, u32, u32, u8, u32);
 void GXSetTevColor(u32 id, GXColor colour);
 UNKNOWN_FUNCTION(GXSetTevColorS10)
 UNKNOWN_FUNCTION(GXSetTevKColor)
@@ -213,8 +213,7 @@ UNKNOWN_FUNCTION(GXDrawCube)
 UNKNOWN_FUNCTION(GXBeginDisplayList)
 UNKNOWN_FUNCTION(GXEndDisplayList)
 UNKNOWN_FUNCTION(GXCallDisplayList)
-void GXProject(f32 x, f32 y, f32 z, Mtx34 viewMtx, f32 * projection, f32 * viewport,
-               f32 * screenX, f32 * screenY, f32 * screenZ);
+void GXProject(f32 x, f32 y, f32 z, Mtx34, f32 *, f32 *, f32 * outX, f32 * outY, f32 * outZ);
 UNKNOWN_FUNCTION(__GXSetProjection)
 void GXSetProjection(Mtx44 mtx, GXProjectionType type);
 void GXSetProjectionv(const f32 * proj);

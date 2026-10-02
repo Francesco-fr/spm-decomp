@@ -66,15 +66,9 @@ UNKNOWN_FUNCTION(WPADSetDataFormat)
 UNKNOWN_FUNCTION(__infoCallback)
 typedef struct
 {
-    BOOL dpd;
-    BOOL speaker;
-    BOOL attach;
-    BOOL lowBat;
-    BOOL nearempty;
-    u8 battery;
-    u8 led;
-    u8 protocol;
-    u8 firmware;
+/* 0x00 */ u8 unknown_0x0[0xc - 0x0];
+/* 0x0C */ s32 unknown_0xc;
+/* 0x10 */ u8 unknown_0x10[0x18 - 0x10];
 } WPADInfo;
 SIZE_ASSERT(WPADInfo, 0x18)
 

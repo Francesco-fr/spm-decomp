@@ -50,8 +50,7 @@ UNKNOWN_FUNCTION(PSMTXQuat)
 UNKNOWN_FUNCTION(C_MTXLookAt)
 UNKNOWN_FUNCTION(C_MTXLightFrustum)
 UNKNOWN_FUNCTION(C_MTXLightPerspective)
-void C_MTXLightOrtho(Mtx34 dest, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS,
-                     f32 transT);
+void C_MTXLightOrtho(Mtx34 dest, f32, f32, f32, f32, f32, f32, f32, f32);
 UNKNOWN_FUNCTION(PSMTXMultVec)
 UNKNOWN_FUNCTION(PSMTXMultVecArray)
 UNKNOWN_FUNCTION(PSMTXMultVecSR)
