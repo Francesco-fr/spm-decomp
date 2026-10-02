@@ -122,7 +122,17 @@ s32 func_800eadec(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eaed0
+void func_800eaed0(HitObj * hitObj, s32 value)
+{
+    if (hitObj == NULL)
+        return;
+
+    hitObj->unknown_0xe2 = (s16) value;
+    if (hitObj->child != NULL)
+        func_800eaed0(hitObj->child, value);
+    if (hitObj->nextSibling != NULL)
+        func_800eaed0(hitObj->nextSibling, value);
+}
 
 // NOT_DECOMPILED func_800eb15c
 
