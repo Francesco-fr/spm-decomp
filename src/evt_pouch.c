@@ -288,7 +288,14 @@ s32 evt_pouch_get_level(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_pouch_set_level
+s32 evt_pouch_set_level(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    pouchSetLevel(evtGetValue(entry, entry->pCurData[0]));
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_pouch_get_next_level_xp
 
