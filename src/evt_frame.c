@@ -69,7 +69,22 @@ s32 evt_frame_set_color(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800e8b48
+s32 func_800e8b48(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 on = evtGetValue(entry, args[0]);
+    s32 name = evtGetValue(entry, args[1]);
+    u32 flags = (u32) evtGetValue(entry, args[2]);
+    FrameEntry * frame = func_80068254((const char *) name);
+    if (on)
+        frame->flags |= flags;
+    else
+        frame->flags &= ~flags;
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e8be8
 
