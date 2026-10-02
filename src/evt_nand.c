@@ -36,7 +36,19 @@ s32 func_80241474(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_802414e0
+s32 func_802414e0(EvtEntry * entry, bool isFirstCall)
+{
+    EvtScriptCode * args = entry->pCurData;
+    if (isFirstCall)
+        nandWriteAllSaves();
+
+    if (nandIsExec())
+        return EVT_RET_BLOCK_WEAK;
+
+    evtSetValue(entry, args[0], nandGetCode());
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_8024154c
 
