@@ -275,7 +275,32 @@ s32 evt_hitobj_attr_onoff(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800eb7f4
+s32 func_800eb7f4(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    s32 group = evtGetValue(entry, args[0]);
+    s32 on = evtGetValue(entry, args[1]);
+    s32 name = evtGetValue(entry, args[2]);
+    u32 mask = (u32) args[3];
+    if (group == 0)
+    {
+        if (on == 0)
+            hitObjAttrOff(true, (const char *) name, mask);
+        else
+            hitObjAttrOn(true, (const char *) name, mask);
+    }
+    else
+    {
+        if (on == 0)
+            hitGrpAttrOff(true, (const char *) name, mask);
+        else
+            hitGrpAttrOn(true, (const char *) name, mask);
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800eb8bc
 
