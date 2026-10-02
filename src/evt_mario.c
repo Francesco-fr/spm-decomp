@@ -157,7 +157,23 @@ s32 evt_mario_set_character(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED evt_mario_set_pos
+s32 evt_mario_set_pos(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    f32 x = evtGetFloat(entry, args[0]);
+    f32 y = evtGetFloat(entry, args[1]);
+    f32 z = evtGetFloat(entry, args[2]);
+    MarioWork * mp = marioGetPtr();
+    if (mp != NULL)
+    {
+        Vec3 pos = {x, y, z};
+        mp->position = pos;
+    }
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED evt_mario_get_pos
 
