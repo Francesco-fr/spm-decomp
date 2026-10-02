@@ -439,7 +439,20 @@ s32 evt_snd_get_last_sfx_id(EvtEntry * entry, bool isFirstCall)
     return EVT_RET_CONTINUE;
 }
 
-// NOT_DECOMPILED func_800d3060
+s32 func_800d3060(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    EvtScriptCode * args = entry->pCurData;
+    Vec3 pos;
+    s32 player = evtGetValue(entry, args[0]);
+    pos.x = evtGetFloat(entry, args[1]);
+    pos.y = evtGetFloat(entry, args[2]);
+    pos.z = evtGetFloat(entry, args[3]);
+    spsndSetSfxPlayerPos((u32) player, &pos);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800d30e8
 
