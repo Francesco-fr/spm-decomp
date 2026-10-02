@@ -57,7 +57,14 @@ s32 func_800e0d78(s32 type, bool flag, const char * name, const char * name2,
     return caseEntry(pDef);
 }
 
-// NOT_DECOMPILED func_800e0dfc
+s32 func_800e0dfc(EvtEntry * entry, bool isFirstCall)
+{
+    (void) isFirstCall;
+
+    caseDelete(entry->casedrvId);
+
+    return EVT_RET_CONTINUE;
+}
 
 // NOT_DECOMPILED func_800e0e24
 
